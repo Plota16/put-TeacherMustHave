@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_large">32dp</dimen>
+    <dimen name="spacing_normal">8dp</dimen>
+    <dimen name="spacing_micro">4dp</dimen>
+
+    <dimen name="splash_logo_sd_symbol">128dp</dimen>
+    <dimen name="splash_logo_sd_text_width">212dp</dimen>
+    <dimen name="splash_logo_sd_text_height">36dp</dimen>
+    <dimen name="splash_logo_sd_text_margin">8dp</dimen>
+
+    <dimen name="thumb_size">64dp</dimen>
+    <dimen name="search_size">80dp</dimen>
+</resources>

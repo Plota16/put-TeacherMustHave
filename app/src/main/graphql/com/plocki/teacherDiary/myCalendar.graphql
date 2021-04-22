@@ -1,0 +1,16 @@
+query MyCalendar($teacherId: Int) {
+    SUBJECT_ENTRY(where: { SUBJECT_FOR_CLASS: {TEACHER_ID: {_eq: $teacherId}}}) {
+        ID
+        DATE
+        LESSON {
+            START_TIME
+            END_TIME
+        }
+        TOPIC
+        SUBJECT_FOR_CLASS{
+            CLASS {
+                NAME
+            }
+        }
+    }
+}

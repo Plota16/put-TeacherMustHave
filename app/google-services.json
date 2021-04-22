@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "200650654764",
+    "project_id": "teacher-diary-6413c",
+    "storage_bucket": "teacher-diary-6413c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:200650654764:android:b234543fff601196de7d89",
+        "android_client_info": {
+          "package_name": "com.plocki.schema.json"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "200650654764-oheajp5evb6403figla5hh674dpn3sod.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsqu44IKF1ZZDKA211LMre52ns51nI4To"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "200650654764-oheajp5evb6403figla5hh674dpn3sod.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
