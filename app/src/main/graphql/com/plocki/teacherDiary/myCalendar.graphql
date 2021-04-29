@@ -11,6 +11,7 @@ query MyCalendar($teacherId: Int) {
             CLASS {
                 NAME
             }
+            SUBJECT_NAME
         }
     }
 }

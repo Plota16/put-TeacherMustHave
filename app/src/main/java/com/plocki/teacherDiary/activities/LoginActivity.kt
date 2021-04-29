@@ -183,8 +183,11 @@ class LoginActivity : AppCompatActivity() {
                 try{
                     val id = tmp.data!!.uSER[0].tEACHER_ID
                     store.store(id.toString(),"teacherId")
+                    val api = ApiDownload(id!!)
+                    api.init()
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     startActivity(intent)
+
                 } catch (ex : NullPointerException){
                     val intent = Intent(this@LoginActivity, NonAuthorizedEntryActivity::class.java)
                     startActivity(intent)
@@ -195,6 +198,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
+
 
     private fun validateEmail(): Boolean {
 
