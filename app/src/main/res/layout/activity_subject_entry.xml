@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/subject_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".activities.SubjectEntryActivity">
+
+    <LinearLayout
+        android:id="@+id/subject_top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/subject_top_banner"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/light_blue"
+            android:clickable="false"
+            android:text="POLSKI VA"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="59dp"
+            tools:layout_editor_absoluteY="43dp" />
+
+        <LinearLayout
+            android:id="@+id/subject_top_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/subject_top_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:fontFamily="@font/roboto"
+                android:text="Data:  01.01.2021"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/subject_top_time_start"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:fontFamily="@font/roboto"
+                android:text="Od: 7:45"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/subject_top_time_end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:fontFamily="@font/roboto"
+                android:text="Do: 8:30"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/subject_topic_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/subject_top_layout"
+        android:layout_marginTop="32dp"
+        android:checkable="true"
+        android:clickable="true"
+        android:clipToPadding="false"
+        android:focusable="true"
+        app:cardBackgroundColor="@color/card_background"
+        app:cardUseCompatPadding="false">
+
+
+        <RelativeLayout
+            android:id="@+id/subject_topic_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/subject_topic_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:srcCompat="@drawable/ic_title_black_48dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/subject_topic_button"
+                android:layout_toEndOf="@id/subject_topic_image"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/subject_topic_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="TEMAT"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/subject_topic_topic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="NIe podano tematu" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/subject_topic_button"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="WPISZ"
+                android:textSize="12sp" />
+
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/subject_presence_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/subject_topic_card"
+        android:layout_marginTop="32dp"
+        android:checkable="true"
+        android:clickable="true"
+        android:clipToPadding="false"
+        android:focusable="true"
+        app:cardBackgroundColor="@color/card_background"
+        app:cardUseCompatPadding="false">
+
+
+        <LinearLayout
+            android:id="@+id/subject_presence_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/subject_presence_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:srcCompat="@drawable/ic_people_black_48dp" />
+
+            <TextView
+                android:id="@+id/subject_presence_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_bold"
+                android:text="OBECNOŚĆ"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/subject_presence_button"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="Sprawdź"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/subject_grade_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/subject_presence_card"
+        android:layout_marginTop="32dp"
+        android:checkable="true"
+        android:clickable="true"
+        android:clipToPadding="false"
+        android:focusable="true"
+        app:cardBackgroundColor="@color/card_background"
+        app:cardUseCompatPadding="false">
+
+
+        <LinearLayout
+            android:id="@+id/subject_grade_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/subject_grade_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:srcCompat="@drawable/ic_grade_black_48dp" />
+
+            <TextView
+                android:id="@+id/subject_grade_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_bold"
+                android:text="OCENA"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/subject_grade_button"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="WYSTAW"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/subject_test_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/subject_grade_card"
+        android:layout_marginTop="32dp"
+        android:checkable="true"
+        android:clickable="true"
+        android:clipToPadding="false"
+        android:focusable="true"
+        app:cardBackgroundColor="@color/card_background"
+        app:cardUseCompatPadding="false">
+
+
+        <LinearLayout
+            android:id="@+id/subject_test_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/subject_test_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:srcCompat="@drawable/ic_menu_book_black_48dp" />
+
+            <TextView
+                android:id="@+id/subject_test_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_bold"
+                android:text="SPRAWDZIAN"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/subject_test_button"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="DODAJ"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</RelativeLayout>

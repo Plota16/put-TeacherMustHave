@@ -3,6 +3,7 @@ package com.plocki.teacherDiary.model
 import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
 import com.plocki.teacherDiary.MyCalendarQuery
+import com.plocki.teacherDiary.R
 
 class SubjectEntry(myCalendarQuery: MyCalendarQuery.SUBJECT_ENTRY?) {
 
@@ -56,8 +57,19 @@ class SubjectEntry(myCalendarQuery: MyCalendarQuery.SUBJECT_ENTRY?) {
     }
 
 
+    fun getColor(): Int {
+        return when(className.last()){
+            'A' -> R.color.light_blue
+            'B' -> R.color.light_green
+            'C' -> R.color.light_purple
+            'D' -> R.color.light_red
+            'E' -> R.color.light_yellow
+            else -> R.color.light_unknown
+        }
+    }
 
     companion object{
+
         fun readAll(db: SQLiteDatabase): ArrayList<SubjectEntry> {
             val projection = arrayOf(COL1, COL2, COL3, COL4, COL5, COL6,COL7)
 
@@ -95,7 +107,42 @@ class SubjectEntry(myCalendarQuery: MyCalendarQuery.SUBJECT_ENTRY?) {
             return entries
         }
 
+        fun readOne(db: SQLiteDatabase, id: Int): SubjectEntry {
+            val projection = arrayOf(COL1, COL2, COL3, COL4, COL5, COL6,COL7)
 
+
+            val selection = "$COL1 = ?"
+            val selectionArgs = arrayOf(id.toString())
+
+            val sortOrder = "$COL1 DESC"
+
+            val cursor = db.query(
+                TABLE_NAME,   // The table to query
+                projection,             // The array of columns to return (pass null to get all)
+                selection,              // The columns for the WHERE clause
+                selectionArgs,          // The values for the WHERE clause
+                null,                   // don't group the rows
+                null,                   // don't filter by row groups
+                sortOrder               // The sort order
+            )
+
+            val entries = ArrayList<SubjectEntry>()
+            with(cursor) {
+                while (moveToNext()) {
+                    val entry = SubjectEntry(
+                        cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(5),
+                        cursor.getString(4),
+                        cursor.getString(6)
+                    )
+                    entries.add(entry)
+                }
+            }
+            return entries[0]
+        }
 
         private const val TABLE_NAME = "SUBJECT_ENTRY"
         private const val COL1 = "ID"

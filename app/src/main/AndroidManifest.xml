@@ -10,14 +10,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TeacherDiary">
-        <activity android:name=".NonAuthorizedEntryActivity" />
+        <activity android:name=".activities.SubjectEntryActivity"></activity>
+        <activity android:name=".activities.NonAuthorizedEntryActivity" />
         <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.LoginActivity" />
-        <activity android:name=".activities.SplashActivity"
-            android:launchMode="singleTask"
-            >
+        <activity
+            android:name=".activities.SplashActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

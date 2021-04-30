@@ -1,5 +1,6 @@
 package com.plocki.teacherDiary.fragments
 
+import android.content.Intent
 import android.graphics.RectF
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import com.alamkanak.weekview.WeekViewEvent
 import com.plocki.teacherDiary.DatabaseHelper
 import com.plocki.teacherDiary.MainApplication
 import com.plocki.teacherDiary.R
+import com.plocki.teacherDiary.activities.SubjectEntryActivity
 import com.plocki.teacherDiary.model.SubjectEntry
 import java.util.*
 import kotlin.collections.ArrayList
@@ -22,9 +24,9 @@ class CalendarFragment : Fragment() {
     private  var entries = ArrayList<WeekViewEvent>()
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
 
         return inflater.inflate(R.layout.calendar_fragment, container, false)
@@ -35,6 +37,9 @@ class CalendarFragment : Fragment() {
 
         mWeekView = view!!.findViewById(R.id.weekView);
         mWeekView.setOnEventClickListener { weekViewEvent: WeekViewEvent, rectF: RectF ->
+            val intent = Intent(MainApplication.appContext, SubjectEntryActivity::class.java)
+            intent.putExtra("subjectId", weekViewEvent.id.toString())
+            startActivity(intent)
         }
 
         val db = DatabaseHelper(MainApplication.appContext).readableDatabase
@@ -70,21 +75,22 @@ class CalendarFragment : Fragment() {
         val weekViewEvents = ArrayList<WeekViewEvent>()
 
         for( entry: SubjectEntry in subjectEntries){
-            val event = WeekViewEvent(entry.id.toLong(),
-                    entry.subjectName,
-                    entry.date.split("-")[0].toInt(),
-                    entry.date.split("-")[1].toInt(),
-                    entry.date.split("-")[2].toInt(),
-                    entry.startTime.split(":")[0].toInt(),
-                    entry.startTime.split(":")[1].toInt(),
-                    entry.date.split("-")[0].toInt(),
-                    entry.date.split("-")[1].toInt(),
-                    entry.date.split("-")[2].toInt(),
-                    entry.endTime.split(":")[0].toInt(),
-                    entry.endTime.split(":")[1].toInt()
+            val event = WeekViewEvent(
+                entry.id.toLong(),
+                entry.subjectName,
+                entry.date.split("-")[0].toInt(),
+                entry.date.split("-")[1].toInt(),
+                entry.date.split("-")[2].toInt(),
+                entry.startTime.split(":")[0].toInt(),
+                entry.startTime.split(":")[1].toInt(),
+                entry.date.split("-")[0].toInt(),
+                entry.date.split("-")[1].toInt(),
+                entry.date.split("-")[2].toInt(),
+                entry.endTime.split(":")[0].toInt(),
+                entry.endTime.split(":")[1].toInt()
             )
-            event.location = entry.className
-            event.color = resources.getColor(R.color.Secondary)
+            event.location = "\n${entry.className}"
+            event.color = resources.getColor(entry.getColor())
             weekViewEvents.add(event)
         }
         return weekViewEvents

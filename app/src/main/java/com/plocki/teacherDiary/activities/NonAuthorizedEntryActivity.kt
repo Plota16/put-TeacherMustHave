@@ -1,7 +1,8 @@
-package com.plocki.teacherDiary
+package com.plocki.teacherDiary.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.plocki.teacherDiary.R
 
 class NonAuthorizedEntryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
