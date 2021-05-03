@@ -2,45 +2,17 @@ package com.plocki.teacherDiary.model
 
 import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
-import com.plocki.teacherDiary.MyCalendarQuery
 import com.plocki.teacherDiary.R
 
-class SubjectEntry(myCalendarQuery: MyCalendarQuery.SUBJECT_ENTRY?) {
-
-    var id : Int = 0
-    var date: String = ""
-    var startTime: String = ""
-    var endTime: String = ""
-    var className : String = ""
-    var topic: String = ""
-    var subjectName : String = ""
+class SubjectEntry(var id: Int,
+                   var date : String,
+                   var startTime : String,
+                   var endTime : String,
+                   var className: String,
+                   var topic: String,
+                   var subjectName: String) {
 
 
-    constructor(id: Int, date : String, startTime : String, endTime : String, className: String, topic: String, subjectName: String) : this(null){
-        this.id = id
-        this.date = date
-        this.startTime = startTime
-        this.endTime = endTime
-        this.className = className
-        this.topic = topic
-        this.subjectName = subjectName
-    }
-
-
-    init {
-
-        if(myCalendarQuery != null){
-            this.id = myCalendarQuery!!.iD
-            this.date = myCalendarQuery.dATE.toString()
-            this.startTime = myCalendarQuery.lESSON.sTART_TIME.toString()
-            this.endTime = myCalendarQuery.lESSON.eND_TIME.toString()
-            this.className = myCalendarQuery.sUBJECT_FOR_CLASS.cLASS.nAME
-            this.subjectName = myCalendarQuery.sUBJECT_FOR_CLASS.sUBJECT_NAME
-            if (!myCalendarQuery.tOPIC.isNullOrEmpty()){
-                this.topic = myCalendarQuery.tOPIC
-            }
-        }
-    }
 
 
     fun insert(db: SQLiteDatabase){
@@ -56,7 +28,6 @@ class SubjectEntry(myCalendarQuery: MyCalendarQuery.SUBJECT_ENTRY?) {
         db.insert(TABLE_NAME, null, values)
     }
 
-
     fun getColor(): Int {
         return when(className.last()){
             'A' -> R.color.light_blue
@@ -67,6 +38,18 @@ class SubjectEntry(myCalendarQuery: MyCalendarQuery.SUBJECT_ENTRY?) {
             else -> R.color.light_unknown
         }
     }
+
+    fun updateTopic(db: SQLiteDatabase){
+
+        val contentValues = ContentValues()
+        contentValues.put(COL5,this.topic)
+        val selection = "$COL1 = ?"
+        val selectionArgs = arrayOf(id.toString())
+
+
+        db.update(TABLE_NAME,contentValues,selection,selectionArgs)
+    }
+
 
     companion object{
 

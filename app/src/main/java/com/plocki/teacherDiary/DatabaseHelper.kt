@@ -3,6 +3,7 @@ package com.plocki.teacherDiary
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.plocki.teacherDiary.model.MyClassStudent
 import com.plocki.teacherDiary.model.SubjectEntry
 
 
@@ -31,7 +32,7 @@ class DatabaseHelper(
         const val DB_NAME = "teacherMust.db";
 
 
-        val DB_CREATE_ALL = SubjectEntry.CREATE_TABLE
-        val DB_DELETE_ALL = SubjectEntry.DROP_TABLE
+        const val DB_CREATE_ALL = SubjectEntry.CREATE_TABLE + MyClassStudent.CREATE_TABLE
+        const val DB_DELETE_ALL = SubjectEntry.DROP_TABLE + MyClassStudent.DROP_TABLE
     }
 }

@@ -1,0 +1,10 @@
+query myClasses($teacherId: Int) {
+    CLASS(where: {SUBJECT_FOR_CLASSes: {TEACHER_ID: {_eq: $teacherId }}}) {
+        NAME
+        STUDENTs {
+            ID
+            FIRST_NAME
+            LAST_NAME
+        }
+    }
+}

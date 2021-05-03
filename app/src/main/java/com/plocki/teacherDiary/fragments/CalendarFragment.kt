@@ -1,6 +1,7 @@
 package com.plocki.teacherDiary.fragments
 
 import android.content.Intent
+import android.database.sqlite.SQLiteDatabase
 import android.graphics.RectF
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -22,7 +23,7 @@ class CalendarFragment : Fragment() {
 
     private lateinit var mWeekView : WeekView
     private  var entries = ArrayList<WeekViewEvent>()
-
+    private lateinit var  db : SQLiteDatabase
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,7 +43,7 @@ class CalendarFragment : Fragment() {
             startActivity(intent)
         }
 
-        val db = DatabaseHelper(MainApplication.appContext).readableDatabase
+        db = DatabaseHelper(MainApplication.appContext).readableDatabase
 
         entries = toWeekViewEvents(SubjectEntry.readAll(db))
         mWeekView.setMonthChangeListener{ newYear, newMonth -> // Populate the week view with some events.
@@ -75,9 +76,16 @@ class CalendarFragment : Fragment() {
         val weekViewEvents = ArrayList<WeekViewEvent>()
 
         for( entry: SubjectEntry in subjectEntries){
+            var name = ""
+            name = if (entry.topic == ""){
+                entry.subjectName
+            }else{
+                entry.topic
+            }
+
             val event = WeekViewEvent(
                 entry.id.toLong(),
-                entry.subjectName,
+                name,
                 entry.date.split("-")[0].toInt(),
                 entry.date.split("-")[1].toInt(),
                 entry.date.split("-")[2].toInt(),
@@ -96,6 +104,11 @@ class CalendarFragment : Fragment() {
         return weekViewEvents
     }
 
+    override fun onResume() {
+        entries = toWeekViewEvents(SubjectEntry.readAll(db))
+        mWeekView.notifyDatasetChanged()
+        super.onResume()
+    }
 
 
 
