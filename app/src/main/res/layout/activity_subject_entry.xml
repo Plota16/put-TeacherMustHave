@@ -176,6 +176,7 @@
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
+                android:onClick="checkPresence"
                 android:text="Sprawdź"
                 android:textSize="12sp" />
 

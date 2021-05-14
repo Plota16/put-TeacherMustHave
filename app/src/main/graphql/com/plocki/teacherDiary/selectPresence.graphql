@@ -1,0 +1,8 @@
+query selectPresence($subjectEntryiD : Int) {
+    STUDNET_SUBJECT_ENTRY_PRESENCE(where: {subject_entry_id: {_eq: $subjectEntryiD}}) {
+        subject_entry_id
+        student_id
+        presence
+
+    }
+}

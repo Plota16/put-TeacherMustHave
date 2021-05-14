@@ -10,7 +10,11 @@ class SubjectEntry(var id: Int,
                    var endTime : String,
                    var className: String,
                    var topic: String,
-                   var subjectName: String) {
+                   var subjectName: String,
+                   var testID: String,
+                   var presence: String,
+                   var late : String
+                   ) {
 
 
 
@@ -24,6 +28,9 @@ class SubjectEntry(var id: Int,
             put(COL5, topic)
             put(COL6, className)
             put(COL7,subjectName)
+            put(COL8,testID)
+            put(COL9,presence)
+            put(COL10,late)
         }
         db.insert(TABLE_NAME, null, values)
     }
@@ -54,11 +61,7 @@ class SubjectEntry(var id: Int,
     companion object{
 
         fun readAll(db: SQLiteDatabase): ArrayList<SubjectEntry> {
-            val projection = arrayOf(COL1, COL2, COL3, COL4, COL5, COL6,COL7)
-
-
-//            val selection = "$COL1 = ?"
-//            val selectionArgs = arrayOf(id.toString())
+            val projection = arrayOf(COL1, COL2, COL3, COL4, COL5, COL6, COL7, COL8, COL9, COL10)
 
             val sortOrder = "$COL1 DESC"
 
@@ -82,7 +85,10 @@ class SubjectEntry(var id: Int,
                             cursor.getString(3),
                             cursor.getString(5),
                             cursor.getString(4),
-                            cursor.getString(6)
+                            cursor.getString(6),
+                            cursor.getString(7),
+                            cursor.getString(8),
+                            cursor.getString(9)
                     )
                     entries.add(entry)
                 }
@@ -91,7 +97,7 @@ class SubjectEntry(var id: Int,
         }
 
         fun readOne(db: SQLiteDatabase, id: Int): SubjectEntry {
-            val projection = arrayOf(COL1, COL2, COL3, COL4, COL5, COL6,COL7)
+            val projection = arrayOf(COL1, COL2, COL3, COL4, COL5, COL6, COL7, COL8, COL9, COL10)
 
 
             val selection = "$COL1 = ?"
@@ -112,24 +118,39 @@ class SubjectEntry(var id: Int,
             val entries = ArrayList<SubjectEntry>()
             with(cursor) {
                 while (moveToNext()) {
+
                     val entry = SubjectEntry(
-                        cursor.getInt(0),
-                        cursor.getString(1),
-                        cursor.getString(2),
-                        cursor.getString(3),
-                        cursor.getString(5),
-                        cursor.getString(4),
-                        cursor.getString(6)
-                    )
+                            cursor.getInt(0),
+                            cursor.getString(1),
+                            cursor.getString(2),
+                            cursor.getString(3),
+                            cursor.getString(5),
+                            cursor.getString(4),
+                            cursor.getString(6),
+                            cursor.getString(7),
+                            cursor.getString(8),
+                            cursor.getString(9)
+
+                                                        )
                     entries.add(entry)
                 }
             }
             return entries[0]
         }
 
+        fun updatePresence(db: SQLiteDatabase, id: Int){
+
+            val contentValues = ContentValues()
+            contentValues.put(COL9,"Y")
+            val selection = "$COL1 = ?"
+            val selectionArgs = arrayOf(id.toString())
+
+            db.update(TABLE_NAME,contentValues,selection,selectionArgs)
+        }
+
         private const val TABLE_NAME = "SUBJECT_ENTRY"
         private const val COL1 = "ID"
-        private const val COL1_TYPE = "INTEGER"
+        private const val COL1_TYPE = "SMALLINT"
         private const val COL2 = "DATE"
         private const val COL2_TYPE = "TEXT"
         private const val COL3 = "START_TIME"
@@ -142,6 +163,12 @@ class SubjectEntry(var id: Int,
         private const val COL6_TYPE = "TEXT"
         private const val COL7 = "SUBJECT_NAME"
         private const val COL7_TYPE = "TEXT"
+        private const val COL8 = "TEST_ID"
+        private const val COL8_TYPE = "TEXT"
+        private const val COL9 = "PRESENCE"
+        private const val COL9_TYPE = "TEXT"
+        private const val COL10 = "LATE"
+        private const val COL10_TYPE = "TEXT"
 
 
         const val CREATE_TABLE = "Create Table $TABLE_NAME (" +
@@ -151,10 +178,13 @@ class SubjectEntry(var id: Int,
                 "$COL4 $COL4_TYPE, " +
                 "$COL5 $COL5_TYPE, " +
                 "$COL6 $COL6_TYPE, " +
-                "$COL7 $COL7_TYPE); "
+                "$COL7 $COL7_TYPE, " +
+                "$COL8 $COL8_TYPE, " +
+                "$COL9 $COL9_TYPE, " +
+                "$COL10 $COL10_TYPE); "
 
 
-        const val DROP_TABLE = "DROP TABLE IF EXISTS $TABLE_NAME"
+        const val DROP_TABLE = "DROP TABLE IF EXISTS $TABLE_NAME;"
     }
 
 }

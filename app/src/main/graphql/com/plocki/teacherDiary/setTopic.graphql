@@ -1,8 +1,8 @@
 mutation setTopic($id: Int, $topic: String) {
-    update_SUBJECT_ENTRY(where: {ID: {_eq: $id}}, _set: {TOPIC: $topic}){
+    update_SUBJECT_ENTRY(where: {id: {_eq: $id}}, _set: {topic: $topic}){
         returning{
-            ID
-            TOPIC
+            id
+            topic
         }
     }
 }

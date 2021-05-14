@@ -1,6 +1,6 @@
 query WhoAmI($email: String) {
-  USER(where: {EMAIL: {_eq: $email}}) {
-    EMAIL
-    TEACHER_ID
+  USER(where: {email: {_eq: $email}}) {
+    email
+    teacher_id
   }
 }

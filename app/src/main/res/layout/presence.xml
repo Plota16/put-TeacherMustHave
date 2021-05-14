@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="8dp"
+    android:orientation="horizontal">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/presence_card"
+        app:cardBackgroundColor="@color/card_background"
+        app:cardUseCompatPadding="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:checkable="true"
+        android:clickable="true"
+        android:clipToPadding="false"
+        app:cardCornerRadius="16dp"
+        android:focusable="true">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_margin="8dp"
+            android:orientation="horizontal">
+    <TextView
+        android:id="@+id/presence_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="false"
+        android:layout_centerInParent="true"
+        android:layout_toLeftOf="@id/presence_radio_group"
+        android:layout_weight="1"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center"
+        android:text="Imie Nazwisko"
+        android:textSize="18sp" />
+
+    <RadioGroup
+        android:id="@+id/presence_radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_weight="1">
+
+        <RadioButton
+            android:id="@+id/presence_radio_present"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Obecny" />
+
+        <RadioButton
+            android:id="@+id/presence_radio_late"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Spóźniony" />
+
+        <RadioButton
+            android:id="@+id/presence_radio_justified"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Usprawiedliwiony" />
+
+        <RadioButton
+            android:id="@+id/presence_radio_absent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nieobecny" />
+
+        <RadioButton
+            android:id="@+id/presence_radio_unknown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Niesprawdzono" />
+    </RadioGroup>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+</RelativeLayout>

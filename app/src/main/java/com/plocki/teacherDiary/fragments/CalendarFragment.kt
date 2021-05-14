@@ -10,11 +10,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.alamkanak.weekview.WeekView
 import com.alamkanak.weekview.WeekViewEvent
-import com.plocki.teacherDiary.DatabaseHelper
-import com.plocki.teacherDiary.MainApplication
+import com.plocki.teacherDiary.utility.DatabaseHelper
+import com.plocki.teacherDiary.utility.MainApplication
 import com.plocki.teacherDiary.R
 import com.plocki.teacherDiary.activities.SubjectEntryActivity
 import com.plocki.teacherDiary.model.SubjectEntry
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -46,7 +48,9 @@ class CalendarFragment : Fragment() {
         db = DatabaseHelper(MainApplication.appContext).readableDatabase
 
         entries = toWeekViewEvents(SubjectEntry.readAll(db))
-        mWeekView.setMonthChangeListener{ newYear, newMonth -> // Populate the week view with some events.
+
+
+        mWeekView.setMonthChangeListener{ newYear, newMonth ->
             val month: Int = newMonth - 1
             getEventsForMonth(newYear, month)
         }
@@ -55,7 +59,6 @@ class CalendarFragment : Fragment() {
 
         }
 
-        println("ok")
         super.onStart()
     }
 
@@ -75,37 +78,42 @@ class CalendarFragment : Fragment() {
 
         val weekViewEvents = ArrayList<WeekViewEvent>()
 
-        for( entry: SubjectEntry in subjectEntries){
-            var name = ""
-            name = if (entry.topic == ""){
-                entry.subjectName
-            }else{
-                entry.topic
-            }
+            for( entry: SubjectEntry in subjectEntries){
 
-            val event = WeekViewEvent(
-                entry.id.toLong(),
-                name,
-                entry.date.split("-")[0].toInt(),
-                entry.date.split("-")[1].toInt(),
-                entry.date.split("-")[2].toInt(),
-                entry.startTime.split(":")[0].toInt(),
-                entry.startTime.split(":")[1].toInt(),
-                entry.date.split("-")[0].toInt(),
-                entry.date.split("-")[1].toInt(),
-                entry.date.split("-")[2].toInt(),
-                entry.endTime.split(":")[0].toInt(),
-                entry.endTime.split(":")[1].toInt()
-            )
-            event.location = "\n${entry.className}"
-            event.color = resources.getColor(entry.getColor())
-            weekViewEvents.add(event)
-        }
+                    var name = ""
+                    name = if (entry.topic == ""){
+                        entry.subjectName
+                    }else{
+                        entry.topic
+                    }
+
+                    val event = WeekViewEvent(
+                            entry.id.toLong(),
+                            name,
+                            entry.date.split("-")[0].toInt(),
+                            entry.date.split("-")[1].toInt(),
+                            entry.date.split("-")[2].toInt(),
+                            entry.startTime.split(":")[0].toInt(),
+                            entry.startTime.split(":")[1].toInt(),
+                            entry.date.split("-")[0].toInt(),
+                            entry.date.split("-")[1].toInt(),
+                            entry.date.split("-")[2].toInt(),
+                            entry.endTime.split(":")[0].toInt(),
+                            entry.endTime.split(":")[1].toInt()
+                    )
+                    event.location = "\n${entry.className}"
+                    event.color = resources.getColor(entry.getColor())
+                    weekViewEvents.add(event)
+                }
+
+
         return weekViewEvents
     }
 
     override fun onResume() {
-        entries = toWeekViewEvents(SubjectEntry.readAll(db))
+        GlobalScope.launch {
+            entries = toWeekViewEvents(SubjectEntry.readAll(db))
+        }
         mWeekView.notifyDatasetChanged()
         super.onResume()
     }

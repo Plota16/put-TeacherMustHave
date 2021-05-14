@@ -1,4 +1,4 @@
-package com.plocki.teacherDiary
+package com.plocki.teacherDiary.utility
 
 import com.apollographql.apollo.ApolloCall
 import com.apollographql.apollo.ApolloClient

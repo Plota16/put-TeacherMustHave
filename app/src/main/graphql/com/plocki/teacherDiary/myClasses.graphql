@@ -1,10 +1,11 @@
 query myClasses($teacherId: Int) {
-    CLASS(where: {SUBJECT_FOR_CLASSes: {TEACHER_ID: {_eq: $teacherId }}}) {
-        NAME
+    CLASS(where: {SUBJECT_FOR_CLASSes: {teacher_id: {_eq: $teacherId }}}) {
+        name
+        id
         STUDENTs {
-            ID
-            FIRST_NAME
-            LAST_NAME
+            id
+            first_name
+            last_name
         }
     }
 }

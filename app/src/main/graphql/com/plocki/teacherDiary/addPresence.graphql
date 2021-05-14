@@ -1,0 +1,10 @@
+mutation addPresence($object: [STUDNET_SUBJECT_ENTRY_PRESENCE_insert_input!]!) {
+    insert_STUDNET_SUBJECT_ENTRY_PRESENCE(objects: $object) {
+        returning {
+            subject_entry_id
+            student_id
+            presence
+
+        }
+    }
+}

@@ -1,10 +1,12 @@
-package com.plocki.teacherDiary
+package com.plocki.teacherDiary.utility
 
 import android.widget.Toast
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import com.apollographql.apollo.api.toInput
 import com.apollographql.apollo.coroutines.toDeferred
+import com.plocki.teacherDiary.MyCalendarQuery
+import com.plocki.teacherDiary.MyClassesQuery
 import com.plocki.teacherDiary.model.MyClassStudent
 import com.plocki.teacherDiary.model.SubjectEntry
 import kotlinx.coroutines.Dispatchers
@@ -17,10 +19,12 @@ class ApiDownload(val id : Int) {
     fun init(){
 
         GlobalScope.launch(Dispatchers.Main) {
-            val calendarJob = myCalendar(id)
+
             val myClassesJob = myClasses(id)
-            calendarJob.join()
             myClassesJob.join()
+            val calendarJob = myCalendar(id)
+            calendarJob.join()
+            updateLate()
         }
     }
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -38,13 +42,30 @@ class ApiDownload(val id : Int) {
                         db.execSQL(SubjectEntry.DROP_TABLE)
                         db.execSQL(SubjectEntry.CREATE_TABLE)
                         for(entry in tmp.data!!.sUBJECT_ENTRY){
-                            val subjectEntry = SubjectEntry(entry.iD,
-                                                            entry.dATE.toString(),
-                                                            entry.lESSON.sTART_TIME.toString(),
-                                                            entry.lESSON.eND_TIME.toString(),
-                                                            entry.sUBJECT_FOR_CLASS.cLASS.nAME.toString(),
-                                                            entry.tOPIC.toString(),
-                                                            entry.sUBJECT_FOR_CLASS.sUBJECT_NAME)
+
+                            var presence = ""
+                            var testID = ""
+
+                            if (entry.sTUDNET_SUBJECT_ENTRY_PRESENCEs.size == MyClassStudent.classSize(db, entry.sUBJECT_FOR_CLASS.cLASS.name)){
+                                presence = "Y"
+                            }
+                            if(entry.tESTs.isNotEmpty()){
+                               testID = entry.tESTs[0].id.toString()
+                            }
+
+
+
+                            val subjectEntry = SubjectEntry(entry.id,
+                                                            entry.date.toString(),
+                                                            entry.lESSON.start_time.toString(),
+                                                            entry.lESSON.end_time.toString(),
+                                                            entry.sUBJECT_FOR_CLASS.cLASS.name,
+                                                            entry.topic.toString(),
+                                                            entry.sUBJECT_FOR_CLASS.subject_name,
+                                                            testID,
+                                                            presence,
+                                                        ""
+                                                            )
 
 
                             subjectEntry.insert(db)
@@ -80,10 +101,9 @@ class ApiDownload(val id : Int) {
                         db.execSQL(MyClassStudent.CREATE_TABLE)
                         for(studentClass in tmp.data!!.cLASS){
                             for (student in studentClass.sTUDENTs){
-                                val myClassStudent = MyClassStudent(student.iD,studentClass.nAME,student.fIRST_NAME,student.lAST_NAME)
+                                val myClassStudent = MyClassStudent(student.id,studentClass.name,student.first_name,student.last_name, studentClass.id)
                                 myClassStudent.insert(db)
                             }
-
                         }
                     }
                 }catch (e: NullPointerException){
@@ -100,5 +120,12 @@ class ApiDownload(val id : Int) {
             }
         }
     }
+
+    private fun updateLate(){
+        val db = DatabaseHelper(MainApplication.appContext).writableDatabase
+        db.execSQL("UPDATE SUBJECT_ENTRY SET LATE = \"Y\" WHERE (DATE < CURRENT_DATE) or (DATE = CURRENT_DATE and END_TIME < CURRENT_TIME )")
+    }
+
+
 
 }

@@ -13,6 +13,9 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.plocki.teacherDiary.*
+import com.plocki.teacherDiary.utility.ApiDownload
+import com.plocki.teacherDiary.utility.ApolloInstance
+import com.plocki.teacherDiary.utility.Store
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -126,6 +129,7 @@ class LoginActivity : AppCompatActivity() {
 
 
                         } else {
+                            findViewById<LinearLayout>(R.id.login_progressBar).visibility = View.GONE
                             Toast.makeText(baseContext, "Błąd logowania",
                                     Toast.LENGTH_SHORT).show()
                         }
@@ -150,6 +154,7 @@ class LoginActivity : AppCompatActivity() {
                             whoAmI(user.email!!)
                         }
                     } else {
+                        findViewById<LinearLayout>(R.id.login_progressBar).visibility = View.GONE
                         when{
                             task.exception.toString().contains("The email address is already in use by another account") -> Toast.makeText(baseContext, "Podany adres email jest już zajęty", Toast.LENGTH_SHORT).show()
                             else -> Toast.makeText(baseContext, "Błąd rejestracji", Toast.LENGTH_SHORT).show()
@@ -181,7 +186,7 @@ class LoginActivity : AppCompatActivity() {
             try{
                 val tmp  = ApolloInstance.get().query(whoAmIQuery).toDeferred().await()
                 try{
-                    val id = tmp.data!!.uSER[0].tEACHER_ID
+                    val id = tmp.data!!.uSER[0].teacher_id
                     store.store(id.toString(),"teacherId")
                     val api = ApiDownload(id!!)
                     api.init()

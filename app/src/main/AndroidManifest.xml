@@ -3,14 +3,15 @@
     package="com.plocki.teacherDiary">
 
     <application
-        android:name=".MainApplication"
+        android:name=".utility.MainApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TeacherDiary">
-        <activity android:name=".activities.SubjectEntryActivity"></activity>
+        <activity android:name=".activities.PresenceActivity"></activity>
+        <activity android:name=".activities.SubjectEntryActivity" />
         <activity android:name=".activities.NonAuthorizedEntryActivity" />
         <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.LoginActivity" />

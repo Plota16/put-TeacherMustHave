@@ -1,4 +1,4 @@
-package com.plocki.teacherDiary
+package com.plocki.teacherDiary.utility
 
 import android.content.SharedPreferences
 import android.preference.PreferenceManager

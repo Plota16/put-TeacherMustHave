@@ -11,11 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.navigation.NavigationView
 import com.plocki.teacherDiary.R
-import com.plocki.teacherDiary.Store
 import com.plocki.teacherDiary.fragments.CalendarFragment
 import com.plocki.teacherDiary.fragments.DatabaseFragment
 import com.plocki.teacherDiary.fragments.HomeFragment
 import com.plocki.teacherDiary.fragments.SettingsFragment
+import com.plocki.teacherDiary.utility.Store
 
 
 class MainActivity : AppCompatActivity() {
@@ -31,8 +31,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val store = Store()
-
-
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar)
@@ -109,6 +107,11 @@ class MainActivity : AppCompatActivity() {
         menuItem.isChecked = true
         title = menuItem.title
         mDrawer!!.closeDrawers()
+    }
+
+    override fun onBackPressed() {
+        finishAffinity()
+        super.onBackPressed()
     }
 
 }

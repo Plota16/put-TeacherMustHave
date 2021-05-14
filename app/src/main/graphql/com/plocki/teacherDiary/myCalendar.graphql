@@ -1,17 +1,23 @@
 query MyCalendar($teacherId: Int) {
-    SUBJECT_ENTRY(where: { SUBJECT_FOR_CLASS: {TEACHER_ID: {_eq: $teacherId}}}) {
-        ID
-        DATE
-        LESSON {
-            START_TIME
-            END_TIME
+    SUBJECT_ENTRY(where: { SUBJECT_FOR_CLASS: {teacher_id: {_eq: $teacherId}}}) {
+        id
+        date
+        TESTs{
+            id
         }
-        TOPIC
+        STUDNET_SUBJECT_ENTRY_PRESENCEs{
+            student_id
+        }
+        LESSON {
+            start_time
+            end_time
+        }
+        topic
         SUBJECT_FOR_CLASS{
             CLASS {
-                NAME
+                name
             }
-            SUBJECT_NAME
+            subject_name
         }
     }
 }

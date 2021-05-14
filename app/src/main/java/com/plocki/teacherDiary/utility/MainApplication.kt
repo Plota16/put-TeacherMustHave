@@ -1,4 +1,4 @@
-package com.plocki.teacherDiary
+package com.plocki.teacherDiary.utility
 
 import android.app.Application
 import android.content.Context
