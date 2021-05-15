@@ -15,7 +15,6 @@ import com.plocki.teacherDiary.fragments.CalendarFragment
 import com.plocki.teacherDiary.fragments.DatabaseFragment
 import com.plocki.teacherDiary.fragments.HomeFragment
 import com.plocki.teacherDiary.fragments.SettingsFragment
-import com.plocki.teacherDiary.utility.Store
 
 
 class MainActivity : AppCompatActivity() {
@@ -30,21 +29,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val store = Store()
-
-        toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true);
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         mDrawer = findViewById(R.id.drawer_layout)
-        nvDrawer = findViewById(R.id.nvView);
+        nvDrawer = findViewById(R.id.nvView)
         setupDrawerContent(nvDrawer!!)
 
         drawerToggle = setupDrawerToggle()
-        drawerToggle!!.isDrawerIndicatorEnabled = true;
-        drawerToggle!!.syncState();
+        drawerToggle!!.isDrawerIndicatorEnabled = true
+        drawerToggle!!.syncState()
 
-        mDrawer!!.addDrawerListener(drawerToggle!!);
+        mDrawer!!.addDrawerListener(drawerToggle!!)
 
         val fragment = HomeFragment()
         val fragmentManager: FragmentManager = supportFragmentManager
@@ -71,10 +68,10 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return if (drawerToggle!!.onOptionsItemSelected(item)) {
             true
-        } else super.onOptionsItemSelected(item)
+        } else super.onOptionsItemSelected(item!!)
     }
 
-    private fun setupDrawerToggle(): ActionBarDrawerToggle? {
+    private fun setupDrawerToggle(): ActionBarDrawerToggle {
         return ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.drawer_open, R.string.drawer_close)
     }
 

@@ -226,6 +226,7 @@
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
+                android:onClick="setGrade"
                 android:text="WYSTAW"
                 android:textSize="12sp" />
 

@@ -11,6 +11,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.apollographql.apollo.api.toInput
 import com.apollographql.apollo.coroutines.toDeferred
 import com.plocki.teacherDiary.R
@@ -24,13 +25,14 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
-class SubjectEntryActivity : AppCompatActivity() {
+class SubjectEntryActivity : AppCompatActivity()  {
 
     private var isOnline = true
+    private var isLate = false
     private var id = 0
+
     private lateinit var subjectEntry: SubjectEntry
     private lateinit var db: SQLiteDatabase
-    private var isLate = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,49 +50,10 @@ class SubjectEntryActivity : AppCompatActivity() {
         updateUI()
     }
 
-    private fun updateUI(){
-        val dateTextView = findViewById<TextView>(R.id.subject_top_date)
-        val dateStartTimeView = findViewById<TextView>(R.id.subject_top_time_start)
-        val dateEndTimeView = findViewById<TextView>(R.id.subject_top_time_end)
-        val topicTextView = findViewById<TextView>(R.id.subject_topic_topic)
-        val bannerButton = findViewById<Button>(R.id.subject_top_banner)
-        val topicButton = findViewById<Button>(R.id.subject_topic_button)
-        val presenceButton = findViewById<Button>(R.id.subject_presence_button)
-
-        dateTextView.text = subjectEntry.date
-        var time = "Od: ${subjectEntry.startTime}"
-        dateStartTimeView.text = time
-        time = "Do : ${subjectEntry.endTime}"
-        dateEndTimeView.text = time
-
-        val bannerText = subjectEntry.subjectName.substring(0, 3) + "\n" + subjectEntry.className
-        bannerButton.text = bannerText
-
-        if(subjectEntry.topic.isEmpty()){
-            val topic = "Nie podano tematu!"
-            topicTextView.text = topic
-            if(isLate){
-                topicButton.setBackgroundColor(resources.getColor(R.color.Secondary))
-            }
-        }
-        else{
-            topicButton.setBackgroundColor(resources.getColor(R.color.light_green))
-            topicButton.text = "POPRAW"
-            topicTextView.text = subjectEntry.topic
-
-        }
-
-        if(subjectEntry.presence == "" && isLate){
-            presenceButton.setBackgroundColor(resources.getColor(R.color.Secondary))
-        }
-        else{
-            presenceButton.setBackgroundColor(resources.getColor(R.color.light_green))
-            presenceButton.text = "POPRAW"
-        }
-
-        bannerButton.setBackgroundColor(resources.getColor(subjectEntry.getColor()))
+    override fun onResume() {
+        updateUI()
+        super.onResume()
     }
-
 
     fun setTopic(view: View){
         if(isOnline){
@@ -116,8 +79,44 @@ class SubjectEntryActivity : AppCompatActivity() {
         }
     }
 
+    fun checkPresence(view: View){
+        if(isOnline){
+
+            val intent = Intent(MainApplication.appContext, PresenceActivity::class.java)
+            intent.putExtra("className", subjectEntry.className)
+            if(subjectEntry.presence.isEmpty()){
+                intent.putExtra("isChecked", "NIE")
+            }
+            else{
+                intent.putExtra("isChecked", "TAK")
+            }
+            intent.putExtra("subjectEntryId", id.toString())
+            startActivity(intent)
+        }
+        else{
+            Toast.makeText(
+                    MainApplication.appContext, "Dodawanie obecności możliwe tylko w trybie online",
+                    Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    fun setGrade(view: View){
+        if(isOnline){
+            val intent = Intent(this, GradeActivity::class.java)
+            intent.putExtra("className", subjectEntry.className)
+            intent.putExtra("subjectEntryId", id.toString())
+            startActivity(intent)
+        }
+        else{
+            Toast.makeText(
+                    MainApplication.appContext, "Dodawanie ocen możliwe tylko w trybie online",
+                    Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
     private fun setTopicMutation(topic: String){
-        val mutation = SetTopicMutation(id.toInput(),topic.toInput())
+        val mutation = SetTopicMutation(id.toInput(), topic.toInput())
         GlobalScope.launch(Dispatchers.Main) {
             val result = ApolloInstance.get().mutate(mutation).toDeferred().await()
 
@@ -140,17 +139,49 @@ class SubjectEntryActivity : AppCompatActivity() {
         }
     }
 
-    fun checkPresence(view: View){
+    private fun updateUI(){
+        val dateTextView = findViewById<TextView>(R.id.subject_top_date)
+        val dateStartTimeView = findViewById<TextView>(R.id.subject_top_time_start)
+        val dateEndTimeView = findViewById<TextView>(R.id.subject_top_time_end)
+        val topicTextView = findViewById<TextView>(R.id.subject_topic_topic)
+        val bannerButton = findViewById<Button>(R.id.subject_top_banner)
+        val topicButton = findViewById<Button>(R.id.subject_topic_button)
+        val presenceButton = findViewById<Button>(R.id.subject_presence_button)
 
-        val intent = Intent(MainApplication.appContext, PresenceActivity::class.java)
-        intent.putExtra("className", subjectEntry.className)
-        if(subjectEntry.presence.isEmpty()){
-            intent.putExtra("isChecked", "NIE")
+        dateTextView.text = subjectEntry.date
+        var time = "Od: ${subjectEntry.startTime}"
+        dateStartTimeView.text = time
+        time = "Do : ${subjectEntry.endTime}"
+        dateEndTimeView.text = time
+
+        val bannerText = subjectEntry.subjectName.substring(0, 3) + "\n" + subjectEntry.className
+        bannerButton.text = bannerText
+
+        if(subjectEntry.topic.isEmpty()){
+            val topic = "Nie podano tematu!"
+            topicTextView.text = topic
+            if(isLate){
+                topicButton.setBackgroundColor(ContextCompat.getColor(this, R.color.Secondary))
+            }
         }
         else{
-            intent.putExtra("isChecked", "TAK")
+            topicButton.setBackgroundColor(ContextCompat.getColor(this, R.color.light_green))
+            topicButton.text = "POPRAW"
+            topicTextView.text = subjectEntry.topic
+
         }
-        intent.putExtra("subjectEntryId",id.toString())
-        startActivity(intent)
+
+        if(subjectEntry.presence == "" && isLate){
+            presenceButton.setBackgroundColor(ContextCompat.getColor(this, R.color.Secondary))
+        }
+        else if(subjectEntry.presence == "Y"){
+            presenceButton.setBackgroundColor(ContextCompat.getColor(this, R.color.light_green))
+            presenceButton.text = "POPRAW"
+        }
+
+        bannerButton.setBackgroundColor(ContextCompat.getColor(this, subjectEntry.getColor()))
     }
+
+
+
 }

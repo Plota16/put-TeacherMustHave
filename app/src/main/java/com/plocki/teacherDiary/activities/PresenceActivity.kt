@@ -72,6 +72,9 @@ class PresenceActivity : AppCompatActivity() {
 
             try{
                 val tmp = result.data!!.insert_STUDNET_SUBJECT_ENTRY_PRESENCE!!.returning[0]
+                Toast.makeText(
+                    MainApplication.appContext, "Dodano obecność",
+                    Toast.LENGTH_SHORT).show()
                 finish()
 
             } catch (e: Error){

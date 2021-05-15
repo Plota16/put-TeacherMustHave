@@ -1,0 +1,5 @@
+mutation addGrade($object: GRADE_insert_input!) {
+    insert_GRADE_one(object: $object) {
+        id
+    }
+}
