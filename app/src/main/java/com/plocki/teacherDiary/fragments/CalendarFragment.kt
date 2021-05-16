@@ -32,7 +32,7 @@ class CalendarFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.calendar_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_calendar, container, false)
 
     }
 

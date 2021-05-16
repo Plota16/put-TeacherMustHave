@@ -11,10 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.navigation.NavigationView
 import com.plocki.teacherDiary.R
-import com.plocki.teacherDiary.fragments.CalendarFragment
-import com.plocki.teacherDiary.fragments.DatabaseFragment
-import com.plocki.teacherDiary.fragments.HomeFragment
-import com.plocki.teacherDiary.fragments.SettingsFragment
+import com.plocki.teacherDiary.fragments.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -90,6 +87,8 @@ class MainActivity : AppCompatActivity() {
             R.id.nav_calendar -> CalendarFragment::class.java
             R.id.nav_database -> DatabaseFragment::class.java
             R.id.nav_settings -> SettingsFragment::class.java
+            R.id.nav_tasks -> TaskFragment::class.java
+            R.id.nav_test -> TestFragment::class.java
             else -> HomeFragment::class.java
         }
         try {
