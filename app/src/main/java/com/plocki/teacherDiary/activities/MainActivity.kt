@@ -1,5 +1,6 @@
 package com.plocki.teacherDiary.activities
 
+import android.app.AlertDialog
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.MenuItem
@@ -106,8 +107,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        finishAffinity()
+        closeApp()
         super.onBackPressed()
+    }
+
+
+    private fun closeApp(){
+
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle("UWAGA")
+        builder.setMessage("Czy na pewno zamkniąć aplikację?")
+        builder.setPositiveButton("OK") { dialog, _ ->
+            finishAffinity()
+            dialog.cancel()
+        }
+        builder.setNegativeButton("ANULUJ") { dialog, _ -> dialog.cancel() }
+        builder.show()
+
     }
 
 }

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.apollographql.apollo.api.toInput
 import com.apollographql.apollo.coroutines.toDeferred
 import com.plocki.teacherDiary.*
-import com.plocki.teacherDiary.adapters.ListAdapter
+import com.plocki.teacherDiary.adapters.PresenceListAdapter
 import com.plocki.teacherDiary.model.MyClassStudent
 import com.plocki.teacherDiary.model.Presence
 import com.plocki.teacherDiary.model.SubjectEntry
@@ -97,7 +97,7 @@ class PresenceActivity : AppCompatActivity() {
 
         recycler.apply {
             layoutManager = LinearLayoutManager(this@PresenceActivity)
-            adapter = ListAdapter(list)
+            adapter = PresenceListAdapter(list)
         }
     }
 
@@ -154,7 +154,7 @@ class PresenceActivity : AppCompatActivity() {
                     if(!result.hasErrors()){
                         recycler.apply {
                             layoutManager = LinearLayoutManager(this@PresenceActivity)
-                            adapter = ListAdapter(list)
+                            adapter = PresenceListAdapter(list)
                         }
                     }
                 }catch (e: NullPointerException){

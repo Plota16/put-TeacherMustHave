@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.plocki.teacherDiary.model.Presence
 
-class ListAdapter(private val list: List<Presence>)
+class PresenceListAdapter(private val list: List<Presence>)
     : RecyclerView.Adapter<PresenceViewHolder>() {
 
 

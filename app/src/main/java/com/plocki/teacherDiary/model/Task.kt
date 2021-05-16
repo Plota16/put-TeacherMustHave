@@ -3,16 +3,16 @@ package com.plocki.teacherDiary.model
 import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
 
-class MyClassStudent(var id: Int, var className: String, var firstName: String, var lastName: String, var classId: Int) {
+class Task(var id: Int, var name: String, var description: String?, var end_date: String, var state: String) {
 
 
     fun insert(db: SQLiteDatabase) {
         val values = ContentValues().apply {
             put(COL1, id)
-            put(COL2, className)
-            put(COL3, firstName)
-            put(COL4, lastName)
-            put(COL5, className)
+            put(COL2, name)
+            put(COL3, description)
+            put(COL4, end_date)
+            put(COL5, state)
 
         }
         db.insert(TABLE_NAME, null, values)
@@ -21,14 +21,14 @@ class MyClassStudent(var id: Int, var className: String, var firstName: String, 
 
     companion object{
 
-        fun readOneClass(db: SQLiteDatabase, id: String): ArrayList<MyClassStudent> {
+        fun readAll(db: SQLiteDatabase): ArrayList<Task> {
             val projection = arrayOf(COL1, COL2, COL3, COL4, COL5)
 
 
-            val selection = "$COL2 = ?"
-            val selectionArgs = arrayOf(id.toString())
+            val selection = "$COL5 = ?"
+            val selectionArgs = arrayOf("ACTIVE")
 
-            val sortOrder = "$COL2 DESC"
+            val sortOrder = "$COL4"
 
             val cursor = db.query(
                     TABLE_NAME,   // The table to query
@@ -39,48 +39,35 @@ class MyClassStudent(var id: Int, var className: String, var firstName: String, 
                     null,                   // don't filter by row groups
                     sortOrder               // The sort order
             )
-
-
-
-            val entries = ArrayList<MyClassStudent>()
+            val entries = ArrayList<Task>()
             with(cursor) {
                 while (moveToNext()) {
-                    val entry = MyClassStudent(
+                    val entry = Task(
                             cursor.getInt(0),
                             cursor.getString(1),
                             cursor.getString(2),
                             cursor.getString(3),
-                            cursor.getInt(4)
+                            cursor.getString(4)
 
                     )
                     entries.add(entry)
                 }
             }
             return entries
+
         }
 
-        fun classSize(db: SQLiteDatabase, className: String): Int {
-
-
-            val selectQuery = "SELECT COUNT( $COL1 ) FROM $TABLE_NAME WHERE $COL2 = '$className'"
-            val cursor = db.rawQuery(selectQuery, null)
-            cursor.moveToFirst()
-            val sum: Int = cursor.getInt(0)
-            cursor.close()
-            return sum
-        }
-
-        private const val TABLE_NAME = "CLASS_STUDENT"
+        private const val TABLE_NAME = "TASK"
         private const val COL1 = "ID"
         private const val COL1_TYPE = "INTEGER"
-        private const val COL2 = "CLASS_NAME"
+        private const val COL2 = "NAME"
         private const val COL2_TYPE = "TEXT"
-        private const val COL3 = "FIRST_NAME"
+        private const val COL3 = "DESCRIPTION"
         private const val COL3_TYPE = "TEXT"
-        private const val COL4 = "LAST_NAME"
+        private const val COL4 = "END_DATE"
         private const val COL4_TYPE = "TEXT"
-        private const val COL5 = "CLASS_ID"
-        private const val COL5_TYPE = "INTEGER"
+        private const val COL5 = "STATE"
+        private const val COL5_TYPE = "TEXT"
 
         const val CREATE_TABLE = "Create Table $TABLE_NAME (" +
                 "$COL1 ${COL1_TYPE}, " +

@@ -1,0 +1,9 @@
+query selectTask($user_id: Int) {
+    TASK(where: {user_id: {_eq: $user_id}}) {
+        id
+        name
+        description
+        end_date
+        state
+    }
+}

@@ -2,5 +2,10 @@ query WhoAmI($email: String) {
   USER(where: {email: {_eq: $email}}) {
     email
     teacher_id
+    id
+    TEACHER{
+      first_name
+      last_name
+    }
   }
 }

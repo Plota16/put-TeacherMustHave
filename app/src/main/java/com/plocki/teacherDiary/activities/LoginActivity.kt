@@ -186,9 +186,12 @@ class LoginActivity : AppCompatActivity() {
             try{
                 val tmp  = ApolloInstance.get().query(whoAmIQuery).toDeferred().await()
                 try{
-                    val id = tmp.data!!.uSER[0].teacher_id
-                    store.store(id.toString(),"teacherId")
-                    val api = ApiDownload(id!!)
+                    val user = tmp.data!!.uSER[0]
+                    store.store(user.id.toString(),"id")
+                    store.store(user.teacher_id.toString(),"teacherId")
+                    store.store(user.tEACHER!!.first_name,"firstName")
+                    store.store(user.tEACHER.last_name,"lastName")
+                    val api = ApiDownload(user.teacher_id!!, user.id)
                     api.init()
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     startActivity(intent)
