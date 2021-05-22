@@ -13,9 +13,24 @@ class Task(var id: Int, var name: String, var description: String?, var end_date
             put(COL3, description)
             put(COL4, end_date)
             put(COL5, state)
-
         }
         db.insert(TABLE_NAME, null, values)
+    }
+
+    fun delete(db: SQLiteDatabase){
+        db.delete(TABLE_NAME, "$COL1 = $id", null)
+    }
+
+    fun update(db: SQLiteDatabase){
+        val values = ContentValues().apply {
+            put(COL2, name)
+            put(COL3, description)
+            put(COL4, end_date)
+        }
+        val selection = "$COL1 = ?"
+        val selectionArgs = arrayOf(id.toString())
+
+        db.update(TABLE_NAME,values,selection,selectionArgs)
     }
 
 

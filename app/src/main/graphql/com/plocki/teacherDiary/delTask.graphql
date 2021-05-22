@@ -1,0 +1,7 @@
+mutation deleteTask($id: Int) {
+    delete_TASK(where: {id: {_eq: $id}}) {
+        returning {
+            id
+        }
+    }
+}

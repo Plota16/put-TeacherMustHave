@@ -1,0 +1,10 @@
+mutation updateTask($id: Int, $description: String, $end_date: date, $name: String) {
+    update_TASK(where: {id: {_eq: $id}}, _set: {description: $description, end_date: $end_date, name: $name}) {
+        returning {
+            id
+            name
+            description
+            end_date
+        }
+    }
+}

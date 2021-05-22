@@ -1,0 +1,10 @@
+mutation addTask($task: TASK_insert_input!) {
+    insert_TASK_one(object: $task) {
+        id
+        name
+        description
+        end_date
+        state
+        user_id
+    }
+}

@@ -16,7 +16,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class ApiDownload(val id : Int, val userId: Int) {
+class ApiDownload(val id : Int, private val userId: Int) {
 
     fun init(){
 
