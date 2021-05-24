@@ -29063,6 +29063,20 @@
             "__typename": "__Field"
           },
           {
+            "name": "graded",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
             "name": "id",
             "description": null,
             "args": [],
@@ -29752,6 +29766,18 @@
             "__typename": "__InputValue"
           },
           {
+            "name": "graded",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "String_comparison_exp",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
             "name": "id",
             "description": null,
             "type": {
@@ -29879,6 +29905,18 @@
             "__typename": "__InputValue"
           },
           {
+            "name": "graded",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
             "name": "id",
             "description": null,
             "type": {
@@ -29937,6 +29975,20 @@
         "name": "TEST_max_fields",
         "description": "aggregate max on columns",
         "fields": [
+          {
+            "name": "graded",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
           {
             "name": "id",
             "description": null,
@@ -30007,6 +30059,18 @@
         "fields": null,
         "inputFields": [
           {
+            "name": "graded",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
             "name": "id",
             "description": null,
             "type": {
@@ -30065,6 +30129,20 @@
         "name": "TEST_min_fields",
         "description": "aggregate min on columns",
         "fields": [
+          {
+            "name": "graded",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
           {
             "name": "id",
             "description": null,
@@ -30134,6 +30212,18 @@
         "description": "order by min() on columns of table \"TEST\"",
         "fields": null,
         "inputFields": [
+          {
+            "name": "graded",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
           {
             "name": "id",
             "description": null,
@@ -30335,6 +30425,18 @@
             "__typename": "__InputValue"
           },
           {
+            "name": "graded",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
             "name": "id",
             "description": null,
             "type": {
@@ -30426,6 +30528,13 @@
         "interfaces": null,
         "enumValues": [
           {
+            "name": "graded",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__EnumValue"
+          },
+          {
             "name": "id",
             "description": "column name",
             "isDeprecated": false,
@@ -30463,6 +30572,18 @@
         "description": "input type for updating data in table \"TEST\"",
         "fields": null,
         "inputFields": [
+          {
+            "name": "graded",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
           {
             "name": "id",
             "description": null,
@@ -30829,6 +30950,13 @@
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
+          {
+            "name": "graded",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__EnumValue"
+          },
           {
             "name": "id",
             "description": "column name",

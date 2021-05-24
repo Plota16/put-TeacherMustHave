@@ -70,6 +70,17 @@ class MyClassStudent(var id: Int, var className: String, var firstName: String, 
             return sum
         }
 
+        fun getStudentName(db: SQLiteDatabase, id: String): String {
+
+            val selectQuery = "SELECT $COL3, $COL4 FROM $TABLE_NAME WHERE $COL1 = $id"
+            val cursor = db.rawQuery(selectQuery, null)
+            cursor.moveToFirst()
+            val firstName = cursor.getString(0)
+            val lastName  = cursor.getString(1)
+            cursor.close()
+            return "$firstName $lastName"
+        }
+
         private const val TABLE_NAME = "CLASS_STUDENT"
         private const val COL1 = "ID"
         private const val COL1_TYPE = "INTEGER"

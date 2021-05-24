@@ -148,6 +148,24 @@ class SubjectEntry(var id: Int,
             db.update(TABLE_NAME,contentValues,selection,selectionArgs)
         }
 
+        fun countTopics(db: SQLiteDatabase): Int {
+            val selectQuery = "SELECT COUNT(*) FROM $TABLE_NAME WHERE $COL10 ='Y' AND $COL5 =''"
+            val cursor = db.rawQuery(selectQuery, null)
+            cursor.moveToFirst()
+            val sum: Int = cursor.getInt(0)
+            cursor.close()
+            return sum
+        }
+
+        fun countPresence(db: SQLiteDatabase): Int {
+            val selectQuery = "SELECT COUNT(*) FROM $TABLE_NAME WHERE $COL10 ='Y' AND $COL9 =''"
+            val cursor = db.rawQuery(selectQuery, null)
+            cursor.moveToFirst()
+            val sum: Int = cursor.getInt(0)
+            cursor.close()
+            return sum
+        }
+
         private const val TABLE_NAME = "SUBJECT_ENTRY"
         private const val COL1 = "ID"
         private const val COL1_TYPE = "SMALLINT"

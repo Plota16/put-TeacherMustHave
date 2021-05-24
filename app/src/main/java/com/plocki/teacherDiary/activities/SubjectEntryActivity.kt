@@ -51,6 +51,7 @@ class SubjectEntryActivity : AppCompatActivity()  {
     }
 
     override fun onResume() {
+        subjectEntry = SubjectEntry.readOne(db, id)
         updateUI()
         super.onResume()
     }

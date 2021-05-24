@@ -1,16 +1,16 @@
 package com.plocki.teacherDiary.utility
 
 import android.widget.Toast
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import com.apollographql.apollo.api.toInput
 import com.apollographql.apollo.coroutines.toDeferred
 import com.plocki.teacherDiary.MyCalendarQuery
 import com.plocki.teacherDiary.MyClassesQuery
 import com.plocki.teacherDiary.SelectTaskQuery
+import com.plocki.teacherDiary.SelectTestQuery
 import com.plocki.teacherDiary.model.MyClassStudent
 import com.plocki.teacherDiary.model.SubjectEntry
 import com.plocki.teacherDiary.model.Task
+import com.plocki.teacherDiary.model.Test
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
@@ -28,10 +28,13 @@ class ApiDownload(val id : Int, private val userId: Int) {
             calendarJob.join()
             val task = selectTasks(userId)
             task.join()
+            val test = selectTests(id)
+            test.join()
+
             updateLate()
         }
     }
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+
     private fun myCalendar(teacherId: Int): Job {
 
         val query = MyCalendarQuery(teacherId.toInput())
@@ -152,6 +155,39 @@ class ApiDownload(val id : Int, private val userId: Int) {
                 }catch (e: NullPointerException){
                     Toast.makeText(
                             MainApplication.appContext, "Błąd pobierania kalendarza",
+                            Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }catch (e: Exception){
+                Toast.makeText(
+                        MainApplication.appContext, "Bład połączenia z serwerem",
+                        Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
+    private fun selectTests(teacherId: Int): Job {
+
+        val query = SelectTestQuery(teacherId.toInput())
+        val db = DatabaseHelper(MainApplication.appContext).writableDatabase
+
+        return GlobalScope.launch(Dispatchers.Main) {
+            try{
+                val tmp  = ApolloInstance.get().query(query).toDeferred().await()
+
+                try {
+                    if(!tmp.hasErrors()){
+                        db.execSQL(Test.DROP_TABLE)
+                        db.execSQL(Test.CREATE_TABLE)
+                        for (testEntry in tmp.data!!.tEST){
+                            val test = Test(testEntry.id, testEntry.topic,testEntry.type, testEntry.subject_entry_id, testEntry.graded!!,testEntry.sUBJECT_ENTRY.date.toString(),testEntry.sUBJECT_ENTRY.lESSON.start_time.toString())
+                            test.insert(db)
+                        }
+                    }
+                }catch (e: NullPointerException){
+                    Toast.makeText(
+                            MainApplication.appContext, "Błąd pobierania sprawdzianów",
                             Toast.LENGTH_SHORT
                     ).show()
                 }

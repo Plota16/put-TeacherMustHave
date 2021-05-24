@@ -1,0 +1,15 @@
+query selectTest($teacherId: Int) {
+    TEST(where: {SUBJECT_ENTRY: {SUBJECT_FOR_CLASS: {TEACHER: {id: {_eq: $teacherId}}}}}) {
+        graded
+        id
+        subject_entry_id
+        topic
+        type
+        SUBJECT_ENTRY {
+            date
+            LESSON {
+                start_time
+            }
+        }
+    }
+}

@@ -31,7 +31,18 @@ class DatabaseHelper(
         const val DB_NAME = "teacherMust.db";
 
 
-        const val DB_CREATE_ALL = SubjectEntry.CREATE_TABLE + MyClassStudent.CREATE_TABLE + Presence.CREATE_TABLE + Task.CREATE_TABLE + Grade.CREATE_TABLE
-        const val DB_DELETE_ALL = SubjectEntry.DROP_TABLE + MyClassStudent.DROP_TABLE + Presence.DROP_TABLE + Task.DROP_TABLE + Grade.DROP_TABLE
+        const val DB_CREATE_ALL =   SubjectEntry.CREATE_TABLE +
+                                    MyClassStudent.CREATE_TABLE +
+                                    Presence.CREATE_TABLE +
+                                    Task.CREATE_TABLE +
+                                    Grade.CREATE_TABLE +
+                                    Test.CREATE_TABLE
+
+        const val DB_DELETE_ALL =   SubjectEntry.DROP_TABLE +
+                                    MyClassStudent.DROP_TABLE +
+                                    Presence.DROP_TABLE +
+                                    Task.DROP_TABLE +
+                                    Grade.DROP_TABLE +
+                                    Test.DROP_TABLE
     }
 }

@@ -26,6 +26,7 @@ class PresenceActivity : AppCompatActivity() {
     private var subjectId = 0
     private val list = ArrayList<Presence>()
     private  lateinit var  recycler : RecyclerView
+    private lateinit var progess : View
     private var className = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +37,7 @@ class PresenceActivity : AppCompatActivity() {
         className = intent.getStringExtra("className")!!
         subjectId = intent.getStringExtra("subjectEntryId")!!.toInt()
         recycler = findViewById(R.id.presence_recycler)
+        progess = findViewById(R.id.presence_progressBar)
 
         val db = DatabaseHelper(MainApplication.appContext).writableDatabase
         db.execSQL(Presence.DROP_TABLE)
@@ -99,6 +101,7 @@ class PresenceActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@PresenceActivity)
             adapter = PresenceListAdapter(list)
         }
+        progess.visibility = View.GONE
     }
 
     private fun selectPresence(){
@@ -117,7 +120,7 @@ class PresenceActivity : AppCompatActivity() {
                                 val presence = Presence(
                                         singlePresence.subject_entry_id,
                                         singlePresence.student_id,
-                                        "",
+                                        MyClassStudent.getStudentName(db,singlePresence.student_id.toString()),
                                         singlePresence.presence
                                 )
                                 list.add(presence)
@@ -156,6 +159,7 @@ class PresenceActivity : AppCompatActivity() {
                             layoutManager = LinearLayoutManager(this@PresenceActivity)
                             adapter = PresenceListAdapter(list)
                         }
+                        progess.visibility = View.GONE
                     }
                 }catch (e: NullPointerException){
                     Toast.makeText(
