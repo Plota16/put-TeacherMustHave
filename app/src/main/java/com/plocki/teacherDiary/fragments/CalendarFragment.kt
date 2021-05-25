@@ -7,14 +7,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.alamkanak.weekview.WeekView
 import com.alamkanak.weekview.WeekViewEvent
-import com.plocki.teacherDiary.utility.DatabaseHelper
-import com.plocki.teacherDiary.utility.MainApplication
 import com.plocki.teacherDiary.R
 import com.plocki.teacherDiary.activities.SubjectEntryActivity
 import com.plocki.teacherDiary.model.SubjectEntry
+import com.plocki.teacherDiary.utility.DatabaseHelper
+import com.plocki.teacherDiary.utility.MainApplication
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.*
@@ -102,7 +103,7 @@ class CalendarFragment : Fragment() {
                             entry.endTime.split(":")[1].toInt()
                     )
                     event.location = "\n${entry.className}"
-                    event.color = resources.getColor(entry.getColor())
+                    event.color = ContextCompat.getColor(this.context!!, entry.getColor())
                     weekViewEvents.add(event)
                 }
 

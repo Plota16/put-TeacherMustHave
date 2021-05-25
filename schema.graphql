@@ -1,0 +1,5408 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: query_root
+    mutation: mutation_root
+    subscription: subscription_root
+}
+
+"columns and relationships of \"CLASS\""
+type CLASS {
+    "An array relationship"
+    STUDENTs(
+        "distinct select on columns"
+        distinct_on: [STUDENT_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [STUDENT_order_by!],
+        "filter the rows returned"
+        where: STUDENT_bool_exp
+    ): [STUDENT!]!
+    "An aggregate relationship"
+    STUDENTs_aggregate(
+        "distinct select on columns"
+        distinct_on: [STUDENT_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [STUDENT_order_by!],
+        "filter the rows returned"
+        where: STUDENT_bool_exp
+    ): STUDENT_aggregate!
+    "An array relationship"
+    SUBJECT_FOR_CLASSes(
+        "distinct select on columns"
+        distinct_on: [SUBJECT_FOR_CLASS_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [SUBJECT_FOR_CLASS_order_by!],
+        "filter the rows returned"
+        where: SUBJECT_FOR_CLASS_bool_exp
+    ): [SUBJECT_FOR_CLASS!]!
+    "An aggregate relationship"
+    SUBJECT_FOR_CLASSes_aggregate(
+        "distinct select on columns"
+        distinct_on: [SUBJECT_FOR_CLASS_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [SUBJECT_FOR_CLASS_order_by!],
+        "filter the rows returned"
+        where: SUBJECT_FOR_CLASS_bool_exp
+    ): SUBJECT_FOR_CLASS_aggregate!
+    "An object relationship"
+    TEACHER: TEACHER!
+    class_teacher_id: Int!
+    end_year: Int!
+    id: Int!
+    name: String!
+    start_year: Int!
+    state: String!
+}
+
+"aggregated selection of \"CLASS\""
+type CLASS_aggregate {
+    aggregate: CLASS_aggregate_fields
+    nodes: [CLASS!]!
+}
+
+"aggregate fields of \"CLASS\""
+type CLASS_aggregate_fields {
+    avg: CLASS_avg_fields
+    count(columns: [CLASS_select_column!], distinct: Boolean): Int!
+    max: CLASS_max_fields
+    min: CLASS_min_fields
+    stddev: CLASS_stddev_fields
+    stddev_pop: CLASS_stddev_pop_fields
+    stddev_samp: CLASS_stddev_samp_fields
+    sum: CLASS_sum_fields
+    var_pop: CLASS_var_pop_fields
+    var_samp: CLASS_var_samp_fields
+    variance: CLASS_variance_fields
+}
+
+"aggregate avg on columns"
+type CLASS_avg_fields {
+    class_teacher_id: Float
+    end_year: Float
+    id: Float
+    start_year: Float
+}
+
+"aggregate max on columns"
+type CLASS_max_fields {
+    class_teacher_id: Int
+    end_year: Int
+    id: Int
+    name: String
+    start_year: Int
+    state: String
+}
+
+"aggregate min on columns"
+type CLASS_min_fields {
+    class_teacher_id: Int
+    end_year: Int
+    id: Int
+    name: String
+    start_year: Int
+    state: String
+}
+
+"response of any mutation on the table \"CLASS\""
+type CLASS_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [CLASS!]!
+}
+
+"aggregate stddev on columns"
+type CLASS_stddev_fields {
+    class_teacher_id: Float
+    end_year: Float
+    id: Float
+    start_year: Float
+}
+
+"aggregate stddev_pop on columns"
+type CLASS_stddev_pop_fields {
+    class_teacher_id: Float
+    end_year: Float
+    id: Float
+    start_year: Float
+}
+
+"aggregate stddev_samp on columns"
+type CLASS_stddev_samp_fields {
+    class_teacher_id: Float
+    end_year: Float
+    id: Float
+    start_year: Float
+}
+
+"aggregate sum on columns"
+type CLASS_sum_fields {
+    class_teacher_id: Int
+    end_year: Int
+    id: Int
+    start_year: Int
+}
+
+"aggregate var_pop on columns"
+type CLASS_var_pop_fields {
+    class_teacher_id: Float
+    end_year: Float
+    id: Float
+    start_year: Float
+}
+
+"aggregate var_samp on columns"
+type CLASS_var_samp_fields {
+    class_teacher_id: Float
+    end_year: Float
+    id: Float
+    start_year: Float
+}
+
+"aggregate variance on columns"
+type CLASS_variance_fields {
+    class_teacher_id: Float
+    end_year: Float
+    id: Float
+    start_year: Float
+}
+
+"columns and relationships of \"DAY\""
+type DAY {
+    "An array relationship"
+    SUBJECT_ENTRies(
+        "distinct select on columns"
+        distinct_on: [SUBJECT_ENTRY_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [SUBJECT_ENTRY_order_by!],
+        "filter the rows returned"
+        where: SUBJECT_ENTRY_bool_exp
+    ): [SUBJECT_ENTRY!]!
+    "An aggregate relationship"
+    SUBJECT_ENTRies_aggregate(
+        "distinct select on columns"
+        distinct_on: [SUBJECT_ENTRY_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [SUBJECT_ENTRY_order_by!],
+        "filter the rows returned"
+        where: SUBJECT_ENTRY_bool_exp
+    ): SUBJECT_ENTRY_aggregate!
+    id: Int!
+    name_en: String!
+    name_pl: String!
+}
+
+"aggregated selection of \"DAY\""
+type DAY_aggregate {
+    aggregate: DAY_aggregate_fields
+    nodes: [DAY!]!
+}
+
+"aggregate fields of \"DAY\""
+type DAY_aggregate_fields {
+    avg: DAY_avg_fields
+    count(columns: [DAY_select_column!], distinct: Boolean): Int!
+    max: DAY_max_fields
+    min: DAY_min_fields
+    stddev: DAY_stddev_fields
+    stddev_pop: DAY_stddev_pop_fields
+    stddev_samp: DAY_stddev_samp_fields
+    sum: DAY_sum_fields
+    var_pop: DAY_var_pop_fields
+    var_samp: DAY_var_samp_fields
+    variance: DAY_variance_fields
+}
+
+"aggregate avg on columns"
+type DAY_avg_fields {
+    id: Float
+}
+
+"aggregate max on columns"
+type DAY_max_fields {
+    id: Int
+    name_en: String
+    name_pl: String
+}
+
+"aggregate min on columns"
+type DAY_min_fields {
+    id: Int
+    name_en: String
+    name_pl: String
+}
+
+"response of any mutation on the table \"DAY\""
+type DAY_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [DAY!]!
+}
+
+"aggregate stddev on columns"
+type DAY_stddev_fields {
+    id: Float
+}
+
+"aggregate stddev_pop on columns"
+type DAY_stddev_pop_fields {
+    id: Float
+}
+
+"aggregate stddev_samp on columns"
+type DAY_stddev_samp_fields {
+    id: Float
+}
+
+"aggregate sum on columns"
+type DAY_sum_fields {
+    id: Int
+}
+
+"aggregate var_pop on columns"
+type DAY_var_pop_fields {
+    id: Float
+}
+
+"aggregate var_samp on columns"
+type DAY_var_samp_fields {
+    id: Float
+}
+
+"aggregate variance on columns"
+type DAY_variance_fields {
+    id: Float
+}
+
+"columns and relationships of \"GRADE\""
+type GRADE {
+    "An object relationship"
+    STUDENT: STUDENT!
+    "An object relationship"
+    SUBJECT_ENTRY: SUBJECT_ENTRY!
+    date: timestamp!
+    description: String!
+    grade: Float!
+    id: Int!
+    student_id: Int!
+    subject_for_class_id: Int!
+    weight: Int!
+}
+
+"aggregated selection of \"GRADE\""
+type GRADE_aggregate {
+    aggregate: GRADE_aggregate_fields
+    nodes: [GRADE!]!
+}
+
+"aggregate fields of \"GRADE\""
+type GRADE_aggregate_fields {
+    avg: GRADE_avg_fields
+    count(columns: [GRADE_select_column!], distinct: Boolean): Int!
+    max: GRADE_max_fields
+    min: GRADE_min_fields
+    stddev: GRADE_stddev_fields
+    stddev_pop: GRADE_stddev_pop_fields
+    stddev_samp: GRADE_stddev_samp_fields
+    sum: GRADE_sum_fields
+    var_pop: GRADE_var_pop_fields
+    var_samp: GRADE_var_samp_fields
+    variance: GRADE_variance_fields
+}
+
+"aggregate avg on columns"
+type GRADE_avg_fields {
+    grade: Float
+    id: Float
+    student_id: Float
+    subject_for_class_id: Float
+    weight: Float
+}
+
+"aggregate max on columns"
+type GRADE_max_fields {
+    date: timestamp
+    description: String
+    grade: Float
+    id: Int
+    student_id: Int
+    subject_for_class_id: Int
+    weight: Int
+}
+
+"aggregate min on columns"
+type GRADE_min_fields {
+    date: timestamp
+    description: String
+    grade: Float
+    id: Int
+    student_id: Int
+    subject_for_class_id: Int
+    weight: Int
+}
+
+"response of any mutation on the table \"GRADE\""
+type GRADE_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [GRADE!]!
+}
+
+"aggregate stddev on columns"
+type GRADE_stddev_fields {
+    grade: Float
+    id: Float
+    student_id: Float
+    subject_for_class_id: Float
+    weight: Float
+}
+
+"aggregate stddev_pop on columns"
+type GRADE_stddev_pop_fields {
+    grade: Float
+    id: Float
+    student_id: Float
+    subject_for_class_id: Float
+    weight: Float
+}
+
+"aggregate stddev_samp on columns"
+type GRADE_stddev_samp_fields {
+    grade: Float
+    id: Float
+    student_id: Float
+    subject_for_class_id: Float
+    weight: Float
+}
+
+"aggregate sum on columns"
+type GRADE_sum_fields {
+    grade: Float
+    id: Int
+    student_id: Int
+    subject_for_class_id: Int
+    weight: Int
+}
+
+"aggregate var_pop on columns"
+type GRADE_var_pop_fields {
+    grade: Float
+    id: Float
+    student_id: Float
+    subject_for_class_id: Float
+    weight: Float
+}
+
+"aggregate var_samp on columns"
+type GRADE_var_samp_fields {
+    grade: Float
+    id: Float
+    student_id: Float
+    subject_for_class_id: Float
+    weight: Float
+}
+
+"aggregate variance on columns"
+type GRADE_variance_fields {
+    grade: Float
+    id: Float
+    student_id: Float
+    subject_for_class_id: Float
+    weight: Float
+}
+
+"columns and relationships of \"LESSON\""
+type LESSON {
+    "An array relationship"
+    SUBJECT_ENTRies(
+        "distinct select on columns"
+        distinct_on: [SUBJECT_ENTRY_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [SUBJECT_ENTRY_order_by!],
+        "filter the rows returned"
+        where: SUBJECT_ENTRY_bool_exp
+    ): [SUBJECT_ENTRY!]!
+    "An aggregate relationship"
+    SUBJECT_ENTRies_aggregate(
+        "distinct select on columns"
+        distinct_on: [SUBJECT_ENTRY_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [SUBJECT_ENTRY_order_by!],
+        "filter the rows returned"
+        where: SUBJECT_ENTRY_bool_exp
+    ): SUBJECT_ENTRY_aggregate!
+    end_time: time!
+    id: Int!
+    start_time: time!
+}
+
+"aggregated selection of \"LESSON\""
+type LESSON_aggregate {
+    aggregate: LESSON_aggregate_fields
+    nodes: [LESSON!]!
+}
+
+"aggregate fields of \"LESSON\""
+type LESSON_aggregate_fields {
+    avg: LESSON_avg_fields
+    count(columns: [LESSON_select_column!], distinct: Boolean): Int!
+    max: LESSON_max_fields
+    min: LESSON_min_fields
+    stddev: LESSON_stddev_fields
+    stddev_pop: LESSON_stddev_pop_fields
+    stddev_samp: LESSON_stddev_samp_fields
+    sum: LESSON_sum_fields
+    var_pop: LESSON_var_pop_fields
+    var_samp: LESSON_var_samp_fields
+    variance: LESSON_variance_fields
+}
+
+"aggregate avg on columns"
+type LESSON_avg_fields {
+    id: Float
+}
+
+"aggregate max on columns"
+type LESSON_max_fields {
+    id: Int
+}
+
+"aggregate min on columns"
+type LESSON_min_fields {
+    id: Int
+}
+
+"response of any mutation on the table \"LESSON\""
+type LESSON_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [LESSON!]!
+}
+
+"aggregate stddev on columns"
+type LESSON_stddev_fields {
+    id: Float
+}
+
+"aggregate stddev_pop on columns"
+type LESSON_stddev_pop_fields {
+    id: Float
+}
+
+"aggregate stddev_samp on columns"
+type LESSON_stddev_samp_fields {
+    id: Float
+}
+
+"aggregate sum on columns"
+type LESSON_sum_fields {
+    id: Int
+}
+
+"aggregate var_pop on columns"
+type LESSON_var_pop_fields {
+    id: Float
+}
+
+"aggregate var_samp on columns"
+type LESSON_var_samp_fields {
+    id: Float
+}
+
+"aggregate variance on columns"
+type LESSON_variance_fields {
+    id: Float
+}
+
+"columns and relationships of \"STUDENT\""
+type STUDENT {
+    "An object relationship"
+    CLASS: CLASS!
+    "An array relationship"
+    GRADEs(
+        "distinct select on columns"
+        distinct_on: [GRADE_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [GRADE_order_by!],
+        "filter the rows returned"
+        where: GRADE_bool_exp
+    ): [GRADE!]!
+    "An aggregate relationship"
+    GRADEs_aggregate(
+        "distinct select on columns"
+        distinct_on: [GRADE_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [GRADE_order_by!],
+        "filter the rows returned"
+        where: GRADE_bool_exp
+    ): GRADE_aggregate!
+    "An array relationship"
+    STUDNET_SUBJECT_ENTRY_PRESENCEs(
+        "distinct select on columns"
+        distinct_on: [STUDNET_SUBJECT_ENTRY_PRESENCE_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [STUDNET_SUBJECT_ENTRY_PRESENCE_order_by!],
+        "filter the rows returned"
+        where: STUDNET_SUBJECT_ENTRY_PRESENCE_bool_exp
+    ): [STUDNET_SUBJECT_ENTRY_PRESENCE!]!
+    "An aggregate relationship"
+    STUDNET_SUBJECT_ENTRY_PRESENCEs_aggregate(
+        "distinct select on columns"
+        distinct_on: [STUDNET_SUBJECT_ENTRY_PRESENCE_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [STUDNET_SUBJECT_ENTRY_PRESENCE_order_by!],
+        "filter the rows returned"
+        where: STUDNET_SUBJECT_ENTRY_PRESENCE_bool_exp
+    ): STUDNET_SUBJECT_ENTRY_PRESENCE_aggregate!
+    adress_city: String!
+    adress_number: String!
+    adress_street: String
+    citizen: String
+    class_id: Int!
+    contact_mail: String
+    contact_phone: Int
+    first_name: String!
+    gender: bpchar
+    id: Int!
+    last_name: String!
+    parent1_contact_mail: String
+    parent1_contact_phone: Int
+    parent1_name: String
+    parent2_contact_mail: String
+    parent2_contact_phone: Int
+    parent2_name: String
+    pesel: bigint!
+    second_name: String
+    state: String!
+}
+
+"aggregated selection of \"STUDENT\""
+type STUDENT_aggregate {
+    aggregate: STUDENT_aggregate_fields
+    nodes: [STUDENT!]!
+}
+
+"aggregate fields of \"STUDENT\""
+type STUDENT_aggregate_fields {
+    avg: STUDENT_avg_fields
+    count(columns: [STUDENT_select_column!], distinct: Boolean): Int!
+    max: STUDENT_max_fields
+    min: STUDENT_min_fields
+    stddev: STUDENT_stddev_fields
+    stddev_pop: STUDENT_stddev_pop_fields
+    stddev_samp: STUDENT_stddev_samp_fields
+    sum: STUDENT_sum_fields
+    var_pop: STUDENT_var_pop_fields
+    var_samp: STUDENT_var_samp_fields
+    variance: STUDENT_variance_fields
+}
+
+"aggregate avg on columns"
+type STUDENT_avg_fields {
+    class_id: Float
+    contact_phone: Float
+    id: Float
+    parent1_contact_phone: Float
+    parent2_contact_phone: Float
+    pesel: Float
+}
+
+"aggregate max on columns"
+type STUDENT_max_fields {
+    adress_city: String
+    adress_number: String
+    adress_street: String
+    citizen: String
+    class_id: Int
+    contact_mail: String
+    contact_phone: Int
+    first_name: String
+    gender: bpchar
+    id: Int
+    last_name: String
+    parent1_contact_mail: String
+    parent1_contact_phone: Int
+    parent1_name: String
+    parent2_contact_mail: String
+    parent2_contact_phone: Int
+    parent2_name: String
+    pesel: bigint
+    second_name: String
+    state: String
+}
+
+"aggregate min on columns"
+type STUDENT_min_fields {
+    adress_city: String
+    adress_number: String
+    adress_street: String
+    citizen: String
+    class_id: Int
+    contact_mail: String
+    contact_phone: Int
+    first_name: String
+    gender: bpchar
+    id: Int
+    last_name: String
+    parent1_contact_mail: String
+    parent1_contact_phone: Int
+    parent1_name: String
+    parent2_contact_mail: String
+    parent2_contact_phone: Int
+    parent2_name: String
+    pesel: bigint
+    second_name: String
+    state: String
+}
+
+"response of any mutation on the table \"STUDENT\""
+type STUDENT_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [STUDENT!]!
+}
+
+"aggregate stddev on columns"
+type STUDENT_stddev_fields {
+    class_id: Float
+    contact_phone: Float
+    id: Float
+    parent1_contact_phone: Float
+    parent2_contact_phone: Float
+    pesel: Float
+}
+
+"aggregate stddev_pop on columns"
+type STUDENT_stddev_pop_fields {
+    class_id: Float
+    contact_phone: Float
+    id: Float
+    parent1_contact_phone: Float
+    parent2_contact_phone: Float
+    pesel: Float
+}
+
+"aggregate stddev_samp on columns"
+type STUDENT_stddev_samp_fields {
+    class_id: Float
+    contact_phone: Float
+    id: Float
+    parent1_contact_phone: Float
+    parent2_contact_phone: Float
+    pesel: Float
+}
+
+"aggregate sum on columns"
+type STUDENT_sum_fields {
+    class_id: Int
+    contact_phone: Int
+    id: Int
+    parent1_contact_phone: Int
+    parent2_contact_phone: Int
+    pesel: bigint
+}
+
+"aggregate var_pop on columns"
+type STUDENT_var_pop_fields {
+    class_id: Float
+    contact_phone: Float
+    id: Float
+    parent1_contact_phone: Float
+    parent2_contact_phone: Float
+    pesel: Float
+}
+
+"aggregate var_samp on columns"
+type STUDENT_var_samp_fields {
+    class_id: Float
+    contact_phone: Float
+    id: Float
+    parent1_contact_phone: Float
+    parent2_contact_phone: Float
+    pesel: Float
+}
+
+"aggregate variance on columns"
+type STUDENT_variance_fields {
+    class_id: Float
+    contact_phone: Float
+    id: Float
+    parent1_contact_phone: Float
+    parent2_contact_phone: Float
+    pesel: Float
+}
+
+"columns and relationships of \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+type STUDNET_SUBJECT_ENTRY_PRESENCE {
+    "An object relationship"
+    STUDENT: STUDENT!
+    "An object relationship"
+    SUBJECT_ENTRY: SUBJECT_ENTRY!
+    presence: String!
+    student_id: Int!
+    subject_entry_id: Int!
+}
+
+"aggregated selection of \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+type STUDNET_SUBJECT_ENTRY_PRESENCE_aggregate {
+    aggregate: STUDNET_SUBJECT_ENTRY_PRESENCE_aggregate_fields
+    nodes: [STUDNET_SUBJECT_ENTRY_PRESENCE!]!
+}
+
+"aggregate fields of \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+type STUDNET_SUBJECT_ENTRY_PRESENCE_aggregate_fields {
+    avg: STUDNET_SUBJECT_ENTRY_PRESENCE_avg_fields
+    count(columns: [STUDNET_SUBJECT_ENTRY_PRESENCE_select_column!], distinct: Boolean): Int!
+    max: STUDNET_SUBJECT_ENTRY_PRESENCE_max_fields
+    min: STUDNET_SUBJECT_ENTRY_PRESENCE_min_fields
+    stddev: STUDNET_SUBJECT_ENTRY_PRESENCE_stddev_fields
+    stddev_pop: STUDNET_SUBJECT_ENTRY_PRESENCE_stddev_pop_fields
+    stddev_samp: STUDNET_SUBJECT_ENTRY_PRESENCE_stddev_samp_fields
+    sum: STUDNET_SUBJECT_ENTRY_PRESENCE_sum_fields
+    var_pop: STUDNET_SUBJECT_ENTRY_PRESENCE_var_pop_fields
+    var_samp: STUDNET_SUBJECT_ENTRY_PRESENCE_var_samp_fields
+    variance: STUDNET_SUBJECT_ENTRY_PRESENCE_variance_fields
+}
+
+"aggregate avg on columns"
+type STUDNET_SUBJECT_ENTRY_PRESENCE_avg_fields {
+    student_id: Float
+    subject_entry_id: Float
+}
+
+"aggregate max on columns"
+type STUDNET_SUBJECT_ENTRY_PRESENCE_max_fields {
+    presence: String
+    student_id: Int
+    subject_entry_id: Int
+}
+
+"aggregate min on columns"
+type STUDNET_SUBJECT_ENTRY_PRESENCE_min_fields {
+    presence: String
+    student_id: Int
+    subject_entry_id: Int
+}
+
+"response of any mutation on the table \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+type STUDNET_SUBJECT_ENTRY_PRESENCE_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [STUDNET_SUBJECT_ENTRY_PRESENCE!]!
+}
+
+"aggregate stddev on columns"
+type STUDNET_SUBJECT_ENTRY_PRESENCE_stddev_fields {
+    student_id: Float
+    subject_entry_id: Float
+}
+
+"aggregate stddev_pop on columns"
+type STUDNET_SUBJECT_ENTRY_PRESENCE_stddev_pop_fields {
+    student_id: Float
+    subject_entry_id: Float
+}
+
+"aggregate stddev_samp on columns"
+type STUDNET_SUBJECT_ENTRY_PRESENCE_stddev_samp_fields {
+    student_id: Float
+    subject_entry_id: Float
+}
+
+"aggregate sum on columns"
+type STUDNET_SUBJECT_ENTRY_PRESENCE_sum_fields {
+    student_id: Int
+    subject_entry_id: Int
+}
+
+"aggregate var_pop on columns"
+type STUDNET_SUBJECT_ENTRY_PRESENCE_var_pop_fields {
+    student_id: Float
+    subject_entry_id: Float
+}
+
+"aggregate var_samp on columns"
+type STUDNET_SUBJECT_ENTRY_PRESENCE_var_samp_fields {
+    student_id: Float
+    subject_entry_id: Float
+}
+
+"aggregate variance on columns"
+type STUDNET_SUBJECT_ENTRY_PRESENCE_variance_fields {
+    student_id: Float
+    subject_entry_id: Float
+}
+
+"columns and relationships of \"SUBJECT_ENTRY\""
+type SUBJECT_ENTRY {
+    "An object relationship"
+    DAY: DAY!
+    "An array relationship"
+    GRADEs(
+        "distinct select on columns"
+        distinct_on: [GRADE_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [GRADE_order_by!],
+        "filter the rows returned"
+        where: GRADE_bool_exp
+    ): [GRADE!]!
+    "An aggregate relationship"
+    GRADEs_aggregate(
+        "distinct select on columns"
+        distinct_on: [GRADE_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [GRADE_order_by!],
+        "filter the rows returned"
+        where: GRADE_bool_exp
+    ): GRADE_aggregate!
+    "An object relationship"
+    LESSON: LESSON!
+    "An array relationship"
+    STUDNET_SUBJECT_ENTRY_PRESENCEs(
+        "distinct select on columns"
+        distinct_on: [STUDNET_SUBJECT_ENTRY_PRESENCE_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [STUDNET_SUBJECT_ENTRY_PRESENCE_order_by!],
+        "filter the rows returned"
+        where: STUDNET_SUBJECT_ENTRY_PRESENCE_bool_exp
+    ): [STUDNET_SUBJECT_ENTRY_PRESENCE!]!
+    "An aggregate relationship"
+    STUDNET_SUBJECT_ENTRY_PRESENCEs_aggregate(
+        "distinct select on columns"
+        distinct_on: [STUDNET_SUBJECT_ENTRY_PRESENCE_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [STUDNET_SUBJECT_ENTRY_PRESENCE_order_by!],
+        "filter the rows returned"
+        where: STUDNET_SUBJECT_ENTRY_PRESENCE_bool_exp
+    ): STUDNET_SUBJECT_ENTRY_PRESENCE_aggregate!
+    "An object relationship"
+    SUBJECT_FOR_CLASS: SUBJECT_FOR_CLASS!
+    "An array relationship"
+    TESTs(
+        "distinct select on columns"
+        distinct_on: [TEST_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [TEST_order_by!],
+        "filter the rows returned"
+        where: TEST_bool_exp
+    ): [TEST!]!
+    "An aggregate relationship"
+    TESTs_aggregate(
+        "distinct select on columns"
+        distinct_on: [TEST_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [TEST_order_by!],
+        "filter the rows returned"
+        where: TEST_bool_exp
+    ): TEST_aggregate!
+    date: date!
+    day_id: Int!
+    id: Int!
+    lesson_id: Int!
+    status: String!
+    subject_for_class_id: Int!
+    topic: String
+}
+
+"aggregated selection of \"SUBJECT_ENTRY\""
+type SUBJECT_ENTRY_aggregate {
+    aggregate: SUBJECT_ENTRY_aggregate_fields
+    nodes: [SUBJECT_ENTRY!]!
+}
+
+"aggregate fields of \"SUBJECT_ENTRY\""
+type SUBJECT_ENTRY_aggregate_fields {
+    avg: SUBJECT_ENTRY_avg_fields
+    count(columns: [SUBJECT_ENTRY_select_column!], distinct: Boolean): Int!
+    max: SUBJECT_ENTRY_max_fields
+    min: SUBJECT_ENTRY_min_fields
+    stddev: SUBJECT_ENTRY_stddev_fields
+    stddev_pop: SUBJECT_ENTRY_stddev_pop_fields
+    stddev_samp: SUBJECT_ENTRY_stddev_samp_fields
+    sum: SUBJECT_ENTRY_sum_fields
+    var_pop: SUBJECT_ENTRY_var_pop_fields
+    var_samp: SUBJECT_ENTRY_var_samp_fields
+    variance: SUBJECT_ENTRY_variance_fields
+}
+
+"aggregate avg on columns"
+type SUBJECT_ENTRY_avg_fields {
+    day_id: Float
+    id: Float
+    lesson_id: Float
+    subject_for_class_id: Float
+}
+
+"aggregate max on columns"
+type SUBJECT_ENTRY_max_fields {
+    date: date
+    day_id: Int
+    id: Int
+    lesson_id: Int
+    status: String
+    subject_for_class_id: Int
+    topic: String
+}
+
+"aggregate min on columns"
+type SUBJECT_ENTRY_min_fields {
+    date: date
+    day_id: Int
+    id: Int
+    lesson_id: Int
+    status: String
+    subject_for_class_id: Int
+    topic: String
+}
+
+"response of any mutation on the table \"SUBJECT_ENTRY\""
+type SUBJECT_ENTRY_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [SUBJECT_ENTRY!]!
+}
+
+"aggregate stddev on columns"
+type SUBJECT_ENTRY_stddev_fields {
+    day_id: Float
+    id: Float
+    lesson_id: Float
+    subject_for_class_id: Float
+}
+
+"aggregate stddev_pop on columns"
+type SUBJECT_ENTRY_stddev_pop_fields {
+    day_id: Float
+    id: Float
+    lesson_id: Float
+    subject_for_class_id: Float
+}
+
+"aggregate stddev_samp on columns"
+type SUBJECT_ENTRY_stddev_samp_fields {
+    day_id: Float
+    id: Float
+    lesson_id: Float
+    subject_for_class_id: Float
+}
+
+"aggregate sum on columns"
+type SUBJECT_ENTRY_sum_fields {
+    day_id: Int
+    id: Int
+    lesson_id: Int
+    subject_for_class_id: Int
+}
+
+"aggregate var_pop on columns"
+type SUBJECT_ENTRY_var_pop_fields {
+    day_id: Float
+    id: Float
+    lesson_id: Float
+    subject_for_class_id: Float
+}
+
+"aggregate var_samp on columns"
+type SUBJECT_ENTRY_var_samp_fields {
+    day_id: Float
+    id: Float
+    lesson_id: Float
+    subject_for_class_id: Float
+}
+
+"aggregate variance on columns"
+type SUBJECT_ENTRY_variance_fields {
+    day_id: Float
+    id: Float
+    lesson_id: Float
+    subject_for_class_id: Float
+}
+
+"columns and relationships of \"SUBJECT_FOR_CLASS\""
+type SUBJECT_FOR_CLASS {
+    "An object relationship"
+    CLASS: CLASS!
+    "An array relationship"
+    SUBJECT_ENTRies(
+        "distinct select on columns"
+        distinct_on: [SUBJECT_ENTRY_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [SUBJECT_ENTRY_order_by!],
+        "filter the rows returned"
+        where: SUBJECT_ENTRY_bool_exp
+    ): [SUBJECT_ENTRY!]!
+    "An aggregate relationship"
+    SUBJECT_ENTRies_aggregate(
+        "distinct select on columns"
+        distinct_on: [SUBJECT_ENTRY_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [SUBJECT_ENTRY_order_by!],
+        "filter the rows returned"
+        where: SUBJECT_ENTRY_bool_exp
+    ): SUBJECT_ENTRY_aggregate!
+    "An object relationship"
+    TEACHER: TEACHER!
+    class_id: Int!
+    id: Int!
+    subject_name: String!
+    teacher_id: Int!
+}
+
+"aggregated selection of \"SUBJECT_FOR_CLASS\""
+type SUBJECT_FOR_CLASS_aggregate {
+    aggregate: SUBJECT_FOR_CLASS_aggregate_fields
+    nodes: [SUBJECT_FOR_CLASS!]!
+}
+
+"aggregate fields of \"SUBJECT_FOR_CLASS\""
+type SUBJECT_FOR_CLASS_aggregate_fields {
+    avg: SUBJECT_FOR_CLASS_avg_fields
+    count(columns: [SUBJECT_FOR_CLASS_select_column!], distinct: Boolean): Int!
+    max: SUBJECT_FOR_CLASS_max_fields
+    min: SUBJECT_FOR_CLASS_min_fields
+    stddev: SUBJECT_FOR_CLASS_stddev_fields
+    stddev_pop: SUBJECT_FOR_CLASS_stddev_pop_fields
+    stddev_samp: SUBJECT_FOR_CLASS_stddev_samp_fields
+    sum: SUBJECT_FOR_CLASS_sum_fields
+    var_pop: SUBJECT_FOR_CLASS_var_pop_fields
+    var_samp: SUBJECT_FOR_CLASS_var_samp_fields
+    variance: SUBJECT_FOR_CLASS_variance_fields
+}
+
+"aggregate avg on columns"
+type SUBJECT_FOR_CLASS_avg_fields {
+    class_id: Float
+    id: Float
+    teacher_id: Float
+}
+
+"aggregate max on columns"
+type SUBJECT_FOR_CLASS_max_fields {
+    class_id: Int
+    id: Int
+    subject_name: String
+    teacher_id: Int
+}
+
+"aggregate min on columns"
+type SUBJECT_FOR_CLASS_min_fields {
+    class_id: Int
+    id: Int
+    subject_name: String
+    teacher_id: Int
+}
+
+"response of any mutation on the table \"SUBJECT_FOR_CLASS\""
+type SUBJECT_FOR_CLASS_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [SUBJECT_FOR_CLASS!]!
+}
+
+"aggregate stddev on columns"
+type SUBJECT_FOR_CLASS_stddev_fields {
+    class_id: Float
+    id: Float
+    teacher_id: Float
+}
+
+"aggregate stddev_pop on columns"
+type SUBJECT_FOR_CLASS_stddev_pop_fields {
+    class_id: Float
+    id: Float
+    teacher_id: Float
+}
+
+"aggregate stddev_samp on columns"
+type SUBJECT_FOR_CLASS_stddev_samp_fields {
+    class_id: Float
+    id: Float
+    teacher_id: Float
+}
+
+"aggregate sum on columns"
+type SUBJECT_FOR_CLASS_sum_fields {
+    class_id: Int
+    id: Int
+    teacher_id: Int
+}
+
+"aggregate var_pop on columns"
+type SUBJECT_FOR_CLASS_var_pop_fields {
+    class_id: Float
+    id: Float
+    teacher_id: Float
+}
+
+"aggregate var_samp on columns"
+type SUBJECT_FOR_CLASS_var_samp_fields {
+    class_id: Float
+    id: Float
+    teacher_id: Float
+}
+
+"aggregate variance on columns"
+type SUBJECT_FOR_CLASS_variance_fields {
+    class_id: Float
+    id: Float
+    teacher_id: Float
+}
+
+"columns and relationships of \"TASK\""
+type TASK {
+    "An object relationship"
+    USER: USER!
+    description: String
+    end_date: date!
+    id: Int!
+    name: String!
+    state: String!
+    user_id: Int!
+}
+
+"aggregated selection of \"TASK\""
+type TASK_aggregate {
+    aggregate: TASK_aggregate_fields
+    nodes: [TASK!]!
+}
+
+"aggregate fields of \"TASK\""
+type TASK_aggregate_fields {
+    avg: TASK_avg_fields
+    count(columns: [TASK_select_column!], distinct: Boolean): Int!
+    max: TASK_max_fields
+    min: TASK_min_fields
+    stddev: TASK_stddev_fields
+    stddev_pop: TASK_stddev_pop_fields
+    stddev_samp: TASK_stddev_samp_fields
+    sum: TASK_sum_fields
+    var_pop: TASK_var_pop_fields
+    var_samp: TASK_var_samp_fields
+    variance: TASK_variance_fields
+}
+
+"aggregate avg on columns"
+type TASK_avg_fields {
+    id: Float
+    user_id: Float
+}
+
+"aggregate max on columns"
+type TASK_max_fields {
+    description: String
+    end_date: date
+    id: Int
+    name: String
+    state: String
+    user_id: Int
+}
+
+"aggregate min on columns"
+type TASK_min_fields {
+    description: String
+    end_date: date
+    id: Int
+    name: String
+    state: String
+    user_id: Int
+}
+
+"response of any mutation on the table \"TASK\""
+type TASK_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [TASK!]!
+}
+
+"aggregate stddev on columns"
+type TASK_stddev_fields {
+    id: Float
+    user_id: Float
+}
+
+"aggregate stddev_pop on columns"
+type TASK_stddev_pop_fields {
+    id: Float
+    user_id: Float
+}
+
+"aggregate stddev_samp on columns"
+type TASK_stddev_samp_fields {
+    id: Float
+    user_id: Float
+}
+
+"aggregate sum on columns"
+type TASK_sum_fields {
+    id: Int
+    user_id: Int
+}
+
+"aggregate var_pop on columns"
+type TASK_var_pop_fields {
+    id: Float
+    user_id: Float
+}
+
+"aggregate var_samp on columns"
+type TASK_var_samp_fields {
+    id: Float
+    user_id: Float
+}
+
+"aggregate variance on columns"
+type TASK_variance_fields {
+    id: Float
+    user_id: Float
+}
+
+"columns and relationships of \"TEACHER\""
+type TEACHER {
+    "An array relationship"
+    CLASSes(
+        "distinct select on columns"
+        distinct_on: [CLASS_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [CLASS_order_by!],
+        "filter the rows returned"
+        where: CLASS_bool_exp
+    ): [CLASS!]!
+    "An aggregate relationship"
+    CLASSes_aggregate(
+        "distinct select on columns"
+        distinct_on: [CLASS_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [CLASS_order_by!],
+        "filter the rows returned"
+        where: CLASS_bool_exp
+    ): CLASS_aggregate!
+    "An array relationship"
+    SUBJECT_FOR_CLASSes(
+        "distinct select on columns"
+        distinct_on: [SUBJECT_FOR_CLASS_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [SUBJECT_FOR_CLASS_order_by!],
+        "filter the rows returned"
+        where: SUBJECT_FOR_CLASS_bool_exp
+    ): [SUBJECT_FOR_CLASS!]!
+    "An aggregate relationship"
+    SUBJECT_FOR_CLASSes_aggregate(
+        "distinct select on columns"
+        distinct_on: [SUBJECT_FOR_CLASS_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [SUBJECT_FOR_CLASS_order_by!],
+        "filter the rows returned"
+        where: SUBJECT_FOR_CLASS_bool_exp
+    ): SUBJECT_FOR_CLASS_aggregate!
+    "An array relationship"
+    USERs(
+        "distinct select on columns"
+        distinct_on: [USER_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [USER_order_by!],
+        "filter the rows returned"
+        where: USER_bool_exp
+    ): [USER!]!
+    "An aggregate relationship"
+    USERs_aggregate(
+        "distinct select on columns"
+        distinct_on: [USER_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [USER_order_by!],
+        "filter the rows returned"
+        where: USER_bool_exp
+    ): USER_aggregate!
+    adres_city: String!
+    adress_number: String!
+    adress_street: String
+    citizen: String
+    first_name: String!
+    gender: bpchar!
+    id: Int!
+    last_name: String!
+    pesel: bigint!
+    second_name: String
+    state: String!
+}
+
+"aggregated selection of \"TEACHER\""
+type TEACHER_aggregate {
+    aggregate: TEACHER_aggregate_fields
+    nodes: [TEACHER!]!
+}
+
+"aggregate fields of \"TEACHER\""
+type TEACHER_aggregate_fields {
+    avg: TEACHER_avg_fields
+    count(columns: [TEACHER_select_column!], distinct: Boolean): Int!
+    max: TEACHER_max_fields
+    min: TEACHER_min_fields
+    stddev: TEACHER_stddev_fields
+    stddev_pop: TEACHER_stddev_pop_fields
+    stddev_samp: TEACHER_stddev_samp_fields
+    sum: TEACHER_sum_fields
+    var_pop: TEACHER_var_pop_fields
+    var_samp: TEACHER_var_samp_fields
+    variance: TEACHER_variance_fields
+}
+
+"aggregate avg on columns"
+type TEACHER_avg_fields {
+    id: Float
+    pesel: Float
+}
+
+"aggregate max on columns"
+type TEACHER_max_fields {
+    adres_city: String
+    adress_number: String
+    adress_street: String
+    citizen: String
+    first_name: String
+    gender: bpchar
+    id: Int
+    last_name: String
+    pesel: bigint
+    second_name: String
+    state: String
+}
+
+"aggregate min on columns"
+type TEACHER_min_fields {
+    adres_city: String
+    adress_number: String
+    adress_street: String
+    citizen: String
+    first_name: String
+    gender: bpchar
+    id: Int
+    last_name: String
+    pesel: bigint
+    second_name: String
+    state: String
+}
+
+"response of any mutation on the table \"TEACHER\""
+type TEACHER_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [TEACHER!]!
+}
+
+"aggregate stddev on columns"
+type TEACHER_stddev_fields {
+    id: Float
+    pesel: Float
+}
+
+"aggregate stddev_pop on columns"
+type TEACHER_stddev_pop_fields {
+    id: Float
+    pesel: Float
+}
+
+"aggregate stddev_samp on columns"
+type TEACHER_stddev_samp_fields {
+    id: Float
+    pesel: Float
+}
+
+"aggregate sum on columns"
+type TEACHER_sum_fields {
+    id: Int
+    pesel: bigint
+}
+
+"aggregate var_pop on columns"
+type TEACHER_var_pop_fields {
+    id: Float
+    pesel: Float
+}
+
+"aggregate var_samp on columns"
+type TEACHER_var_samp_fields {
+    id: Float
+    pesel: Float
+}
+
+"aggregate variance on columns"
+type TEACHER_variance_fields {
+    id: Float
+    pesel: Float
+}
+
+"columns and relationships of \"TEST\""
+type TEST {
+    "An object relationship"
+    SUBJECT_ENTRY: SUBJECT_ENTRY!
+    graded: String
+    id: Int!
+    subject_entry_id: Int!
+    topic: String!
+    type: String!
+}
+
+"aggregated selection of \"TEST\""
+type TEST_aggregate {
+    aggregate: TEST_aggregate_fields
+    nodes: [TEST!]!
+}
+
+"aggregate fields of \"TEST\""
+type TEST_aggregate_fields {
+    avg: TEST_avg_fields
+    count(columns: [TEST_select_column!], distinct: Boolean): Int!
+    max: TEST_max_fields
+    min: TEST_min_fields
+    stddev: TEST_stddev_fields
+    stddev_pop: TEST_stddev_pop_fields
+    stddev_samp: TEST_stddev_samp_fields
+    sum: TEST_sum_fields
+    var_pop: TEST_var_pop_fields
+    var_samp: TEST_var_samp_fields
+    variance: TEST_variance_fields
+}
+
+"aggregate avg on columns"
+type TEST_avg_fields {
+    id: Float
+    subject_entry_id: Float
+}
+
+"aggregate max on columns"
+type TEST_max_fields {
+    graded: String
+    id: Int
+    subject_entry_id: Int
+    topic: String
+    type: String
+}
+
+"aggregate min on columns"
+type TEST_min_fields {
+    graded: String
+    id: Int
+    subject_entry_id: Int
+    topic: String
+    type: String
+}
+
+"response of any mutation on the table \"TEST\""
+type TEST_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [TEST!]!
+}
+
+"aggregate stddev on columns"
+type TEST_stddev_fields {
+    id: Float
+    subject_entry_id: Float
+}
+
+"aggregate stddev_pop on columns"
+type TEST_stddev_pop_fields {
+    id: Float
+    subject_entry_id: Float
+}
+
+"aggregate stddev_samp on columns"
+type TEST_stddev_samp_fields {
+    id: Float
+    subject_entry_id: Float
+}
+
+"aggregate sum on columns"
+type TEST_sum_fields {
+    id: Int
+    subject_entry_id: Int
+}
+
+"aggregate var_pop on columns"
+type TEST_var_pop_fields {
+    id: Float
+    subject_entry_id: Float
+}
+
+"aggregate var_samp on columns"
+type TEST_var_samp_fields {
+    id: Float
+    subject_entry_id: Float
+}
+
+"aggregate variance on columns"
+type TEST_variance_fields {
+    id: Float
+    subject_entry_id: Float
+}
+
+"columns and relationships of \"USER\""
+type USER {
+    "An array relationship"
+    TASKs(
+        "distinct select on columns"
+        distinct_on: [TASK_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [TASK_order_by!],
+        "filter the rows returned"
+        where: TASK_bool_exp
+    ): [TASK!]!
+    "An aggregate relationship"
+    TASKs_aggregate(
+        "distinct select on columns"
+        distinct_on: [TASK_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [TASK_order_by!],
+        "filter the rows returned"
+        where: TASK_bool_exp
+    ): TASK_aggregate!
+    "An object relationship"
+    TEACHER: TEACHER
+    email: String!
+    id: Int!
+    role: String
+    teacher_id: Int
+}
+
+"aggregated selection of \"USER\""
+type USER_aggregate {
+    aggregate: USER_aggregate_fields
+    nodes: [USER!]!
+}
+
+"aggregate fields of \"USER\""
+type USER_aggregate_fields {
+    avg: USER_avg_fields
+    count(columns: [USER_select_column!], distinct: Boolean): Int!
+    max: USER_max_fields
+    min: USER_min_fields
+    stddev: USER_stddev_fields
+    stddev_pop: USER_stddev_pop_fields
+    stddev_samp: USER_stddev_samp_fields
+    sum: USER_sum_fields
+    var_pop: USER_var_pop_fields
+    var_samp: USER_var_samp_fields
+    variance: USER_variance_fields
+}
+
+"aggregate avg on columns"
+type USER_avg_fields {
+    id: Float
+    teacher_id: Float
+}
+
+"aggregate max on columns"
+type USER_max_fields {
+    email: String
+    id: Int
+    role: String
+    teacher_id: Int
+}
+
+"aggregate min on columns"
+type USER_min_fields {
+    email: String
+    id: Int
+    role: String
+    teacher_id: Int
+}
+
+"response of any mutation on the table \"USER\""
+type USER_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [USER!]!
+}
+
+"aggregate stddev on columns"
+type USER_stddev_fields {
+    id: Float
+    teacher_id: Float
+}
+
+"aggregate stddev_pop on columns"
+type USER_stddev_pop_fields {
+    id: Float
+    teacher_id: Float
+}
+
+"aggregate stddev_samp on columns"
+type USER_stddev_samp_fields {
+    id: Float
+    teacher_id: Float
+}
+
+"aggregate sum on columns"
+type USER_sum_fields {
+    id: Int
+    teacher_id: Int
+}
+
+"aggregate var_pop on columns"
+type USER_var_pop_fields {
+    id: Float
+    teacher_id: Float
+}
+
+"aggregate var_samp on columns"
+type USER_var_samp_fields {
+    id: Float
+    teacher_id: Float
+}
+
+"aggregate variance on columns"
+type USER_variance_fields {
+    id: Float
+    teacher_id: Float
+}
+
+"mutation root"
+type mutation_root {
+    "delete data from the table: \"CLASS\""
+    delete_CLASS(
+        "filter the rows which have to be deleted"
+        where: CLASS_bool_exp!
+    ): CLASS_mutation_response
+    "delete single row from the table: \"CLASS\""
+    delete_CLASS_by_pk(id: Int!): CLASS
+    "delete data from the table: \"DAY\""
+    delete_DAY(
+        "filter the rows which have to be deleted"
+        where: DAY_bool_exp!
+    ): DAY_mutation_response
+    "delete single row from the table: \"DAY\""
+    delete_DAY_by_pk(id: Int!): DAY
+    "delete data from the table: \"GRADE\""
+    delete_GRADE(
+        "filter the rows which have to be deleted"
+        where: GRADE_bool_exp!
+    ): GRADE_mutation_response
+    "delete single row from the table: \"GRADE\""
+    delete_GRADE_by_pk(id: Int!): GRADE
+    "delete data from the table: \"LESSON\""
+    delete_LESSON(
+        "filter the rows which have to be deleted"
+        where: LESSON_bool_exp!
+    ): LESSON_mutation_response
+    "delete single row from the table: \"LESSON\""
+    delete_LESSON_by_pk(id: Int!): LESSON
+    "delete data from the table: \"STUDENT\""
+    delete_STUDENT(
+        "filter the rows which have to be deleted"
+        where: STUDENT_bool_exp!
+    ): STUDENT_mutation_response
+    "delete single row from the table: \"STUDENT\""
+    delete_STUDENT_by_pk(id: Int!): STUDENT
+    "delete data from the table: \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+    delete_STUDNET_SUBJECT_ENTRY_PRESENCE(
+        "filter the rows which have to be deleted"
+        where: STUDNET_SUBJECT_ENTRY_PRESENCE_bool_exp!
+    ): STUDNET_SUBJECT_ENTRY_PRESENCE_mutation_response
+    "delete single row from the table: \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+    delete_STUDNET_SUBJECT_ENTRY_PRESENCE_by_pk(student_id: Int!, subject_entry_id: Int!): STUDNET_SUBJECT_ENTRY_PRESENCE
+    "delete data from the table: \"SUBJECT_ENTRY\""
+    delete_SUBJECT_ENTRY(
+        "filter the rows which have to be deleted"
+        where: SUBJECT_ENTRY_bool_exp!
+    ): SUBJECT_ENTRY_mutation_response
+    "delete single row from the table: \"SUBJECT_ENTRY\""
+    delete_SUBJECT_ENTRY_by_pk(id: Int!): SUBJECT_ENTRY
+    "delete data from the table: \"SUBJECT_FOR_CLASS\""
+    delete_SUBJECT_FOR_CLASS(
+        "filter the rows which have to be deleted"
+        where: SUBJECT_FOR_CLASS_bool_exp!
+    ): SUBJECT_FOR_CLASS_mutation_response
+    "delete single row from the table: \"SUBJECT_FOR_CLASS\""
+    delete_SUBJECT_FOR_CLASS_by_pk(id: Int!): SUBJECT_FOR_CLASS
+    "delete data from the table: \"TASK\""
+    delete_TASK(
+        "filter the rows which have to be deleted"
+        where: TASK_bool_exp!
+    ): TASK_mutation_response
+    "delete single row from the table: \"TASK\""
+    delete_TASK_by_pk(id: Int!): TASK
+    "delete data from the table: \"TEACHER\""
+    delete_TEACHER(
+        "filter the rows which have to be deleted"
+        where: TEACHER_bool_exp!
+    ): TEACHER_mutation_response
+    "delete single row from the table: \"TEACHER\""
+    delete_TEACHER_by_pk(id: Int!): TEACHER
+    "delete data from the table: \"TEST\""
+    delete_TEST(
+        "filter the rows which have to be deleted"
+        where: TEST_bool_exp!
+    ): TEST_mutation_response
+    "delete single row from the table: \"TEST\""
+    delete_TEST_by_pk(id: Int!): TEST
+    "delete data from the table: \"USER\""
+    delete_USER(
+        "filter the rows which have to be deleted"
+        where: USER_bool_exp!
+    ): USER_mutation_response
+    "delete single row from the table: \"USER\""
+    delete_USER_by_pk(id: Int!): USER
+    "insert data into the table: \"CLASS\""
+    insert_CLASS(
+        "the rows to be inserted"
+        objects: [CLASS_insert_input!]!,
+        "on conflict condition"
+        on_conflict: CLASS_on_conflict
+    ): CLASS_mutation_response
+    "insert a single row into the table: \"CLASS\""
+    insert_CLASS_one(
+        "the row to be inserted"
+        object: CLASS_insert_input!,
+        "on conflict condition"
+        on_conflict: CLASS_on_conflict
+    ): CLASS
+    "insert data into the table: \"DAY\""
+    insert_DAY(
+        "the rows to be inserted"
+        objects: [DAY_insert_input!]!,
+        "on conflict condition"
+        on_conflict: DAY_on_conflict
+    ): DAY_mutation_response
+    "insert a single row into the table: \"DAY\""
+    insert_DAY_one(
+        "the row to be inserted"
+        object: DAY_insert_input!,
+        "on conflict condition"
+        on_conflict: DAY_on_conflict
+    ): DAY
+    "insert data into the table: \"GRADE\""
+    insert_GRADE(
+        "the rows to be inserted"
+        objects: [GRADE_insert_input!]!,
+        "on conflict condition"
+        on_conflict: GRADE_on_conflict
+    ): GRADE_mutation_response
+    "insert a single row into the table: \"GRADE\""
+    insert_GRADE_one(
+        "the row to be inserted"
+        object: GRADE_insert_input!,
+        "on conflict condition"
+        on_conflict: GRADE_on_conflict
+    ): GRADE
+    "insert data into the table: \"LESSON\""
+    insert_LESSON(
+        "the rows to be inserted"
+        objects: [LESSON_insert_input!]!,
+        "on conflict condition"
+        on_conflict: LESSON_on_conflict
+    ): LESSON_mutation_response
+    "insert a single row into the table: \"LESSON\""
+    insert_LESSON_one(
+        "the row to be inserted"
+        object: LESSON_insert_input!,
+        "on conflict condition"
+        on_conflict: LESSON_on_conflict
+    ): LESSON
+    "insert data into the table: \"STUDENT\""
+    insert_STUDENT(
+        "the rows to be inserted"
+        objects: [STUDENT_insert_input!]!,
+        "on conflict condition"
+        on_conflict: STUDENT_on_conflict
+    ): STUDENT_mutation_response
+    "insert a single row into the table: \"STUDENT\""
+    insert_STUDENT_one(
+        "the row to be inserted"
+        object: STUDENT_insert_input!,
+        "on conflict condition"
+        on_conflict: STUDENT_on_conflict
+    ): STUDENT
+    "insert data into the table: \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+    insert_STUDNET_SUBJECT_ENTRY_PRESENCE(
+        "the rows to be inserted"
+        objects: [STUDNET_SUBJECT_ENTRY_PRESENCE_insert_input!]!,
+        "on conflict condition"
+        on_conflict: STUDNET_SUBJECT_ENTRY_PRESENCE_on_conflict
+    ): STUDNET_SUBJECT_ENTRY_PRESENCE_mutation_response
+    "insert a single row into the table: \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+    insert_STUDNET_SUBJECT_ENTRY_PRESENCE_one(
+        "the row to be inserted"
+        object: STUDNET_SUBJECT_ENTRY_PRESENCE_insert_input!,
+        "on conflict condition"
+        on_conflict: STUDNET_SUBJECT_ENTRY_PRESENCE_on_conflict
+    ): STUDNET_SUBJECT_ENTRY_PRESENCE
+    "insert data into the table: \"SUBJECT_ENTRY\""
+    insert_SUBJECT_ENTRY(
+        "the rows to be inserted"
+        objects: [SUBJECT_ENTRY_insert_input!]!,
+        "on conflict condition"
+        on_conflict: SUBJECT_ENTRY_on_conflict
+    ): SUBJECT_ENTRY_mutation_response
+    "insert a single row into the table: \"SUBJECT_ENTRY\""
+    insert_SUBJECT_ENTRY_one(
+        "the row to be inserted"
+        object: SUBJECT_ENTRY_insert_input!,
+        "on conflict condition"
+        on_conflict: SUBJECT_ENTRY_on_conflict
+    ): SUBJECT_ENTRY
+    "insert data into the table: \"SUBJECT_FOR_CLASS\""
+    insert_SUBJECT_FOR_CLASS(
+        "the rows to be inserted"
+        objects: [SUBJECT_FOR_CLASS_insert_input!]!,
+        "on conflict condition"
+        on_conflict: SUBJECT_FOR_CLASS_on_conflict
+    ): SUBJECT_FOR_CLASS_mutation_response
+    "insert a single row into the table: \"SUBJECT_FOR_CLASS\""
+    insert_SUBJECT_FOR_CLASS_one(
+        "the row to be inserted"
+        object: SUBJECT_FOR_CLASS_insert_input!,
+        "on conflict condition"
+        on_conflict: SUBJECT_FOR_CLASS_on_conflict
+    ): SUBJECT_FOR_CLASS
+    "insert data into the table: \"TASK\""
+    insert_TASK(
+        "the rows to be inserted"
+        objects: [TASK_insert_input!]!,
+        "on conflict condition"
+        on_conflict: TASK_on_conflict
+    ): TASK_mutation_response
+    "insert a single row into the table: \"TASK\""
+    insert_TASK_one(
+        "the row to be inserted"
+        object: TASK_insert_input!,
+        "on conflict condition"
+        on_conflict: TASK_on_conflict
+    ): TASK
+    "insert data into the table: \"TEACHER\""
+    insert_TEACHER(
+        "the rows to be inserted"
+        objects: [TEACHER_insert_input!]!,
+        "on conflict condition"
+        on_conflict: TEACHER_on_conflict
+    ): TEACHER_mutation_response
+    "insert a single row into the table: \"TEACHER\""
+    insert_TEACHER_one(
+        "the row to be inserted"
+        object: TEACHER_insert_input!,
+        "on conflict condition"
+        on_conflict: TEACHER_on_conflict
+    ): TEACHER
+    "insert data into the table: \"TEST\""
+    insert_TEST(
+        "the rows to be inserted"
+        objects: [TEST_insert_input!]!,
+        "on conflict condition"
+        on_conflict: TEST_on_conflict
+    ): TEST_mutation_response
+    "insert a single row into the table: \"TEST\""
+    insert_TEST_one(
+        "the row to be inserted"
+        object: TEST_insert_input!,
+        "on conflict condition"
+        on_conflict: TEST_on_conflict
+    ): TEST
+    "insert data into the table: \"USER\""
+    insert_USER(
+        "the rows to be inserted"
+        objects: [USER_insert_input!]!,
+        "on conflict condition"
+        on_conflict: USER_on_conflict
+    ): USER_mutation_response
+    "insert a single row into the table: \"USER\""
+    insert_USER_one(
+        "the row to be inserted"
+        object: USER_insert_input!,
+        "on conflict condition"
+        on_conflict: USER_on_conflict
+    ): USER
+    "update data of the table: \"CLASS\""
+    update_CLASS(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: CLASS_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: CLASS_set_input,
+        "filter the rows which have to be updated"
+        where: CLASS_bool_exp!
+    ): CLASS_mutation_response
+    "update single row of the table: \"CLASS\""
+    update_CLASS_by_pk(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: CLASS_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: CLASS_set_input,
+        pk_columns: CLASS_pk_columns_input!
+    ): CLASS
+    "update data of the table: \"DAY\""
+    update_DAY(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: DAY_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: DAY_set_input,
+        "filter the rows which have to be updated"
+        where: DAY_bool_exp!
+    ): DAY_mutation_response
+    "update single row of the table: \"DAY\""
+    update_DAY_by_pk(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: DAY_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: DAY_set_input,
+        pk_columns: DAY_pk_columns_input!
+    ): DAY
+    "update data of the table: \"GRADE\""
+    update_GRADE(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: GRADE_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: GRADE_set_input,
+        "filter the rows which have to be updated"
+        where: GRADE_bool_exp!
+    ): GRADE_mutation_response
+    "update single row of the table: \"GRADE\""
+    update_GRADE_by_pk(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: GRADE_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: GRADE_set_input,
+        pk_columns: GRADE_pk_columns_input!
+    ): GRADE
+    "update data of the table: \"LESSON\""
+    update_LESSON(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: LESSON_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: LESSON_set_input,
+        "filter the rows which have to be updated"
+        where: LESSON_bool_exp!
+    ): LESSON_mutation_response
+    "update single row of the table: \"LESSON\""
+    update_LESSON_by_pk(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: LESSON_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: LESSON_set_input,
+        pk_columns: LESSON_pk_columns_input!
+    ): LESSON
+    "update data of the table: \"STUDENT\""
+    update_STUDENT(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: STUDENT_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: STUDENT_set_input,
+        "filter the rows which have to be updated"
+        where: STUDENT_bool_exp!
+    ): STUDENT_mutation_response
+    "update single row of the table: \"STUDENT\""
+    update_STUDENT_by_pk(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: STUDENT_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: STUDENT_set_input,
+        pk_columns: STUDENT_pk_columns_input!
+    ): STUDENT
+    "update data of the table: \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+    update_STUDNET_SUBJECT_ENTRY_PRESENCE(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: STUDNET_SUBJECT_ENTRY_PRESENCE_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: STUDNET_SUBJECT_ENTRY_PRESENCE_set_input,
+        "filter the rows which have to be updated"
+        where: STUDNET_SUBJECT_ENTRY_PRESENCE_bool_exp!
+    ): STUDNET_SUBJECT_ENTRY_PRESENCE_mutation_response
+    "update single row of the table: \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+    update_STUDNET_SUBJECT_ENTRY_PRESENCE_by_pk(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: STUDNET_SUBJECT_ENTRY_PRESENCE_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: STUDNET_SUBJECT_ENTRY_PRESENCE_set_input,
+        pk_columns: STUDNET_SUBJECT_ENTRY_PRESENCE_pk_columns_input!
+    ): STUDNET_SUBJECT_ENTRY_PRESENCE
+    "update data of the table: \"SUBJECT_ENTRY\""
+    update_SUBJECT_ENTRY(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: SUBJECT_ENTRY_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: SUBJECT_ENTRY_set_input,
+        "filter the rows which have to be updated"
+        where: SUBJECT_ENTRY_bool_exp!
+    ): SUBJECT_ENTRY_mutation_response
+    "update single row of the table: \"SUBJECT_ENTRY\""
+    update_SUBJECT_ENTRY_by_pk(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: SUBJECT_ENTRY_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: SUBJECT_ENTRY_set_input,
+        pk_columns: SUBJECT_ENTRY_pk_columns_input!
+    ): SUBJECT_ENTRY
+    "update data of the table: \"SUBJECT_FOR_CLASS\""
+    update_SUBJECT_FOR_CLASS(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: SUBJECT_FOR_CLASS_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: SUBJECT_FOR_CLASS_set_input,
+        "filter the rows which have to be updated"
+        where: SUBJECT_FOR_CLASS_bool_exp!
+    ): SUBJECT_FOR_CLASS_mutation_response
+    "update single row of the table: \"SUBJECT_FOR_CLASS\""
+    update_SUBJECT_FOR_CLASS_by_pk(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: SUBJECT_FOR_CLASS_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: SUBJECT_FOR_CLASS_set_input,
+        pk_columns: SUBJECT_FOR_CLASS_pk_columns_input!
+    ): SUBJECT_FOR_CLASS
+    "update data of the table: \"TASK\""
+    update_TASK(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: TASK_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: TASK_set_input,
+        "filter the rows which have to be updated"
+        where: TASK_bool_exp!
+    ): TASK_mutation_response
+    "update single row of the table: \"TASK\""
+    update_TASK_by_pk(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: TASK_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: TASK_set_input,
+        pk_columns: TASK_pk_columns_input!
+    ): TASK
+    "update data of the table: \"TEACHER\""
+    update_TEACHER(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: TEACHER_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: TEACHER_set_input,
+        "filter the rows which have to be updated"
+        where: TEACHER_bool_exp!
+    ): TEACHER_mutation_response
+    "update single row of the table: \"TEACHER\""
+    update_TEACHER_by_pk(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: TEACHER_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: TEACHER_set_input,
+        pk_columns: TEACHER_pk_columns_input!
+    ): TEACHER
+    "update data of the table: \"TEST\""
+    update_TEST(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: TEST_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: TEST_set_input,
+        "filter the rows which have to be updated"
+        where: TEST_bool_exp!
+    ): TEST_mutation_response
+    "update single row of the table: \"TEST\""
+    update_TEST_by_pk(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: TEST_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: TEST_set_input,
+        pk_columns: TEST_pk_columns_input!
+    ): TEST
+    "update data of the table: \"USER\""
+    update_USER(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: USER_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: USER_set_input,
+        "filter the rows which have to be updated"
+        where: USER_bool_exp!
+    ): USER_mutation_response
+    "update single row of the table: \"USER\""
+    update_USER_by_pk(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: USER_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: USER_set_input,
+        pk_columns: USER_pk_columns_input!
+    ): USER
+}
+
+type query_root {
+    "fetch data from the table: \"CLASS\""
+    CLASS(
+        "distinct select on columns"
+        distinct_on: [CLASS_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [CLASS_order_by!],
+        "filter the rows returned"
+        where: CLASS_bool_exp
+    ): [CLASS!]!
+    "fetch aggregated fields from the table: \"CLASS\""
+    CLASS_aggregate(
+        "distinct select on columns"
+        distinct_on: [CLASS_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [CLASS_order_by!],
+        "filter the rows returned"
+        where: CLASS_bool_exp
+    ): CLASS_aggregate!
+    "fetch data from the table: \"CLASS\" using primary key columns"
+    CLASS_by_pk(id: Int!): CLASS
+    "fetch data from the table: \"DAY\""
+    DAY(
+        "distinct select on columns"
+        distinct_on: [DAY_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [DAY_order_by!],
+        "filter the rows returned"
+        where: DAY_bool_exp
+    ): [DAY!]!
+    "fetch aggregated fields from the table: \"DAY\""
+    DAY_aggregate(
+        "distinct select on columns"
+        distinct_on: [DAY_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [DAY_order_by!],
+        "filter the rows returned"
+        where: DAY_bool_exp
+    ): DAY_aggregate!
+    "fetch data from the table: \"DAY\" using primary key columns"
+    DAY_by_pk(id: Int!): DAY
+    "fetch data from the table: \"GRADE\""
+    GRADE(
+        "distinct select on columns"
+        distinct_on: [GRADE_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [GRADE_order_by!],
+        "filter the rows returned"
+        where: GRADE_bool_exp
+    ): [GRADE!]!
+    "fetch aggregated fields from the table: \"GRADE\""
+    GRADE_aggregate(
+        "distinct select on columns"
+        distinct_on: [GRADE_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [GRADE_order_by!],
+        "filter the rows returned"
+        where: GRADE_bool_exp
+    ): GRADE_aggregate!
+    "fetch data from the table: \"GRADE\" using primary key columns"
+    GRADE_by_pk(id: Int!): GRADE
+    "fetch data from the table: \"LESSON\""
+    LESSON(
+        "distinct select on columns"
+        distinct_on: [LESSON_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [LESSON_order_by!],
+        "filter the rows returned"
+        where: LESSON_bool_exp
+    ): [LESSON!]!
+    "fetch aggregated fields from the table: \"LESSON\""
+    LESSON_aggregate(
+        "distinct select on columns"
+        distinct_on: [LESSON_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [LESSON_order_by!],
+        "filter the rows returned"
+        where: LESSON_bool_exp
+    ): LESSON_aggregate!
+    "fetch data from the table: \"LESSON\" using primary key columns"
+    LESSON_by_pk(id: Int!): LESSON
+    "fetch data from the table: \"STUDENT\""
+    STUDENT(
+        "distinct select on columns"
+        distinct_on: [STUDENT_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [STUDENT_order_by!],
+        "filter the rows returned"
+        where: STUDENT_bool_exp
+    ): [STUDENT!]!
+    "fetch aggregated fields from the table: \"STUDENT\""
+    STUDENT_aggregate(
+        "distinct select on columns"
+        distinct_on: [STUDENT_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [STUDENT_order_by!],
+        "filter the rows returned"
+        where: STUDENT_bool_exp
+    ): STUDENT_aggregate!
+    "fetch data from the table: \"STUDENT\" using primary key columns"
+    STUDENT_by_pk(id: Int!): STUDENT
+    "fetch data from the table: \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+    STUDNET_SUBJECT_ENTRY_PRESENCE(
+        "distinct select on columns"
+        distinct_on: [STUDNET_SUBJECT_ENTRY_PRESENCE_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [STUDNET_SUBJECT_ENTRY_PRESENCE_order_by!],
+        "filter the rows returned"
+        where: STUDNET_SUBJECT_ENTRY_PRESENCE_bool_exp
+    ): [STUDNET_SUBJECT_ENTRY_PRESENCE!]!
+    "fetch aggregated fields from the table: \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+    STUDNET_SUBJECT_ENTRY_PRESENCE_aggregate(
+        "distinct select on columns"
+        distinct_on: [STUDNET_SUBJECT_ENTRY_PRESENCE_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [STUDNET_SUBJECT_ENTRY_PRESENCE_order_by!],
+        "filter the rows returned"
+        where: STUDNET_SUBJECT_ENTRY_PRESENCE_bool_exp
+    ): STUDNET_SUBJECT_ENTRY_PRESENCE_aggregate!
+    "fetch data from the table: \"STUDNET_SUBJECT_ENTRY_PRESENCE\" using primary key columns"
+    STUDNET_SUBJECT_ENTRY_PRESENCE_by_pk(student_id: Int!, subject_entry_id: Int!): STUDNET_SUBJECT_ENTRY_PRESENCE
+    "fetch data from the table: \"SUBJECT_ENTRY\""
+    SUBJECT_ENTRY(
+        "distinct select on columns"
+        distinct_on: [SUBJECT_ENTRY_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [SUBJECT_ENTRY_order_by!],
+        "filter the rows returned"
+        where: SUBJECT_ENTRY_bool_exp
+    ): [SUBJECT_ENTRY!]!
+    "fetch aggregated fields from the table: \"SUBJECT_ENTRY\""
+    SUBJECT_ENTRY_aggregate(
+        "distinct select on columns"
+        distinct_on: [SUBJECT_ENTRY_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [SUBJECT_ENTRY_order_by!],
+        "filter the rows returned"
+        where: SUBJECT_ENTRY_bool_exp
+    ): SUBJECT_ENTRY_aggregate!
+    "fetch data from the table: \"SUBJECT_ENTRY\" using primary key columns"
+    SUBJECT_ENTRY_by_pk(id: Int!): SUBJECT_ENTRY
+    "fetch data from the table: \"SUBJECT_FOR_CLASS\""
+    SUBJECT_FOR_CLASS(
+        "distinct select on columns"
+        distinct_on: [SUBJECT_FOR_CLASS_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [SUBJECT_FOR_CLASS_order_by!],
+        "filter the rows returned"
+        where: SUBJECT_FOR_CLASS_bool_exp
+    ): [SUBJECT_FOR_CLASS!]!
+    "fetch aggregated fields from the table: \"SUBJECT_FOR_CLASS\""
+    SUBJECT_FOR_CLASS_aggregate(
+        "distinct select on columns"
+        distinct_on: [SUBJECT_FOR_CLASS_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [SUBJECT_FOR_CLASS_order_by!],
+        "filter the rows returned"
+        where: SUBJECT_FOR_CLASS_bool_exp
+    ): SUBJECT_FOR_CLASS_aggregate!
+    "fetch data from the table: \"SUBJECT_FOR_CLASS\" using primary key columns"
+    SUBJECT_FOR_CLASS_by_pk(id: Int!): SUBJECT_FOR_CLASS
+    "fetch data from the table: \"TASK\""
+    TASK(
+        "distinct select on columns"
+        distinct_on: [TASK_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [TASK_order_by!],
+        "filter the rows returned"
+        where: TASK_bool_exp
+    ): [TASK!]!
+    "fetch aggregated fields from the table: \"TASK\""
+    TASK_aggregate(
+        "distinct select on columns"
+        distinct_on: [TASK_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [TASK_order_by!],
+        "filter the rows returned"
+        where: TASK_bool_exp
+    ): TASK_aggregate!
+    "fetch data from the table: \"TASK\" using primary key columns"
+    TASK_by_pk(id: Int!): TASK
+    "fetch data from the table: \"TEACHER\""
+    TEACHER(
+        "distinct select on columns"
+        distinct_on: [TEACHER_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [TEACHER_order_by!],
+        "filter the rows returned"
+        where: TEACHER_bool_exp
+    ): [TEACHER!]!
+    "fetch aggregated fields from the table: \"TEACHER\""
+    TEACHER_aggregate(
+        "distinct select on columns"
+        distinct_on: [TEACHER_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [TEACHER_order_by!],
+        "filter the rows returned"
+        where: TEACHER_bool_exp
+    ): TEACHER_aggregate!
+    "fetch data from the table: \"TEACHER\" using primary key columns"
+    TEACHER_by_pk(id: Int!): TEACHER
+    "fetch data from the table: \"TEST\""
+    TEST(
+        "distinct select on columns"
+        distinct_on: [TEST_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [TEST_order_by!],
+        "filter the rows returned"
+        where: TEST_bool_exp
+    ): [TEST!]!
+    "fetch aggregated fields from the table: \"TEST\""
+    TEST_aggregate(
+        "distinct select on columns"
+        distinct_on: [TEST_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [TEST_order_by!],
+        "filter the rows returned"
+        where: TEST_bool_exp
+    ): TEST_aggregate!
+    "fetch data from the table: \"TEST\" using primary key columns"
+    TEST_by_pk(id: Int!): TEST
+    "fetch data from the table: \"USER\""
+    USER(
+        "distinct select on columns"
+        distinct_on: [USER_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [USER_order_by!],
+        "filter the rows returned"
+        where: USER_bool_exp
+    ): [USER!]!
+    "fetch aggregated fields from the table: \"USER\""
+    USER_aggregate(
+        "distinct select on columns"
+        distinct_on: [USER_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [USER_order_by!],
+        "filter the rows returned"
+        where: USER_bool_exp
+    ): USER_aggregate!
+    "fetch data from the table: \"USER\" using primary key columns"
+    USER_by_pk(id: Int!): USER
+}
+
+type subscription_root {
+    "fetch data from the table: \"CLASS\""
+    CLASS(
+        "distinct select on columns"
+        distinct_on: [CLASS_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [CLASS_order_by!],
+        "filter the rows returned"
+        where: CLASS_bool_exp
+    ): [CLASS!]!
+    "fetch aggregated fields from the table: \"CLASS\""
+    CLASS_aggregate(
+        "distinct select on columns"
+        distinct_on: [CLASS_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [CLASS_order_by!],
+        "filter the rows returned"
+        where: CLASS_bool_exp
+    ): CLASS_aggregate!
+    "fetch data from the table: \"CLASS\" using primary key columns"
+    CLASS_by_pk(id: Int!): CLASS
+    "fetch data from the table: \"DAY\""
+    DAY(
+        "distinct select on columns"
+        distinct_on: [DAY_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [DAY_order_by!],
+        "filter the rows returned"
+        where: DAY_bool_exp
+    ): [DAY!]!
+    "fetch aggregated fields from the table: \"DAY\""
+    DAY_aggregate(
+        "distinct select on columns"
+        distinct_on: [DAY_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [DAY_order_by!],
+        "filter the rows returned"
+        where: DAY_bool_exp
+    ): DAY_aggregate!
+    "fetch data from the table: \"DAY\" using primary key columns"
+    DAY_by_pk(id: Int!): DAY
+    "fetch data from the table: \"GRADE\""
+    GRADE(
+        "distinct select on columns"
+        distinct_on: [GRADE_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [GRADE_order_by!],
+        "filter the rows returned"
+        where: GRADE_bool_exp
+    ): [GRADE!]!
+    "fetch aggregated fields from the table: \"GRADE\""
+    GRADE_aggregate(
+        "distinct select on columns"
+        distinct_on: [GRADE_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [GRADE_order_by!],
+        "filter the rows returned"
+        where: GRADE_bool_exp
+    ): GRADE_aggregate!
+    "fetch data from the table: \"GRADE\" using primary key columns"
+    GRADE_by_pk(id: Int!): GRADE
+    "fetch data from the table: \"LESSON\""
+    LESSON(
+        "distinct select on columns"
+        distinct_on: [LESSON_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [LESSON_order_by!],
+        "filter the rows returned"
+        where: LESSON_bool_exp
+    ): [LESSON!]!
+    "fetch aggregated fields from the table: \"LESSON\""
+    LESSON_aggregate(
+        "distinct select on columns"
+        distinct_on: [LESSON_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [LESSON_order_by!],
+        "filter the rows returned"
+        where: LESSON_bool_exp
+    ): LESSON_aggregate!
+    "fetch data from the table: \"LESSON\" using primary key columns"
+    LESSON_by_pk(id: Int!): LESSON
+    "fetch data from the table: \"STUDENT\""
+    STUDENT(
+        "distinct select on columns"
+        distinct_on: [STUDENT_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [STUDENT_order_by!],
+        "filter the rows returned"
+        where: STUDENT_bool_exp
+    ): [STUDENT!]!
+    "fetch aggregated fields from the table: \"STUDENT\""
+    STUDENT_aggregate(
+        "distinct select on columns"
+        distinct_on: [STUDENT_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [STUDENT_order_by!],
+        "filter the rows returned"
+        where: STUDENT_bool_exp
+    ): STUDENT_aggregate!
+    "fetch data from the table: \"STUDENT\" using primary key columns"
+    STUDENT_by_pk(id: Int!): STUDENT
+    "fetch data from the table: \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+    STUDNET_SUBJECT_ENTRY_PRESENCE(
+        "distinct select on columns"
+        distinct_on: [STUDNET_SUBJECT_ENTRY_PRESENCE_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [STUDNET_SUBJECT_ENTRY_PRESENCE_order_by!],
+        "filter the rows returned"
+        where: STUDNET_SUBJECT_ENTRY_PRESENCE_bool_exp
+    ): [STUDNET_SUBJECT_ENTRY_PRESENCE!]!
+    "fetch aggregated fields from the table: \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+    STUDNET_SUBJECT_ENTRY_PRESENCE_aggregate(
+        "distinct select on columns"
+        distinct_on: [STUDNET_SUBJECT_ENTRY_PRESENCE_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [STUDNET_SUBJECT_ENTRY_PRESENCE_order_by!],
+        "filter the rows returned"
+        where: STUDNET_SUBJECT_ENTRY_PRESENCE_bool_exp
+    ): STUDNET_SUBJECT_ENTRY_PRESENCE_aggregate!
+    "fetch data from the table: \"STUDNET_SUBJECT_ENTRY_PRESENCE\" using primary key columns"
+    STUDNET_SUBJECT_ENTRY_PRESENCE_by_pk(student_id: Int!, subject_entry_id: Int!): STUDNET_SUBJECT_ENTRY_PRESENCE
+    "fetch data from the table: \"SUBJECT_ENTRY\""
+    SUBJECT_ENTRY(
+        "distinct select on columns"
+        distinct_on: [SUBJECT_ENTRY_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [SUBJECT_ENTRY_order_by!],
+        "filter the rows returned"
+        where: SUBJECT_ENTRY_bool_exp
+    ): [SUBJECT_ENTRY!]!
+    "fetch aggregated fields from the table: \"SUBJECT_ENTRY\""
+    SUBJECT_ENTRY_aggregate(
+        "distinct select on columns"
+        distinct_on: [SUBJECT_ENTRY_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [SUBJECT_ENTRY_order_by!],
+        "filter the rows returned"
+        where: SUBJECT_ENTRY_bool_exp
+    ): SUBJECT_ENTRY_aggregate!
+    "fetch data from the table: \"SUBJECT_ENTRY\" using primary key columns"
+    SUBJECT_ENTRY_by_pk(id: Int!): SUBJECT_ENTRY
+    "fetch data from the table: \"SUBJECT_FOR_CLASS\""
+    SUBJECT_FOR_CLASS(
+        "distinct select on columns"
+        distinct_on: [SUBJECT_FOR_CLASS_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [SUBJECT_FOR_CLASS_order_by!],
+        "filter the rows returned"
+        where: SUBJECT_FOR_CLASS_bool_exp
+    ): [SUBJECT_FOR_CLASS!]!
+    "fetch aggregated fields from the table: \"SUBJECT_FOR_CLASS\""
+    SUBJECT_FOR_CLASS_aggregate(
+        "distinct select on columns"
+        distinct_on: [SUBJECT_FOR_CLASS_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [SUBJECT_FOR_CLASS_order_by!],
+        "filter the rows returned"
+        where: SUBJECT_FOR_CLASS_bool_exp
+    ): SUBJECT_FOR_CLASS_aggregate!
+    "fetch data from the table: \"SUBJECT_FOR_CLASS\" using primary key columns"
+    SUBJECT_FOR_CLASS_by_pk(id: Int!): SUBJECT_FOR_CLASS
+    "fetch data from the table: \"TASK\""
+    TASK(
+        "distinct select on columns"
+        distinct_on: [TASK_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [TASK_order_by!],
+        "filter the rows returned"
+        where: TASK_bool_exp
+    ): [TASK!]!
+    "fetch aggregated fields from the table: \"TASK\""
+    TASK_aggregate(
+        "distinct select on columns"
+        distinct_on: [TASK_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [TASK_order_by!],
+        "filter the rows returned"
+        where: TASK_bool_exp
+    ): TASK_aggregate!
+    "fetch data from the table: \"TASK\" using primary key columns"
+    TASK_by_pk(id: Int!): TASK
+    "fetch data from the table: \"TEACHER\""
+    TEACHER(
+        "distinct select on columns"
+        distinct_on: [TEACHER_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [TEACHER_order_by!],
+        "filter the rows returned"
+        where: TEACHER_bool_exp
+    ): [TEACHER!]!
+    "fetch aggregated fields from the table: \"TEACHER\""
+    TEACHER_aggregate(
+        "distinct select on columns"
+        distinct_on: [TEACHER_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [TEACHER_order_by!],
+        "filter the rows returned"
+        where: TEACHER_bool_exp
+    ): TEACHER_aggregate!
+    "fetch data from the table: \"TEACHER\" using primary key columns"
+    TEACHER_by_pk(id: Int!): TEACHER
+    "fetch data from the table: \"TEST\""
+    TEST(
+        "distinct select on columns"
+        distinct_on: [TEST_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [TEST_order_by!],
+        "filter the rows returned"
+        where: TEST_bool_exp
+    ): [TEST!]!
+    "fetch aggregated fields from the table: \"TEST\""
+    TEST_aggregate(
+        "distinct select on columns"
+        distinct_on: [TEST_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [TEST_order_by!],
+        "filter the rows returned"
+        where: TEST_bool_exp
+    ): TEST_aggregate!
+    "fetch data from the table: \"TEST\" using primary key columns"
+    TEST_by_pk(id: Int!): TEST
+    "fetch data from the table: \"USER\""
+    USER(
+        "distinct select on columns"
+        distinct_on: [USER_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [USER_order_by!],
+        "filter the rows returned"
+        where: USER_bool_exp
+    ): [USER!]!
+    "fetch aggregated fields from the table: \"USER\""
+    USER_aggregate(
+        "distinct select on columns"
+        distinct_on: [USER_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [USER_order_by!],
+        "filter the rows returned"
+        where: USER_bool_exp
+    ): USER_aggregate!
+    "fetch data from the table: \"USER\" using primary key columns"
+    USER_by_pk(id: Int!): USER
+}
+
+"unique or primary key constraints on table \"CLASS\""
+enum CLASS_constraint {
+    "unique or primary key constraint"
+    pk_CLASS
+}
+
+"select columns of table \"CLASS\""
+enum CLASS_select_column {
+    "column name"
+    class_teacher_id
+    "column name"
+    end_year
+    "column name"
+    id
+    "column name"
+    name
+    "column name"
+    start_year
+    "column name"
+    state
+}
+
+"update columns of table \"CLASS\""
+enum CLASS_update_column {
+    "column name"
+    class_teacher_id
+    "column name"
+    end_year
+    "column name"
+    id
+    "column name"
+    name
+    "column name"
+    start_year
+    "column name"
+    state
+}
+
+"unique or primary key constraints on table \"DAY\""
+enum DAY_constraint {
+    "unique or primary key constraint"
+    pk_DAY
+}
+
+"select columns of table \"DAY\""
+enum DAY_select_column {
+    "column name"
+    id
+    "column name"
+    name_en
+    "column name"
+    name_pl
+}
+
+"update columns of table \"DAY\""
+enum DAY_update_column {
+    "column name"
+    id
+    "column name"
+    name_en
+    "column name"
+    name_pl
+}
+
+"unique or primary key constraints on table \"GRADE\""
+enum GRADE_constraint {
+    "unique or primary key constraint"
+    pk_GRADE
+}
+
+"select columns of table \"GRADE\""
+enum GRADE_select_column {
+    "column name"
+    date
+    "column name"
+    description
+    "column name"
+    grade
+    "column name"
+    id
+    "column name"
+    student_id
+    "column name"
+    subject_for_class_id
+    "column name"
+    weight
+}
+
+"update columns of table \"GRADE\""
+enum GRADE_update_column {
+    "column name"
+    date
+    "column name"
+    description
+    "column name"
+    grade
+    "column name"
+    id
+    "column name"
+    student_id
+    "column name"
+    subject_for_class_id
+    "column name"
+    weight
+}
+
+"unique or primary key constraints on table \"LESSON\""
+enum LESSON_constraint {
+    "unique or primary key constraint"
+    pk_LESSON
+}
+
+"select columns of table \"LESSON\""
+enum LESSON_select_column {
+    "column name"
+    end_time
+    "column name"
+    id
+    "column name"
+    start_time
+}
+
+"update columns of table \"LESSON\""
+enum LESSON_update_column {
+    "column name"
+    end_time
+    "column name"
+    id
+    "column name"
+    start_time
+}
+
+"unique or primary key constraints on table \"STUDENT\""
+enum STUDENT_constraint {
+    "unique or primary key constraint"
+    pk_STUDENT
+}
+
+"select columns of table \"STUDENT\""
+enum STUDENT_select_column {
+    "column name"
+    adress_city
+    "column name"
+    adress_number
+    "column name"
+    adress_street
+    "column name"
+    citizen
+    "column name"
+    class_id
+    "column name"
+    contact_mail
+    "column name"
+    contact_phone
+    "column name"
+    first_name
+    "column name"
+    gender
+    "column name"
+    id
+    "column name"
+    last_name
+    "column name"
+    parent1_contact_mail
+    "column name"
+    parent1_contact_phone
+    "column name"
+    parent1_name
+    "column name"
+    parent2_contact_mail
+    "column name"
+    parent2_contact_phone
+    "column name"
+    parent2_name
+    "column name"
+    pesel
+    "column name"
+    second_name
+    "column name"
+    state
+}
+
+"update columns of table \"STUDENT\""
+enum STUDENT_update_column {
+    "column name"
+    adress_city
+    "column name"
+    adress_number
+    "column name"
+    adress_street
+    "column name"
+    citizen
+    "column name"
+    class_id
+    "column name"
+    contact_mail
+    "column name"
+    contact_phone
+    "column name"
+    first_name
+    "column name"
+    gender
+    "column name"
+    id
+    "column name"
+    last_name
+    "column name"
+    parent1_contact_mail
+    "column name"
+    parent1_contact_phone
+    "column name"
+    parent1_name
+    "column name"
+    parent2_contact_mail
+    "column name"
+    parent2_contact_phone
+    "column name"
+    parent2_name
+    "column name"
+    pesel
+    "column name"
+    second_name
+    "column name"
+    state
+}
+
+"unique or primary key constraints on table \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+enum STUDNET_SUBJECT_ENTRY_PRESENCE_constraint {
+    "unique or primary key constraint"
+    pk_STUDNET_SUBJECT_ENTRY_PRESENCE
+}
+
+"select columns of table \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+enum STUDNET_SUBJECT_ENTRY_PRESENCE_select_column {
+    "column name"
+    presence
+    "column name"
+    student_id
+    "column name"
+    subject_entry_id
+}
+
+"update columns of table \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+enum STUDNET_SUBJECT_ENTRY_PRESENCE_update_column {
+    "column name"
+    presence
+    "column name"
+    student_id
+    "column name"
+    subject_entry_id
+}
+
+"unique or primary key constraints on table \"SUBJECT_ENTRY\""
+enum SUBJECT_ENTRY_constraint {
+    "unique or primary key constraint"
+    SUBJECT_ENTRY_DATE_LESSON_ID_SUBJECT_FOR_CLASS_ID_key
+    "unique or primary key constraint"
+    pk_SUBJECT_ENTRY
+}
+
+"select columns of table \"SUBJECT_ENTRY\""
+enum SUBJECT_ENTRY_select_column {
+    "column name"
+    date
+    "column name"
+    day_id
+    "column name"
+    id
+    "column name"
+    lesson_id
+    "column name"
+    status
+    "column name"
+    subject_for_class_id
+    "column name"
+    topic
+}
+
+"update columns of table \"SUBJECT_ENTRY\""
+enum SUBJECT_ENTRY_update_column {
+    "column name"
+    date
+    "column name"
+    day_id
+    "column name"
+    id
+    "column name"
+    lesson_id
+    "column name"
+    status
+    "column name"
+    subject_for_class_id
+    "column name"
+    topic
+}
+
+"unique or primary key constraints on table \"SUBJECT_FOR_CLASS\""
+enum SUBJECT_FOR_CLASS_constraint {
+    "unique or primary key constraint"
+    pk_SUBJECT_FOR_CLASS
+}
+
+"select columns of table \"SUBJECT_FOR_CLASS\""
+enum SUBJECT_FOR_CLASS_select_column {
+    "column name"
+    class_id
+    "column name"
+    id
+    "column name"
+    subject_name
+    "column name"
+    teacher_id
+}
+
+"update columns of table \"SUBJECT_FOR_CLASS\""
+enum SUBJECT_FOR_CLASS_update_column {
+    "column name"
+    class_id
+    "column name"
+    id
+    "column name"
+    subject_name
+    "column name"
+    teacher_id
+}
+
+"unique or primary key constraints on table \"TASK\""
+enum TASK_constraint {
+    "unique or primary key constraint"
+    pk_TASK
+}
+
+"select columns of table \"TASK\""
+enum TASK_select_column {
+    "column name"
+    description
+    "column name"
+    end_date
+    "column name"
+    id
+    "column name"
+    name
+    "column name"
+    state
+    "column name"
+    user_id
+}
+
+"update columns of table \"TASK\""
+enum TASK_update_column {
+    "column name"
+    description
+    "column name"
+    end_date
+    "column name"
+    id
+    "column name"
+    name
+    "column name"
+    state
+    "column name"
+    user_id
+}
+
+"unique or primary key constraints on table \"TEACHER\""
+enum TEACHER_constraint {
+    "unique or primary key constraint"
+    pk_TEACHER
+}
+
+"select columns of table \"TEACHER\""
+enum TEACHER_select_column {
+    "column name"
+    adres_city
+    "column name"
+    adress_number
+    "column name"
+    adress_street
+    "column name"
+    citizen
+    "column name"
+    first_name
+    "column name"
+    gender
+    "column name"
+    id
+    "column name"
+    last_name
+    "column name"
+    pesel
+    "column name"
+    second_name
+    "column name"
+    state
+}
+
+"update columns of table \"TEACHER\""
+enum TEACHER_update_column {
+    "column name"
+    adres_city
+    "column name"
+    adress_number
+    "column name"
+    adress_street
+    "column name"
+    citizen
+    "column name"
+    first_name
+    "column name"
+    gender
+    "column name"
+    id
+    "column name"
+    last_name
+    "column name"
+    pesel
+    "column name"
+    second_name
+    "column name"
+    state
+}
+
+"unique or primary key constraints on table \"TEST\""
+enum TEST_constraint {
+    "unique or primary key constraint"
+    pk_TEST
+}
+
+"select columns of table \"TEST\""
+enum TEST_select_column {
+    "column name"
+    graded
+    "column name"
+    id
+    "column name"
+    subject_entry_id
+    "column name"
+    topic
+    "column name"
+    type
+}
+
+"update columns of table \"TEST\""
+enum TEST_update_column {
+    "column name"
+    graded
+    "column name"
+    id
+    "column name"
+    subject_entry_id
+    "column name"
+    topic
+    "column name"
+    type
+}
+
+"unique or primary key constraints on table \"USER\""
+enum USER_constraint {
+    "unique or primary key constraint"
+    pk_USER
+}
+
+"select columns of table \"USER\""
+enum USER_select_column {
+    "column name"
+    email
+    "column name"
+    id
+    "column name"
+    role
+    "column name"
+    teacher_id
+}
+
+"update columns of table \"USER\""
+enum USER_update_column {
+    "column name"
+    email
+    "column name"
+    id
+    "column name"
+    role
+    "column name"
+    teacher_id
+}
+
+"column ordering options"
+enum order_by {
+    "in ascending order, nulls last"
+    asc
+    "in ascending order, nulls first"
+    asc_nulls_first
+    "in ascending order, nulls last"
+    asc_nulls_last
+    "in descending order, nulls first"
+    desc
+    "in descending order, nulls first"
+    desc_nulls_first
+    "in descending order, nulls last"
+    desc_nulls_last
+}
+
+"order by aggregate values of table \"CLASS\""
+input CLASS_aggregate_order_by {
+    avg: CLASS_avg_order_by
+    count: order_by
+    max: CLASS_max_order_by
+    min: CLASS_min_order_by
+    stddev: CLASS_stddev_order_by
+    stddev_pop: CLASS_stddev_pop_order_by
+    stddev_samp: CLASS_stddev_samp_order_by
+    sum: CLASS_sum_order_by
+    var_pop: CLASS_var_pop_order_by
+    var_samp: CLASS_var_samp_order_by
+    variance: CLASS_variance_order_by
+}
+
+"input type for inserting array relation for remote table \"CLASS\""
+input CLASS_arr_rel_insert_input {
+    data: [CLASS_insert_input!]!
+    "on conflict condition"
+    on_conflict: CLASS_on_conflict
+}
+
+"order by avg() on columns of table \"CLASS\""
+input CLASS_avg_order_by {
+    class_teacher_id: order_by
+    end_year: order_by
+    id: order_by
+    start_year: order_by
+}
+
+"Boolean expression to filter rows from the table \"CLASS\". All fields are combined with a logical 'AND'."
+input CLASS_bool_exp {
+    STUDENTs: STUDENT_bool_exp
+    SUBJECT_FOR_CLASSes: SUBJECT_FOR_CLASS_bool_exp
+    TEACHER: TEACHER_bool_exp
+    _and: [CLASS_bool_exp!]
+    _not: CLASS_bool_exp
+    _or: [CLASS_bool_exp!]
+    class_teacher_id: Int_comparison_exp
+    end_year: Int_comparison_exp
+    id: Int_comparison_exp
+    name: String_comparison_exp
+    start_year: Int_comparison_exp
+    state: String_comparison_exp
+}
+
+"input type for incrementing numeric columns in table \"CLASS\""
+input CLASS_inc_input {
+    class_teacher_id: Int
+    end_year: Int
+    id: Int
+    start_year: Int
+}
+
+"input type for inserting data into table \"CLASS\""
+input CLASS_insert_input {
+    STUDENTs: STUDENT_arr_rel_insert_input
+    SUBJECT_FOR_CLASSes: SUBJECT_FOR_CLASS_arr_rel_insert_input
+    TEACHER: TEACHER_obj_rel_insert_input
+    class_teacher_id: Int
+    end_year: Int
+    id: Int
+    name: String
+    start_year: Int
+    state: String
+}
+
+"order by max() on columns of table \"CLASS\""
+input CLASS_max_order_by {
+    class_teacher_id: order_by
+    end_year: order_by
+    id: order_by
+    name: order_by
+    start_year: order_by
+    state: order_by
+}
+
+"order by min() on columns of table \"CLASS\""
+input CLASS_min_order_by {
+    class_teacher_id: order_by
+    end_year: order_by
+    id: order_by
+    name: order_by
+    start_year: order_by
+    state: order_by
+}
+
+"input type for inserting object relation for remote table \"CLASS\""
+input CLASS_obj_rel_insert_input {
+    data: CLASS_insert_input!
+    "on conflict condition"
+    on_conflict: CLASS_on_conflict
+}
+
+"on conflict condition type for table \"CLASS\""
+input CLASS_on_conflict {
+    constraint: CLASS_constraint!
+    update_columns: [CLASS_update_column!]! = []
+    where: CLASS_bool_exp
+}
+
+"Ordering options when selecting data from \"CLASS\"."
+input CLASS_order_by {
+    STUDENTs_aggregate: STUDENT_aggregate_order_by
+    SUBJECT_FOR_CLASSes_aggregate: SUBJECT_FOR_CLASS_aggregate_order_by
+    TEACHER: TEACHER_order_by
+    class_teacher_id: order_by
+    end_year: order_by
+    id: order_by
+    name: order_by
+    start_year: order_by
+    state: order_by
+}
+
+"primary key columns input for table: CLASS"
+input CLASS_pk_columns_input {
+    id: Int!
+}
+
+"input type for updating data in table \"CLASS\""
+input CLASS_set_input {
+    class_teacher_id: Int
+    end_year: Int
+    id: Int
+    name: String
+    start_year: Int
+    state: String
+}
+
+"order by stddev() on columns of table \"CLASS\""
+input CLASS_stddev_order_by {
+    class_teacher_id: order_by
+    end_year: order_by
+    id: order_by
+    start_year: order_by
+}
+
+"order by stddev_pop() on columns of table \"CLASS\""
+input CLASS_stddev_pop_order_by {
+    class_teacher_id: order_by
+    end_year: order_by
+    id: order_by
+    start_year: order_by
+}
+
+"order by stddev_samp() on columns of table \"CLASS\""
+input CLASS_stddev_samp_order_by {
+    class_teacher_id: order_by
+    end_year: order_by
+    id: order_by
+    start_year: order_by
+}
+
+"order by sum() on columns of table \"CLASS\""
+input CLASS_sum_order_by {
+    class_teacher_id: order_by
+    end_year: order_by
+    id: order_by
+    start_year: order_by
+}
+
+"order by var_pop() on columns of table \"CLASS\""
+input CLASS_var_pop_order_by {
+    class_teacher_id: order_by
+    end_year: order_by
+    id: order_by
+    start_year: order_by
+}
+
+"order by var_samp() on columns of table \"CLASS\""
+input CLASS_var_samp_order_by {
+    class_teacher_id: order_by
+    end_year: order_by
+    id: order_by
+    start_year: order_by
+}
+
+"order by variance() on columns of table \"CLASS\""
+input CLASS_variance_order_by {
+    class_teacher_id: order_by
+    end_year: order_by
+    id: order_by
+    start_year: order_by
+}
+
+"Boolean expression to filter rows from the table \"DAY\". All fields are combined with a logical 'AND'."
+input DAY_bool_exp {
+    SUBJECT_ENTRies: SUBJECT_ENTRY_bool_exp
+    _and: [DAY_bool_exp!]
+    _not: DAY_bool_exp
+    _or: [DAY_bool_exp!]
+    id: Int_comparison_exp
+    name_en: String_comparison_exp
+    name_pl: String_comparison_exp
+}
+
+"input type for incrementing numeric columns in table \"DAY\""
+input DAY_inc_input {
+    id: Int
+}
+
+"input type for inserting data into table \"DAY\""
+input DAY_insert_input {
+    SUBJECT_ENTRies: SUBJECT_ENTRY_arr_rel_insert_input
+    id: Int
+    name_en: String
+    name_pl: String
+}
+
+"input type for inserting object relation for remote table \"DAY\""
+input DAY_obj_rel_insert_input {
+    data: DAY_insert_input!
+    "on conflict condition"
+    on_conflict: DAY_on_conflict
+}
+
+"on conflict condition type for table \"DAY\""
+input DAY_on_conflict {
+    constraint: DAY_constraint!
+    update_columns: [DAY_update_column!]! = []
+    where: DAY_bool_exp
+}
+
+"Ordering options when selecting data from \"DAY\"."
+input DAY_order_by {
+    SUBJECT_ENTRies_aggregate: SUBJECT_ENTRY_aggregate_order_by
+    id: order_by
+    name_en: order_by
+    name_pl: order_by
+}
+
+"primary key columns input for table: DAY"
+input DAY_pk_columns_input {
+    id: Int!
+}
+
+"input type for updating data in table \"DAY\""
+input DAY_set_input {
+    id: Int
+    name_en: String
+    name_pl: String
+}
+
+"Boolean expression to compare columns of type \"Float\". All fields are combined with logical 'AND'."
+input Float_comparison_exp {
+    _eq: Float
+    _gt: Float
+    _gte: Float
+    _in: [Float!]
+    _is_null: Boolean
+    _lt: Float
+    _lte: Float
+    _neq: Float
+    _nin: [Float!]
+}
+
+"order by aggregate values of table \"GRADE\""
+input GRADE_aggregate_order_by {
+    avg: GRADE_avg_order_by
+    count: order_by
+    max: GRADE_max_order_by
+    min: GRADE_min_order_by
+    stddev: GRADE_stddev_order_by
+    stddev_pop: GRADE_stddev_pop_order_by
+    stddev_samp: GRADE_stddev_samp_order_by
+    sum: GRADE_sum_order_by
+    var_pop: GRADE_var_pop_order_by
+    var_samp: GRADE_var_samp_order_by
+    variance: GRADE_variance_order_by
+}
+
+"input type for inserting array relation for remote table \"GRADE\""
+input GRADE_arr_rel_insert_input {
+    data: [GRADE_insert_input!]!
+    "on conflict condition"
+    on_conflict: GRADE_on_conflict
+}
+
+"order by avg() on columns of table \"GRADE\""
+input GRADE_avg_order_by {
+    grade: order_by
+    id: order_by
+    student_id: order_by
+    subject_for_class_id: order_by
+    weight: order_by
+}
+
+"Boolean expression to filter rows from the table \"GRADE\". All fields are combined with a logical 'AND'."
+input GRADE_bool_exp {
+    STUDENT: STUDENT_bool_exp
+    SUBJECT_ENTRY: SUBJECT_ENTRY_bool_exp
+    _and: [GRADE_bool_exp!]
+    _not: GRADE_bool_exp
+    _or: [GRADE_bool_exp!]
+    date: timestamp_comparison_exp
+    description: String_comparison_exp
+    grade: Float_comparison_exp
+    id: Int_comparison_exp
+    student_id: Int_comparison_exp
+    subject_for_class_id: Int_comparison_exp
+    weight: Int_comparison_exp
+}
+
+"input type for incrementing numeric columns in table \"GRADE\""
+input GRADE_inc_input {
+    grade: Float
+    id: Int
+    student_id: Int
+    subject_for_class_id: Int
+    weight: Int
+}
+
+"input type for inserting data into table \"GRADE\""
+input GRADE_insert_input {
+    STUDENT: STUDENT_obj_rel_insert_input
+    SUBJECT_ENTRY: SUBJECT_ENTRY_obj_rel_insert_input
+    date: timestamp
+    description: String
+    grade: Float
+    id: Int
+    student_id: Int
+    subject_for_class_id: Int
+    weight: Int
+}
+
+"order by max() on columns of table \"GRADE\""
+input GRADE_max_order_by {
+    date: order_by
+    description: order_by
+    grade: order_by
+    id: order_by
+    student_id: order_by
+    subject_for_class_id: order_by
+    weight: order_by
+}
+
+"order by min() on columns of table \"GRADE\""
+input GRADE_min_order_by {
+    date: order_by
+    description: order_by
+    grade: order_by
+    id: order_by
+    student_id: order_by
+    subject_for_class_id: order_by
+    weight: order_by
+}
+
+"on conflict condition type for table \"GRADE\""
+input GRADE_on_conflict {
+    constraint: GRADE_constraint!
+    update_columns: [GRADE_update_column!]! = []
+    where: GRADE_bool_exp
+}
+
+"Ordering options when selecting data from \"GRADE\"."
+input GRADE_order_by {
+    STUDENT: STUDENT_order_by
+    SUBJECT_ENTRY: SUBJECT_ENTRY_order_by
+    date: order_by
+    description: order_by
+    grade: order_by
+    id: order_by
+    student_id: order_by
+    subject_for_class_id: order_by
+    weight: order_by
+}
+
+"primary key columns input for table: GRADE"
+input GRADE_pk_columns_input {
+    id: Int!
+}
+
+"input type for updating data in table \"GRADE\""
+input GRADE_set_input {
+    date: timestamp
+    description: String
+    grade: Float
+    id: Int
+    student_id: Int
+    subject_for_class_id: Int
+    weight: Int
+}
+
+"order by stddev() on columns of table \"GRADE\""
+input GRADE_stddev_order_by {
+    grade: order_by
+    id: order_by
+    student_id: order_by
+    subject_for_class_id: order_by
+    weight: order_by
+}
+
+"order by stddev_pop() on columns of table \"GRADE\""
+input GRADE_stddev_pop_order_by {
+    grade: order_by
+    id: order_by
+    student_id: order_by
+    subject_for_class_id: order_by
+    weight: order_by
+}
+
+"order by stddev_samp() on columns of table \"GRADE\""
+input GRADE_stddev_samp_order_by {
+    grade: order_by
+    id: order_by
+    student_id: order_by
+    subject_for_class_id: order_by
+    weight: order_by
+}
+
+"order by sum() on columns of table \"GRADE\""
+input GRADE_sum_order_by {
+    grade: order_by
+    id: order_by
+    student_id: order_by
+    subject_for_class_id: order_by
+    weight: order_by
+}
+
+"order by var_pop() on columns of table \"GRADE\""
+input GRADE_var_pop_order_by {
+    grade: order_by
+    id: order_by
+    student_id: order_by
+    subject_for_class_id: order_by
+    weight: order_by
+}
+
+"order by var_samp() on columns of table \"GRADE\""
+input GRADE_var_samp_order_by {
+    grade: order_by
+    id: order_by
+    student_id: order_by
+    subject_for_class_id: order_by
+    weight: order_by
+}
+
+"order by variance() on columns of table \"GRADE\""
+input GRADE_variance_order_by {
+    grade: order_by
+    id: order_by
+    student_id: order_by
+    subject_for_class_id: order_by
+    weight: order_by
+}
+
+"Boolean expression to compare columns of type \"Int\". All fields are combined with logical 'AND'."
+input Int_comparison_exp {
+    _eq: Int
+    _gt: Int
+    _gte: Int
+    _in: [Int!]
+    _is_null: Boolean
+    _lt: Int
+    _lte: Int
+    _neq: Int
+    _nin: [Int!]
+}
+
+"Boolean expression to filter rows from the table \"LESSON\". All fields are combined with a logical 'AND'."
+input LESSON_bool_exp {
+    SUBJECT_ENTRies: SUBJECT_ENTRY_bool_exp
+    _and: [LESSON_bool_exp!]
+    _not: LESSON_bool_exp
+    _or: [LESSON_bool_exp!]
+    end_time: time_comparison_exp
+    id: Int_comparison_exp
+    start_time: time_comparison_exp
+}
+
+"input type for incrementing numeric columns in table \"LESSON\""
+input LESSON_inc_input {
+    id: Int
+}
+
+"input type for inserting data into table \"LESSON\""
+input LESSON_insert_input {
+    SUBJECT_ENTRies: SUBJECT_ENTRY_arr_rel_insert_input
+    end_time: time
+    id: Int
+    start_time: time
+}
+
+"input type for inserting object relation for remote table \"LESSON\""
+input LESSON_obj_rel_insert_input {
+    data: LESSON_insert_input!
+    "on conflict condition"
+    on_conflict: LESSON_on_conflict
+}
+
+"on conflict condition type for table \"LESSON\""
+input LESSON_on_conflict {
+    constraint: LESSON_constraint!
+    update_columns: [LESSON_update_column!]! = []
+    where: LESSON_bool_exp
+}
+
+"Ordering options when selecting data from \"LESSON\"."
+input LESSON_order_by {
+    SUBJECT_ENTRies_aggregate: SUBJECT_ENTRY_aggregate_order_by
+    end_time: order_by
+    id: order_by
+    start_time: order_by
+}
+
+"primary key columns input for table: LESSON"
+input LESSON_pk_columns_input {
+    id: Int!
+}
+
+"input type for updating data in table \"LESSON\""
+input LESSON_set_input {
+    end_time: time
+    id: Int
+    start_time: time
+}
+
+"order by aggregate values of table \"STUDENT\""
+input STUDENT_aggregate_order_by {
+    avg: STUDENT_avg_order_by
+    count: order_by
+    max: STUDENT_max_order_by
+    min: STUDENT_min_order_by
+    stddev: STUDENT_stddev_order_by
+    stddev_pop: STUDENT_stddev_pop_order_by
+    stddev_samp: STUDENT_stddev_samp_order_by
+    sum: STUDENT_sum_order_by
+    var_pop: STUDENT_var_pop_order_by
+    var_samp: STUDENT_var_samp_order_by
+    variance: STUDENT_variance_order_by
+}
+
+"input type for inserting array relation for remote table \"STUDENT\""
+input STUDENT_arr_rel_insert_input {
+    data: [STUDENT_insert_input!]!
+    "on conflict condition"
+    on_conflict: STUDENT_on_conflict
+}
+
+"order by avg() on columns of table \"STUDENT\""
+input STUDENT_avg_order_by {
+    class_id: order_by
+    contact_phone: order_by
+    id: order_by
+    parent1_contact_phone: order_by
+    parent2_contact_phone: order_by
+    pesel: order_by
+}
+
+"Boolean expression to filter rows from the table \"STUDENT\". All fields are combined with a logical 'AND'."
+input STUDENT_bool_exp {
+    CLASS: CLASS_bool_exp
+    GRADEs: GRADE_bool_exp
+    STUDNET_SUBJECT_ENTRY_PRESENCEs: STUDNET_SUBJECT_ENTRY_PRESENCE_bool_exp
+    _and: [STUDENT_bool_exp!]
+    _not: STUDENT_bool_exp
+    _or: [STUDENT_bool_exp!]
+    adress_city: String_comparison_exp
+    adress_number: String_comparison_exp
+    adress_street: String_comparison_exp
+    citizen: String_comparison_exp
+    class_id: Int_comparison_exp
+    contact_mail: String_comparison_exp
+    contact_phone: Int_comparison_exp
+    first_name: String_comparison_exp
+    gender: bpchar_comparison_exp
+    id: Int_comparison_exp
+    last_name: String_comparison_exp
+    parent1_contact_mail: String_comparison_exp
+    parent1_contact_phone: Int_comparison_exp
+    parent1_name: String_comparison_exp
+    parent2_contact_mail: String_comparison_exp
+    parent2_contact_phone: Int_comparison_exp
+    parent2_name: String_comparison_exp
+    pesel: bigint_comparison_exp
+    second_name: String_comparison_exp
+    state: String_comparison_exp
+}
+
+"input type for incrementing numeric columns in table \"STUDENT\""
+input STUDENT_inc_input {
+    class_id: Int
+    contact_phone: Int
+    id: Int
+    parent1_contact_phone: Int
+    parent2_contact_phone: Int
+    pesel: bigint
+}
+
+"input type for inserting data into table \"STUDENT\""
+input STUDENT_insert_input {
+    CLASS: CLASS_obj_rel_insert_input
+    GRADEs: GRADE_arr_rel_insert_input
+    STUDNET_SUBJECT_ENTRY_PRESENCEs: STUDNET_SUBJECT_ENTRY_PRESENCE_arr_rel_insert_input
+    adress_city: String
+    adress_number: String
+    adress_street: String
+    citizen: String
+    class_id: Int
+    contact_mail: String
+    contact_phone: Int
+    first_name: String
+    gender: bpchar
+    id: Int
+    last_name: String
+    parent1_contact_mail: String
+    parent1_contact_phone: Int
+    parent1_name: String
+    parent2_contact_mail: String
+    parent2_contact_phone: Int
+    parent2_name: String
+    pesel: bigint
+    second_name: String
+    state: String
+}
+
+"order by max() on columns of table \"STUDENT\""
+input STUDENT_max_order_by {
+    adress_city: order_by
+    adress_number: order_by
+    adress_street: order_by
+    citizen: order_by
+    class_id: order_by
+    contact_mail: order_by
+    contact_phone: order_by
+    first_name: order_by
+    gender: order_by
+    id: order_by
+    last_name: order_by
+    parent1_contact_mail: order_by
+    parent1_contact_phone: order_by
+    parent1_name: order_by
+    parent2_contact_mail: order_by
+    parent2_contact_phone: order_by
+    parent2_name: order_by
+    pesel: order_by
+    second_name: order_by
+    state: order_by
+}
+
+"order by min() on columns of table \"STUDENT\""
+input STUDENT_min_order_by {
+    adress_city: order_by
+    adress_number: order_by
+    adress_street: order_by
+    citizen: order_by
+    class_id: order_by
+    contact_mail: order_by
+    contact_phone: order_by
+    first_name: order_by
+    gender: order_by
+    id: order_by
+    last_name: order_by
+    parent1_contact_mail: order_by
+    parent1_contact_phone: order_by
+    parent1_name: order_by
+    parent2_contact_mail: order_by
+    parent2_contact_phone: order_by
+    parent2_name: order_by
+    pesel: order_by
+    second_name: order_by
+    state: order_by
+}
+
+"input type for inserting object relation for remote table \"STUDENT\""
+input STUDENT_obj_rel_insert_input {
+    data: STUDENT_insert_input!
+    "on conflict condition"
+    on_conflict: STUDENT_on_conflict
+}
+
+"on conflict condition type for table \"STUDENT\""
+input STUDENT_on_conflict {
+    constraint: STUDENT_constraint!
+    update_columns: [STUDENT_update_column!]! = []
+    where: STUDENT_bool_exp
+}
+
+"Ordering options when selecting data from \"STUDENT\"."
+input STUDENT_order_by {
+    CLASS: CLASS_order_by
+    GRADEs_aggregate: GRADE_aggregate_order_by
+    STUDNET_SUBJECT_ENTRY_PRESENCEs_aggregate: STUDNET_SUBJECT_ENTRY_PRESENCE_aggregate_order_by
+    adress_city: order_by
+    adress_number: order_by
+    adress_street: order_by
+    citizen: order_by
+    class_id: order_by
+    contact_mail: order_by
+    contact_phone: order_by
+    first_name: order_by
+    gender: order_by
+    id: order_by
+    last_name: order_by
+    parent1_contact_mail: order_by
+    parent1_contact_phone: order_by
+    parent1_name: order_by
+    parent2_contact_mail: order_by
+    parent2_contact_phone: order_by
+    parent2_name: order_by
+    pesel: order_by
+    second_name: order_by
+    state: order_by
+}
+
+"primary key columns input for table: STUDENT"
+input STUDENT_pk_columns_input {
+    id: Int!
+}
+
+"input type for updating data in table \"STUDENT\""
+input STUDENT_set_input {
+    adress_city: String
+    adress_number: String
+    adress_street: String
+    citizen: String
+    class_id: Int
+    contact_mail: String
+    contact_phone: Int
+    first_name: String
+    gender: bpchar
+    id: Int
+    last_name: String
+    parent1_contact_mail: String
+    parent1_contact_phone: Int
+    parent1_name: String
+    parent2_contact_mail: String
+    parent2_contact_phone: Int
+    parent2_name: String
+    pesel: bigint
+    second_name: String
+    state: String
+}
+
+"order by stddev() on columns of table \"STUDENT\""
+input STUDENT_stddev_order_by {
+    class_id: order_by
+    contact_phone: order_by
+    id: order_by
+    parent1_contact_phone: order_by
+    parent2_contact_phone: order_by
+    pesel: order_by
+}
+
+"order by stddev_pop() on columns of table \"STUDENT\""
+input STUDENT_stddev_pop_order_by {
+    class_id: order_by
+    contact_phone: order_by
+    id: order_by
+    parent1_contact_phone: order_by
+    parent2_contact_phone: order_by
+    pesel: order_by
+}
+
+"order by stddev_samp() on columns of table \"STUDENT\""
+input STUDENT_stddev_samp_order_by {
+    class_id: order_by
+    contact_phone: order_by
+    id: order_by
+    parent1_contact_phone: order_by
+    parent2_contact_phone: order_by
+    pesel: order_by
+}
+
+"order by sum() on columns of table \"STUDENT\""
+input STUDENT_sum_order_by {
+    class_id: order_by
+    contact_phone: order_by
+    id: order_by
+    parent1_contact_phone: order_by
+    parent2_contact_phone: order_by
+    pesel: order_by
+}
+
+"order by var_pop() on columns of table \"STUDENT\""
+input STUDENT_var_pop_order_by {
+    class_id: order_by
+    contact_phone: order_by
+    id: order_by
+    parent1_contact_phone: order_by
+    parent2_contact_phone: order_by
+    pesel: order_by
+}
+
+"order by var_samp() on columns of table \"STUDENT\""
+input STUDENT_var_samp_order_by {
+    class_id: order_by
+    contact_phone: order_by
+    id: order_by
+    parent1_contact_phone: order_by
+    parent2_contact_phone: order_by
+    pesel: order_by
+}
+
+"order by variance() on columns of table \"STUDENT\""
+input STUDENT_variance_order_by {
+    class_id: order_by
+    contact_phone: order_by
+    id: order_by
+    parent1_contact_phone: order_by
+    parent2_contact_phone: order_by
+    pesel: order_by
+}
+
+"order by aggregate values of table \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+input STUDNET_SUBJECT_ENTRY_PRESENCE_aggregate_order_by {
+    avg: STUDNET_SUBJECT_ENTRY_PRESENCE_avg_order_by
+    count: order_by
+    max: STUDNET_SUBJECT_ENTRY_PRESENCE_max_order_by
+    min: STUDNET_SUBJECT_ENTRY_PRESENCE_min_order_by
+    stddev: STUDNET_SUBJECT_ENTRY_PRESENCE_stddev_order_by
+    stddev_pop: STUDNET_SUBJECT_ENTRY_PRESENCE_stddev_pop_order_by
+    stddev_samp: STUDNET_SUBJECT_ENTRY_PRESENCE_stddev_samp_order_by
+    sum: STUDNET_SUBJECT_ENTRY_PRESENCE_sum_order_by
+    var_pop: STUDNET_SUBJECT_ENTRY_PRESENCE_var_pop_order_by
+    var_samp: STUDNET_SUBJECT_ENTRY_PRESENCE_var_samp_order_by
+    variance: STUDNET_SUBJECT_ENTRY_PRESENCE_variance_order_by
+}
+
+"input type for inserting array relation for remote table \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+input STUDNET_SUBJECT_ENTRY_PRESENCE_arr_rel_insert_input {
+    data: [STUDNET_SUBJECT_ENTRY_PRESENCE_insert_input!]!
+    "on conflict condition"
+    on_conflict: STUDNET_SUBJECT_ENTRY_PRESENCE_on_conflict
+}
+
+"order by avg() on columns of table \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+input STUDNET_SUBJECT_ENTRY_PRESENCE_avg_order_by {
+    student_id: order_by
+    subject_entry_id: order_by
+}
+
+"Boolean expression to filter rows from the table \"STUDNET_SUBJECT_ENTRY_PRESENCE\". All fields are combined with a logical 'AND'."
+input STUDNET_SUBJECT_ENTRY_PRESENCE_bool_exp {
+    STUDENT: STUDENT_bool_exp
+    SUBJECT_ENTRY: SUBJECT_ENTRY_bool_exp
+    _and: [STUDNET_SUBJECT_ENTRY_PRESENCE_bool_exp!]
+    _not: STUDNET_SUBJECT_ENTRY_PRESENCE_bool_exp
+    _or: [STUDNET_SUBJECT_ENTRY_PRESENCE_bool_exp!]
+    presence: String_comparison_exp
+    student_id: Int_comparison_exp
+    subject_entry_id: Int_comparison_exp
+}
+
+"input type for incrementing numeric columns in table \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+input STUDNET_SUBJECT_ENTRY_PRESENCE_inc_input {
+    student_id: Int
+    subject_entry_id: Int
+}
+
+"input type for inserting data into table \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+input STUDNET_SUBJECT_ENTRY_PRESENCE_insert_input {
+    STUDENT: STUDENT_obj_rel_insert_input
+    SUBJECT_ENTRY: SUBJECT_ENTRY_obj_rel_insert_input
+    presence: String
+    student_id: Int
+    subject_entry_id: Int
+}
+
+"order by max() on columns of table \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+input STUDNET_SUBJECT_ENTRY_PRESENCE_max_order_by {
+    presence: order_by
+    student_id: order_by
+    subject_entry_id: order_by
+}
+
+"order by min() on columns of table \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+input STUDNET_SUBJECT_ENTRY_PRESENCE_min_order_by {
+    presence: order_by
+    student_id: order_by
+    subject_entry_id: order_by
+}
+
+"on conflict condition type for table \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+input STUDNET_SUBJECT_ENTRY_PRESENCE_on_conflict {
+    constraint: STUDNET_SUBJECT_ENTRY_PRESENCE_constraint!
+    update_columns: [STUDNET_SUBJECT_ENTRY_PRESENCE_update_column!]! = []
+    where: STUDNET_SUBJECT_ENTRY_PRESENCE_bool_exp
+}
+
+"Ordering options when selecting data from \"STUDNET_SUBJECT_ENTRY_PRESENCE\"."
+input STUDNET_SUBJECT_ENTRY_PRESENCE_order_by {
+    STUDENT: STUDENT_order_by
+    SUBJECT_ENTRY: SUBJECT_ENTRY_order_by
+    presence: order_by
+    student_id: order_by
+    subject_entry_id: order_by
+}
+
+"primary key columns input for table: STUDNET_SUBJECT_ENTRY_PRESENCE"
+input STUDNET_SUBJECT_ENTRY_PRESENCE_pk_columns_input {
+    student_id: Int!
+    subject_entry_id: Int!
+}
+
+"input type for updating data in table \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+input STUDNET_SUBJECT_ENTRY_PRESENCE_set_input {
+    presence: String
+    student_id: Int
+    subject_entry_id: Int
+}
+
+"order by stddev() on columns of table \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+input STUDNET_SUBJECT_ENTRY_PRESENCE_stddev_order_by {
+    student_id: order_by
+    subject_entry_id: order_by
+}
+
+"order by stddev_pop() on columns of table \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+input STUDNET_SUBJECT_ENTRY_PRESENCE_stddev_pop_order_by {
+    student_id: order_by
+    subject_entry_id: order_by
+}
+
+"order by stddev_samp() on columns of table \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+input STUDNET_SUBJECT_ENTRY_PRESENCE_stddev_samp_order_by {
+    student_id: order_by
+    subject_entry_id: order_by
+}
+
+"order by sum() on columns of table \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+input STUDNET_SUBJECT_ENTRY_PRESENCE_sum_order_by {
+    student_id: order_by
+    subject_entry_id: order_by
+}
+
+"order by var_pop() on columns of table \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+input STUDNET_SUBJECT_ENTRY_PRESENCE_var_pop_order_by {
+    student_id: order_by
+    subject_entry_id: order_by
+}
+
+"order by var_samp() on columns of table \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+input STUDNET_SUBJECT_ENTRY_PRESENCE_var_samp_order_by {
+    student_id: order_by
+    subject_entry_id: order_by
+}
+
+"order by variance() on columns of table \"STUDNET_SUBJECT_ENTRY_PRESENCE\""
+input STUDNET_SUBJECT_ENTRY_PRESENCE_variance_order_by {
+    student_id: order_by
+    subject_entry_id: order_by
+}
+
+"order by aggregate values of table \"SUBJECT_ENTRY\""
+input SUBJECT_ENTRY_aggregate_order_by {
+    avg: SUBJECT_ENTRY_avg_order_by
+    count: order_by
+    max: SUBJECT_ENTRY_max_order_by
+    min: SUBJECT_ENTRY_min_order_by
+    stddev: SUBJECT_ENTRY_stddev_order_by
+    stddev_pop: SUBJECT_ENTRY_stddev_pop_order_by
+    stddev_samp: SUBJECT_ENTRY_stddev_samp_order_by
+    sum: SUBJECT_ENTRY_sum_order_by
+    var_pop: SUBJECT_ENTRY_var_pop_order_by
+    var_samp: SUBJECT_ENTRY_var_samp_order_by
+    variance: SUBJECT_ENTRY_variance_order_by
+}
+
+"input type for inserting array relation for remote table \"SUBJECT_ENTRY\""
+input SUBJECT_ENTRY_arr_rel_insert_input {
+    data: [SUBJECT_ENTRY_insert_input!]!
+    "on conflict condition"
+    on_conflict: SUBJECT_ENTRY_on_conflict
+}
+
+"order by avg() on columns of table \"SUBJECT_ENTRY\""
+input SUBJECT_ENTRY_avg_order_by {
+    day_id: order_by
+    id: order_by
+    lesson_id: order_by
+    subject_for_class_id: order_by
+}
+
+"Boolean expression to filter rows from the table \"SUBJECT_ENTRY\". All fields are combined with a logical 'AND'."
+input SUBJECT_ENTRY_bool_exp {
+    DAY: DAY_bool_exp
+    GRADEs: GRADE_bool_exp
+    LESSON: LESSON_bool_exp
+    STUDNET_SUBJECT_ENTRY_PRESENCEs: STUDNET_SUBJECT_ENTRY_PRESENCE_bool_exp
+    SUBJECT_FOR_CLASS: SUBJECT_FOR_CLASS_bool_exp
+    TESTs: TEST_bool_exp
+    _and: [SUBJECT_ENTRY_bool_exp!]
+    _not: SUBJECT_ENTRY_bool_exp
+    _or: [SUBJECT_ENTRY_bool_exp!]
+    date: date_comparison_exp
+    day_id: Int_comparison_exp
+    id: Int_comparison_exp
+    lesson_id: Int_comparison_exp
+    status: String_comparison_exp
+    subject_for_class_id: Int_comparison_exp
+    topic: String_comparison_exp
+}
+
+"input type for incrementing numeric columns in table \"SUBJECT_ENTRY\""
+input SUBJECT_ENTRY_inc_input {
+    day_id: Int
+    id: Int
+    lesson_id: Int
+    subject_for_class_id: Int
+}
+
+"input type for inserting data into table \"SUBJECT_ENTRY\""
+input SUBJECT_ENTRY_insert_input {
+    DAY: DAY_obj_rel_insert_input
+    GRADEs: GRADE_arr_rel_insert_input
+    LESSON: LESSON_obj_rel_insert_input
+    STUDNET_SUBJECT_ENTRY_PRESENCEs: STUDNET_SUBJECT_ENTRY_PRESENCE_arr_rel_insert_input
+    SUBJECT_FOR_CLASS: SUBJECT_FOR_CLASS_obj_rel_insert_input
+    TESTs: TEST_arr_rel_insert_input
+    date: date
+    day_id: Int
+    id: Int
+    lesson_id: Int
+    status: String
+    subject_for_class_id: Int
+    topic: String
+}
+
+"order by max() on columns of table \"SUBJECT_ENTRY\""
+input SUBJECT_ENTRY_max_order_by {
+    date: order_by
+    day_id: order_by
+    id: order_by
+    lesson_id: order_by
+    status: order_by
+    subject_for_class_id: order_by
+    topic: order_by
+}
+
+"order by min() on columns of table \"SUBJECT_ENTRY\""
+input SUBJECT_ENTRY_min_order_by {
+    date: order_by
+    day_id: order_by
+    id: order_by
+    lesson_id: order_by
+    status: order_by
+    subject_for_class_id: order_by
+    topic: order_by
+}
+
+"input type for inserting object relation for remote table \"SUBJECT_ENTRY\""
+input SUBJECT_ENTRY_obj_rel_insert_input {
+    data: SUBJECT_ENTRY_insert_input!
+    "on conflict condition"
+    on_conflict: SUBJECT_ENTRY_on_conflict
+}
+
+"on conflict condition type for table \"SUBJECT_ENTRY\""
+input SUBJECT_ENTRY_on_conflict {
+    constraint: SUBJECT_ENTRY_constraint!
+    update_columns: [SUBJECT_ENTRY_update_column!]! = []
+    where: SUBJECT_ENTRY_bool_exp
+}
+
+"Ordering options when selecting data from \"SUBJECT_ENTRY\"."
+input SUBJECT_ENTRY_order_by {
+    DAY: DAY_order_by
+    GRADEs_aggregate: GRADE_aggregate_order_by
+    LESSON: LESSON_order_by
+    STUDNET_SUBJECT_ENTRY_PRESENCEs_aggregate: STUDNET_SUBJECT_ENTRY_PRESENCE_aggregate_order_by
+    SUBJECT_FOR_CLASS: SUBJECT_FOR_CLASS_order_by
+    TESTs_aggregate: TEST_aggregate_order_by
+    date: order_by
+    day_id: order_by
+    id: order_by
+    lesson_id: order_by
+    status: order_by
+    subject_for_class_id: order_by
+    topic: order_by
+}
+
+"primary key columns input for table: SUBJECT_ENTRY"
+input SUBJECT_ENTRY_pk_columns_input {
+    id: Int!
+}
+
+"input type for updating data in table \"SUBJECT_ENTRY\""
+input SUBJECT_ENTRY_set_input {
+    date: date
+    day_id: Int
+    id: Int
+    lesson_id: Int
+    status: String
+    subject_for_class_id: Int
+    topic: String
+}
+
+"order by stddev() on columns of table \"SUBJECT_ENTRY\""
+input SUBJECT_ENTRY_stddev_order_by {
+    day_id: order_by
+    id: order_by
+    lesson_id: order_by
+    subject_for_class_id: order_by
+}
+
+"order by stddev_pop() on columns of table \"SUBJECT_ENTRY\""
+input SUBJECT_ENTRY_stddev_pop_order_by {
+    day_id: order_by
+    id: order_by
+    lesson_id: order_by
+    subject_for_class_id: order_by
+}
+
+"order by stddev_samp() on columns of table \"SUBJECT_ENTRY\""
+input SUBJECT_ENTRY_stddev_samp_order_by {
+    day_id: order_by
+    id: order_by
+    lesson_id: order_by
+    subject_for_class_id: order_by
+}
+
+"order by sum() on columns of table \"SUBJECT_ENTRY\""
+input SUBJECT_ENTRY_sum_order_by {
+    day_id: order_by
+    id: order_by
+    lesson_id: order_by
+    subject_for_class_id: order_by
+}
+
+"order by var_pop() on columns of table \"SUBJECT_ENTRY\""
+input SUBJECT_ENTRY_var_pop_order_by {
+    day_id: order_by
+    id: order_by
+    lesson_id: order_by
+    subject_for_class_id: order_by
+}
+
+"order by var_samp() on columns of table \"SUBJECT_ENTRY\""
+input SUBJECT_ENTRY_var_samp_order_by {
+    day_id: order_by
+    id: order_by
+    lesson_id: order_by
+    subject_for_class_id: order_by
+}
+
+"order by variance() on columns of table \"SUBJECT_ENTRY\""
+input SUBJECT_ENTRY_variance_order_by {
+    day_id: order_by
+    id: order_by
+    lesson_id: order_by
+    subject_for_class_id: order_by
+}
+
+"order by aggregate values of table \"SUBJECT_FOR_CLASS\""
+input SUBJECT_FOR_CLASS_aggregate_order_by {
+    avg: SUBJECT_FOR_CLASS_avg_order_by
+    count: order_by
+    max: SUBJECT_FOR_CLASS_max_order_by
+    min: SUBJECT_FOR_CLASS_min_order_by
+    stddev: SUBJECT_FOR_CLASS_stddev_order_by
+    stddev_pop: SUBJECT_FOR_CLASS_stddev_pop_order_by
+    stddev_samp: SUBJECT_FOR_CLASS_stddev_samp_order_by
+    sum: SUBJECT_FOR_CLASS_sum_order_by
+    var_pop: SUBJECT_FOR_CLASS_var_pop_order_by
+    var_samp: SUBJECT_FOR_CLASS_var_samp_order_by
+    variance: SUBJECT_FOR_CLASS_variance_order_by
+}
+
+"input type for inserting array relation for remote table \"SUBJECT_FOR_CLASS\""
+input SUBJECT_FOR_CLASS_arr_rel_insert_input {
+    data: [SUBJECT_FOR_CLASS_insert_input!]!
+    "on conflict condition"
+    on_conflict: SUBJECT_FOR_CLASS_on_conflict
+}
+
+"order by avg() on columns of table \"SUBJECT_FOR_CLASS\""
+input SUBJECT_FOR_CLASS_avg_order_by {
+    class_id: order_by
+    id: order_by
+    teacher_id: order_by
+}
+
+"Boolean expression to filter rows from the table \"SUBJECT_FOR_CLASS\". All fields are combined with a logical 'AND'."
+input SUBJECT_FOR_CLASS_bool_exp {
+    CLASS: CLASS_bool_exp
+    SUBJECT_ENTRies: SUBJECT_ENTRY_bool_exp
+    TEACHER: TEACHER_bool_exp
+    _and: [SUBJECT_FOR_CLASS_bool_exp!]
+    _not: SUBJECT_FOR_CLASS_bool_exp
+    _or: [SUBJECT_FOR_CLASS_bool_exp!]
+    class_id: Int_comparison_exp
+    id: Int_comparison_exp
+    subject_name: String_comparison_exp
+    teacher_id: Int_comparison_exp
+}
+
+"input type for incrementing numeric columns in table \"SUBJECT_FOR_CLASS\""
+input SUBJECT_FOR_CLASS_inc_input {
+    class_id: Int
+    id: Int
+    teacher_id: Int
+}
+
+"input type for inserting data into table \"SUBJECT_FOR_CLASS\""
+input SUBJECT_FOR_CLASS_insert_input {
+    CLASS: CLASS_obj_rel_insert_input
+    SUBJECT_ENTRies: SUBJECT_ENTRY_arr_rel_insert_input
+    TEACHER: TEACHER_obj_rel_insert_input
+    class_id: Int
+    id: Int
+    subject_name: String
+    teacher_id: Int
+}
+
+"order by max() on columns of table \"SUBJECT_FOR_CLASS\""
+input SUBJECT_FOR_CLASS_max_order_by {
+    class_id: order_by
+    id: order_by
+    subject_name: order_by
+    teacher_id: order_by
+}
+
+"order by min() on columns of table \"SUBJECT_FOR_CLASS\""
+input SUBJECT_FOR_CLASS_min_order_by {
+    class_id: order_by
+    id: order_by
+    subject_name: order_by
+    teacher_id: order_by
+}
+
+"input type for inserting object relation for remote table \"SUBJECT_FOR_CLASS\""
+input SUBJECT_FOR_CLASS_obj_rel_insert_input {
+    data: SUBJECT_FOR_CLASS_insert_input!
+    "on conflict condition"
+    on_conflict: SUBJECT_FOR_CLASS_on_conflict
+}
+
+"on conflict condition type for table \"SUBJECT_FOR_CLASS\""
+input SUBJECT_FOR_CLASS_on_conflict {
+    constraint: SUBJECT_FOR_CLASS_constraint!
+    update_columns: [SUBJECT_FOR_CLASS_update_column!]! = []
+    where: SUBJECT_FOR_CLASS_bool_exp
+}
+
+"Ordering options when selecting data from \"SUBJECT_FOR_CLASS\"."
+input SUBJECT_FOR_CLASS_order_by {
+    CLASS: CLASS_order_by
+    SUBJECT_ENTRies_aggregate: SUBJECT_ENTRY_aggregate_order_by
+    TEACHER: TEACHER_order_by
+    class_id: order_by
+    id: order_by
+    subject_name: order_by
+    teacher_id: order_by
+}
+
+"primary key columns input for table: SUBJECT_FOR_CLASS"
+input SUBJECT_FOR_CLASS_pk_columns_input {
+    id: Int!
+}
+
+"input type for updating data in table \"SUBJECT_FOR_CLASS\""
+input SUBJECT_FOR_CLASS_set_input {
+    class_id: Int
+    id: Int
+    subject_name: String
+    teacher_id: Int
+}
+
+"order by stddev() on columns of table \"SUBJECT_FOR_CLASS\""
+input SUBJECT_FOR_CLASS_stddev_order_by {
+    class_id: order_by
+    id: order_by
+    teacher_id: order_by
+}
+
+"order by stddev_pop() on columns of table \"SUBJECT_FOR_CLASS\""
+input SUBJECT_FOR_CLASS_stddev_pop_order_by {
+    class_id: order_by
+    id: order_by
+    teacher_id: order_by
+}
+
+"order by stddev_samp() on columns of table \"SUBJECT_FOR_CLASS\""
+input SUBJECT_FOR_CLASS_stddev_samp_order_by {
+    class_id: order_by
+    id: order_by
+    teacher_id: order_by
+}
+
+"order by sum() on columns of table \"SUBJECT_FOR_CLASS\""
+input SUBJECT_FOR_CLASS_sum_order_by {
+    class_id: order_by
+    id: order_by
+    teacher_id: order_by
+}
+
+"order by var_pop() on columns of table \"SUBJECT_FOR_CLASS\""
+input SUBJECT_FOR_CLASS_var_pop_order_by {
+    class_id: order_by
+    id: order_by
+    teacher_id: order_by
+}
+
+"order by var_samp() on columns of table \"SUBJECT_FOR_CLASS\""
+input SUBJECT_FOR_CLASS_var_samp_order_by {
+    class_id: order_by
+    id: order_by
+    teacher_id: order_by
+}
+
+"order by variance() on columns of table \"SUBJECT_FOR_CLASS\""
+input SUBJECT_FOR_CLASS_variance_order_by {
+    class_id: order_by
+    id: order_by
+    teacher_id: order_by
+}
+
+"Boolean expression to compare columns of type \"String\". All fields are combined with logical 'AND'."
+input String_comparison_exp {
+    _eq: String
+    _gt: String
+    _gte: String
+    "does the column match the given case-insensitive pattern"
+    _ilike: String
+    _in: [String!]
+    "does the column match the given POSIX regular expression, case insensitive"
+    _iregex: String
+    _is_null: Boolean
+    "does the column match the given pattern"
+    _like: String
+    _lt: String
+    _lte: String
+    _neq: String
+    "does the column NOT match the given case-insensitive pattern"
+    _nilike: String
+    _nin: [String!]
+    "does the column NOT match the given POSIX regular expression, case insensitive"
+    _niregex: String
+    "does the column NOT match the given pattern"
+    _nlike: String
+    "does the column NOT match the given POSIX regular expression, case sensitive"
+    _nregex: String
+    "does the column NOT match the given SQL regular expression"
+    _nsimilar: String
+    "does the column match the given POSIX regular expression, case sensitive"
+    _regex: String
+    "does the column match the given SQL regular expression"
+    _similar: String
+}
+
+"order by aggregate values of table \"TASK\""
+input TASK_aggregate_order_by {
+    avg: TASK_avg_order_by
+    count: order_by
+    max: TASK_max_order_by
+    min: TASK_min_order_by
+    stddev: TASK_stddev_order_by
+    stddev_pop: TASK_stddev_pop_order_by
+    stddev_samp: TASK_stddev_samp_order_by
+    sum: TASK_sum_order_by
+    var_pop: TASK_var_pop_order_by
+    var_samp: TASK_var_samp_order_by
+    variance: TASK_variance_order_by
+}
+
+"input type for inserting array relation for remote table \"TASK\""
+input TASK_arr_rel_insert_input {
+    data: [TASK_insert_input!]!
+    "on conflict condition"
+    on_conflict: TASK_on_conflict
+}
+
+"order by avg() on columns of table \"TASK\""
+input TASK_avg_order_by {
+    id: order_by
+    user_id: order_by
+}
+
+"Boolean expression to filter rows from the table \"TASK\". All fields are combined with a logical 'AND'."
+input TASK_bool_exp {
+    USER: USER_bool_exp
+    _and: [TASK_bool_exp!]
+    _not: TASK_bool_exp
+    _or: [TASK_bool_exp!]
+    description: String_comparison_exp
+    end_date: date_comparison_exp
+    id: Int_comparison_exp
+    name: String_comparison_exp
+    state: String_comparison_exp
+    user_id: Int_comparison_exp
+}
+
+"input type for incrementing numeric columns in table \"TASK\""
+input TASK_inc_input {
+    id: Int
+    user_id: Int
+}
+
+"input type for inserting data into table \"TASK\""
+input TASK_insert_input {
+    USER: USER_obj_rel_insert_input
+    description: String
+    end_date: date
+    id: Int
+    name: String
+    state: String
+    user_id: Int
+}
+
+"order by max() on columns of table \"TASK\""
+input TASK_max_order_by {
+    description: order_by
+    end_date: order_by
+    id: order_by
+    name: order_by
+    state: order_by
+    user_id: order_by
+}
+
+"order by min() on columns of table \"TASK\""
+input TASK_min_order_by {
+    description: order_by
+    end_date: order_by
+    id: order_by
+    name: order_by
+    state: order_by
+    user_id: order_by
+}
+
+"on conflict condition type for table \"TASK\""
+input TASK_on_conflict {
+    constraint: TASK_constraint!
+    update_columns: [TASK_update_column!]! = []
+    where: TASK_bool_exp
+}
+
+"Ordering options when selecting data from \"TASK\"."
+input TASK_order_by {
+    USER: USER_order_by
+    description: order_by
+    end_date: order_by
+    id: order_by
+    name: order_by
+    state: order_by
+    user_id: order_by
+}
+
+"primary key columns input for table: TASK"
+input TASK_pk_columns_input {
+    id: Int!
+}
+
+"input type for updating data in table \"TASK\""
+input TASK_set_input {
+    description: String
+    end_date: date
+    id: Int
+    name: String
+    state: String
+    user_id: Int
+}
+
+"order by stddev() on columns of table \"TASK\""
+input TASK_stddev_order_by {
+    id: order_by
+    user_id: order_by
+}
+
+"order by stddev_pop() on columns of table \"TASK\""
+input TASK_stddev_pop_order_by {
+    id: order_by
+    user_id: order_by
+}
+
+"order by stddev_samp() on columns of table \"TASK\""
+input TASK_stddev_samp_order_by {
+    id: order_by
+    user_id: order_by
+}
+
+"order by sum() on columns of table \"TASK\""
+input TASK_sum_order_by {
+    id: order_by
+    user_id: order_by
+}
+
+"order by var_pop() on columns of table \"TASK\""
+input TASK_var_pop_order_by {
+    id: order_by
+    user_id: order_by
+}
+
+"order by var_samp() on columns of table \"TASK\""
+input TASK_var_samp_order_by {
+    id: order_by
+    user_id: order_by
+}
+
+"order by variance() on columns of table \"TASK\""
+input TASK_variance_order_by {
+    id: order_by
+    user_id: order_by
+}
+
+"Boolean expression to filter rows from the table \"TEACHER\". All fields are combined with a logical 'AND'."
+input TEACHER_bool_exp {
+    CLASSes: CLASS_bool_exp
+    SUBJECT_FOR_CLASSes: SUBJECT_FOR_CLASS_bool_exp
+    USERs: USER_bool_exp
+    _and: [TEACHER_bool_exp!]
+    _not: TEACHER_bool_exp
+    _or: [TEACHER_bool_exp!]
+    adres_city: String_comparison_exp
+    adress_number: String_comparison_exp
+    adress_street: String_comparison_exp
+    citizen: String_comparison_exp
+    first_name: String_comparison_exp
+    gender: bpchar_comparison_exp
+    id: Int_comparison_exp
+    last_name: String_comparison_exp
+    pesel: bigint_comparison_exp
+    second_name: String_comparison_exp
+    state: String_comparison_exp
+}
+
+"input type for incrementing numeric columns in table \"TEACHER\""
+input TEACHER_inc_input {
+    id: Int
+    pesel: bigint
+}
+
+"input type for inserting data into table \"TEACHER\""
+input TEACHER_insert_input {
+    CLASSes: CLASS_arr_rel_insert_input
+    SUBJECT_FOR_CLASSes: SUBJECT_FOR_CLASS_arr_rel_insert_input
+    USERs: USER_arr_rel_insert_input
+    adres_city: String
+    adress_number: String
+    adress_street: String
+    citizen: String
+    first_name: String
+    gender: bpchar
+    id: Int
+    last_name: String
+    pesel: bigint
+    second_name: String
+    state: String
+}
+
+"input type for inserting object relation for remote table \"TEACHER\""
+input TEACHER_obj_rel_insert_input {
+    data: TEACHER_insert_input!
+    "on conflict condition"
+    on_conflict: TEACHER_on_conflict
+}
+
+"on conflict condition type for table \"TEACHER\""
+input TEACHER_on_conflict {
+    constraint: TEACHER_constraint!
+    update_columns: [TEACHER_update_column!]! = []
+    where: TEACHER_bool_exp
+}
+
+"Ordering options when selecting data from \"TEACHER\"."
+input TEACHER_order_by {
+    CLASSes_aggregate: CLASS_aggregate_order_by
+    SUBJECT_FOR_CLASSes_aggregate: SUBJECT_FOR_CLASS_aggregate_order_by
+    USERs_aggregate: USER_aggregate_order_by
+    adres_city: order_by
+    adress_number: order_by
+    adress_street: order_by
+    citizen: order_by
+    first_name: order_by
+    gender: order_by
+    id: order_by
+    last_name: order_by
+    pesel: order_by
+    second_name: order_by
+    state: order_by
+}
+
+"primary key columns input for table: TEACHER"
+input TEACHER_pk_columns_input {
+    id: Int!
+}
+
+"input type for updating data in table \"TEACHER\""
+input TEACHER_set_input {
+    adres_city: String
+    adress_number: String
+    adress_street: String
+    citizen: String
+    first_name: String
+    gender: bpchar
+    id: Int
+    last_name: String
+    pesel: bigint
+    second_name: String
+    state: String
+}
+
+"order by aggregate values of table \"TEST\""
+input TEST_aggregate_order_by {
+    avg: TEST_avg_order_by
+    count: order_by
+    max: TEST_max_order_by
+    min: TEST_min_order_by
+    stddev: TEST_stddev_order_by
+    stddev_pop: TEST_stddev_pop_order_by
+    stddev_samp: TEST_stddev_samp_order_by
+    sum: TEST_sum_order_by
+    var_pop: TEST_var_pop_order_by
+    var_samp: TEST_var_samp_order_by
+    variance: TEST_variance_order_by
+}
+
+"input type for inserting array relation for remote table \"TEST\""
+input TEST_arr_rel_insert_input {
+    data: [TEST_insert_input!]!
+    "on conflict condition"
+    on_conflict: TEST_on_conflict
+}
+
+"order by avg() on columns of table \"TEST\""
+input TEST_avg_order_by {
+    id: order_by
+    subject_entry_id: order_by
+}
+
+"Boolean expression to filter rows from the table \"TEST\". All fields are combined with a logical 'AND'."
+input TEST_bool_exp {
+    SUBJECT_ENTRY: SUBJECT_ENTRY_bool_exp
+    _and: [TEST_bool_exp!]
+    _not: TEST_bool_exp
+    _or: [TEST_bool_exp!]
+    graded: String_comparison_exp
+    id: Int_comparison_exp
+    subject_entry_id: Int_comparison_exp
+    topic: String_comparison_exp
+    type: String_comparison_exp
+}
+
+"input type for incrementing numeric columns in table \"TEST\""
+input TEST_inc_input {
+    id: Int
+    subject_entry_id: Int
+}
+
+"input type for inserting data into table \"TEST\""
+input TEST_insert_input {
+    SUBJECT_ENTRY: SUBJECT_ENTRY_obj_rel_insert_input
+    graded: String
+    id: Int
+    subject_entry_id: Int
+    topic: String
+    type: String
+}
+
+"order by max() on columns of table \"TEST\""
+input TEST_max_order_by {
+    graded: order_by
+    id: order_by
+    subject_entry_id: order_by
+    topic: order_by
+    type: order_by
+}
+
+"order by min() on columns of table \"TEST\""
+input TEST_min_order_by {
+    graded: order_by
+    id: order_by
+    subject_entry_id: order_by
+    topic: order_by
+    type: order_by
+}
+
+"on conflict condition type for table \"TEST\""
+input TEST_on_conflict {
+    constraint: TEST_constraint!
+    update_columns: [TEST_update_column!]! = []
+    where: TEST_bool_exp
+}
+
+"Ordering options when selecting data from \"TEST\"."
+input TEST_order_by {
+    SUBJECT_ENTRY: SUBJECT_ENTRY_order_by
+    graded: order_by
+    id: order_by
+    subject_entry_id: order_by
+    topic: order_by
+    type: order_by
+}
+
+"primary key columns input for table: TEST"
+input TEST_pk_columns_input {
+    id: Int!
+}
+
+"input type for updating data in table \"TEST\""
+input TEST_set_input {
+    graded: String
+    id: Int
+    subject_entry_id: Int
+    topic: String
+    type: String
+}
+
+"order by stddev() on columns of table \"TEST\""
+input TEST_stddev_order_by {
+    id: order_by
+    subject_entry_id: order_by
+}
+
+"order by stddev_pop() on columns of table \"TEST\""
+input TEST_stddev_pop_order_by {
+    id: order_by
+    subject_entry_id: order_by
+}
+
+"order by stddev_samp() on columns of table \"TEST\""
+input TEST_stddev_samp_order_by {
+    id: order_by
+    subject_entry_id: order_by
+}
+
+"order by sum() on columns of table \"TEST\""
+input TEST_sum_order_by {
+    id: order_by
+    subject_entry_id: order_by
+}
+
+"order by var_pop() on columns of table \"TEST\""
+input TEST_var_pop_order_by {
+    id: order_by
+    subject_entry_id: order_by
+}
+
+"order by var_samp() on columns of table \"TEST\""
+input TEST_var_samp_order_by {
+    id: order_by
+    subject_entry_id: order_by
+}
+
+"order by variance() on columns of table \"TEST\""
+input TEST_variance_order_by {
+    id: order_by
+    subject_entry_id: order_by
+}
+
+"order by aggregate values of table \"USER\""
+input USER_aggregate_order_by {
+    avg: USER_avg_order_by
+    count: order_by
+    max: USER_max_order_by
+    min: USER_min_order_by
+    stddev: USER_stddev_order_by
+    stddev_pop: USER_stddev_pop_order_by
+    stddev_samp: USER_stddev_samp_order_by
+    sum: USER_sum_order_by
+    var_pop: USER_var_pop_order_by
+    var_samp: USER_var_samp_order_by
+    variance: USER_variance_order_by
+}
+
+"input type for inserting array relation for remote table \"USER\""
+input USER_arr_rel_insert_input {
+    data: [USER_insert_input!]!
+    "on conflict condition"
+    on_conflict: USER_on_conflict
+}
+
+"order by avg() on columns of table \"USER\""
+input USER_avg_order_by {
+    id: order_by
+    teacher_id: order_by
+}
+
+"Boolean expression to filter rows from the table \"USER\". All fields are combined with a logical 'AND'."
+input USER_bool_exp {
+    TASKs: TASK_bool_exp
+    TEACHER: TEACHER_bool_exp
+    _and: [USER_bool_exp!]
+    _not: USER_bool_exp
+    _or: [USER_bool_exp!]
+    email: String_comparison_exp
+    id: Int_comparison_exp
+    role: String_comparison_exp
+    teacher_id: Int_comparison_exp
+}
+
+"input type for incrementing numeric columns in table \"USER\""
+input USER_inc_input {
+    id: Int
+    teacher_id: Int
+}
+
+"input type for inserting data into table \"USER\""
+input USER_insert_input {
+    TASKs: TASK_arr_rel_insert_input
+    TEACHER: TEACHER_obj_rel_insert_input
+    email: String
+    id: Int
+    role: String
+    teacher_id: Int
+}
+
+"order by max() on columns of table \"USER\""
+input USER_max_order_by {
+    email: order_by
+    id: order_by
+    role: order_by
+    teacher_id: order_by
+}
+
+"order by min() on columns of table \"USER\""
+input USER_min_order_by {
+    email: order_by
+    id: order_by
+    role: order_by
+    teacher_id: order_by
+}
+
+"input type for inserting object relation for remote table \"USER\""
+input USER_obj_rel_insert_input {
+    data: USER_insert_input!
+    "on conflict condition"
+    on_conflict: USER_on_conflict
+}
+
+"on conflict condition type for table \"USER\""
+input USER_on_conflict {
+    constraint: USER_constraint!
+    update_columns: [USER_update_column!]! = []
+    where: USER_bool_exp
+}
+
+"Ordering options when selecting data from \"USER\"."
+input USER_order_by {
+    TASKs_aggregate: TASK_aggregate_order_by
+    TEACHER: TEACHER_order_by
+    email: order_by
+    id: order_by
+    role: order_by
+    teacher_id: order_by
+}
+
+"primary key columns input for table: USER"
+input USER_pk_columns_input {
+    id: Int!
+}
+
+"input type for updating data in table \"USER\""
+input USER_set_input {
+    email: String
+    id: Int
+    role: String
+    teacher_id: Int
+}
+
+"order by stddev() on columns of table \"USER\""
+input USER_stddev_order_by {
+    id: order_by
+    teacher_id: order_by
+}
+
+"order by stddev_pop() on columns of table \"USER\""
+input USER_stddev_pop_order_by {
+    id: order_by
+    teacher_id: order_by
+}
+
+"order by stddev_samp() on columns of table \"USER\""
+input USER_stddev_samp_order_by {
+    id: order_by
+    teacher_id: order_by
+}
+
+"order by sum() on columns of table \"USER\""
+input USER_sum_order_by {
+    id: order_by
+    teacher_id: order_by
+}
+
+"order by var_pop() on columns of table \"USER\""
+input USER_var_pop_order_by {
+    id: order_by
+    teacher_id: order_by
+}
+
+"order by var_samp() on columns of table \"USER\""
+input USER_var_samp_order_by {
+    id: order_by
+    teacher_id: order_by
+}
+
+"order by variance() on columns of table \"USER\""
+input USER_variance_order_by {
+    id: order_by
+    teacher_id: order_by
+}
+
+"Boolean expression to compare columns of type \"bigint\". All fields are combined with logical 'AND'."
+input bigint_comparison_exp {
+    _eq: bigint
+    _gt: bigint
+    _gte: bigint
+    _in: [bigint!]
+    _is_null: Boolean
+    _lt: bigint
+    _lte: bigint
+    _neq: bigint
+    _nin: [bigint!]
+}
+
+"Boolean expression to compare columns of type \"bpchar\". All fields are combined with logical 'AND'."
+input bpchar_comparison_exp {
+    _eq: bpchar
+    _gt: bpchar
+    _gte: bpchar
+    "does the column match the given case-insensitive pattern"
+    _ilike: bpchar
+    _in: [bpchar!]
+    "does the column match the given POSIX regular expression, case insensitive"
+    _iregex: bpchar
+    _is_null: Boolean
+    "does the column match the given pattern"
+    _like: bpchar
+    _lt: bpchar
+    _lte: bpchar
+    _neq: bpchar
+    "does the column NOT match the given case-insensitive pattern"
+    _nilike: bpchar
+    _nin: [bpchar!]
+    "does the column NOT match the given POSIX regular expression, case insensitive"
+    _niregex: bpchar
+    "does the column NOT match the given pattern"
+    _nlike: bpchar
+    "does the column NOT match the given POSIX regular expression, case sensitive"
+    _nregex: bpchar
+    "does the column NOT match the given SQL regular expression"
+    _nsimilar: bpchar
+    "does the column match the given POSIX regular expression, case sensitive"
+    _regex: bpchar
+    "does the column match the given SQL regular expression"
+    _similar: bpchar
+}
+
+"Boolean expression to compare columns of type \"date\". All fields are combined with logical 'AND'."
+input date_comparison_exp {
+    _eq: date
+    _gt: date
+    _gte: date
+    _in: [date!]
+    _is_null: Boolean
+    _lt: date
+    _lte: date
+    _neq: date
+    _nin: [date!]
+}
+
+"Boolean expression to compare columns of type \"time\". All fields are combined with logical 'AND'."
+input time_comparison_exp {
+    _eq: time
+    _gt: time
+    _gte: time
+    _in: [time!]
+    _is_null: Boolean
+    _lt: time
+    _lte: time
+    _neq: time
+    _nin: [time!]
+}
+
+"Boolean expression to compare columns of type \"timestamp\". All fields are combined with logical 'AND'."
+input timestamp_comparison_exp {
+    _eq: timestamp
+    _gt: timestamp
+    _gte: timestamp
+    _in: [timestamp!]
+    _is_null: Boolean
+    _lt: timestamp
+    _lte: timestamp
+    _neq: timestamp
+    _nin: [timestamp!]
+}
+
+
+scalar bigint
+
+scalar bpchar
+
+scalar date
+
+scalar time
+
+scalar timestamp

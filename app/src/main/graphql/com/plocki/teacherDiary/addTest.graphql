@@ -1,0 +1,9 @@
+mutation addTest($test: TEST_insert_input!) {
+    insert_TEST_one(object: $test) {
+        id
+        graded
+        subject_entry_id
+        topic
+        type
+    }
+}

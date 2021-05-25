@@ -3,7 +3,13 @@ package com.plocki.teacherDiary.model
 import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
 
-class Test(val id: Int, val topic: String, val type: String, private val subjectId: Int, val graded: String, val date: String, val time: String) {
+class Test(val id: Int,
+           val topic: String,
+           val type: String,
+           val subjectId: Int,
+           val graded: String,
+           val date: String,
+           val time: String) {
 
     fun insert(db: SQLiteDatabase) {
         val values = ContentValues().apply {
@@ -41,7 +47,7 @@ class Test(val id: Int, val topic: String, val type: String, private val subject
             val projection = arrayOf(COL1, COL2, COL3, COL4, COL5, COL6, COL7)
 
 
-            val sortOrder = "$COL6"
+            val sortOrder = COL6
 
             val cursor = db.query(
                     TABLE_NAME,   // The table to query
@@ -69,6 +75,59 @@ class Test(val id: Int, val topic: String, val type: String, private val subject
             }
             return entries
 
+        }
+
+        fun readOne(db: SQLiteDatabase, id: String): Test {
+            val projection = arrayOf(COL1, COL2, COL3, COL4, COL5, COL6, COL7)
+
+            val selection = "$COL1 = ?"
+            val selectionArgs = arrayOf(id)
+            val sortOrder = COL6
+
+            val cursor = db.query(
+                    TABLE_NAME,   // The table to query
+                    projection,             // The array of columns to return (pass null to get all)
+                    selection,              // The columns for the WHERE clause
+                    selectionArgs,          // The values for the WHERE clause
+                    null,                   // don't group the rows
+                    null,                   // don't filter by row groups
+                    sortOrder               // The sort order
+            )
+            val entries = ArrayList<Test>()
+            with(cursor) {
+                while (moveToNext()) {
+                    val entry = Test(
+                            cursor.getInt(0),
+                            cursor.getString(1),
+                            cursor.getString(2),
+                            cursor.getInt(3),
+                            cursor.getString(4),
+                            cursor.getString(5),
+                            cursor.getString(6)
+                    )
+                    entries.add(entry)
+                }
+            }
+            return entries[0]
+
+        }
+
+        fun countFresh(db: SQLiteDatabase): Int {
+            val selectQuery = "SELECT COUNT(*) FROM $TABLE_NAME WHERE $COL5 = 'F'"
+            val cursor = db.rawQuery(selectQuery, null)
+            cursor.moveToFirst()
+            val sum: Int = cursor.getInt(0)
+            cursor.close()
+            return sum
+        }
+
+        fun countUnchecked(db: SQLiteDatabase): Int {
+            val selectQuery = "SELECT COUNT(*) FROM $TABLE_NAME WHERE $COL5 = 'N'"
+            val cursor = db.rawQuery(selectQuery, null)
+            cursor.moveToFirst()
+            val sum: Int = cursor.getInt(0)
+            cursor.close()
+            return sum
         }
 
         private const val TABLE_NAME = "TEST"

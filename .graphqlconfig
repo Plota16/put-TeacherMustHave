@@ -1,0 +1,16 @@
+{
+  "name": "Untitled GraphQL Schema",
+  "schemaPath": "schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "Default GraphQL Endpoint": {
+        "url": "https://teacher-dairy.hasura.app/v1/graphql",
+        "headers": {
+          "user-agent": "JS GraphQL",
+          "X-Hasura-Admin-Secret": "CIDSWC6EBYNpfF7jFpM0pMH7aulKAg3FhshGYP47EglGRPq7b3XQevoX2FR24goz"
+        },
+        "introspect": false
+      }
+    }
+  }
+}

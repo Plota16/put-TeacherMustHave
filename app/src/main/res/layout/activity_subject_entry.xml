@@ -262,20 +262,35 @@
                 android:layout_margin="16dp"
                 app:srcCompat="@drawable/ic_menu_book_black_48dp" />
 
-            <TextView
-                android:id="@+id/subject_test_text"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/roboto_bold"
-                android:text="SPRAWDZIAN"
-                android:textSize="16sp" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/subject_test_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="SPRAWDZIAN"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/subject_test_topic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Brak testu" />
+            </LinearLayout>
 
             <Button
                 android:id="@+id/subject_test_button"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
+                android:onClick="setTest"
                 android:text="DODAJ"
                 android:textSize="12sp" />
 

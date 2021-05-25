@@ -17,8 +17,6 @@ class SubjectEntry(var id: Int,
                    ) {
 
 
-
-
     fun insert(db: SQLiteDatabase){
         val values = ContentValues().apply {
             put(COL1, id)
@@ -142,6 +140,16 @@ class SubjectEntry(var id: Int,
 
             val contentValues = ContentValues()
             contentValues.put(COL9,"Y")
+            val selection = "$COL1 = ?"
+            val selectionArgs = arrayOf(id.toString())
+
+            db.update(TABLE_NAME,contentValues,selection,selectionArgs)
+        }
+
+        fun updateTest(db: SQLiteDatabase, id: Int, testID: String){
+
+            val contentValues = ContentValues()
+            contentValues.put(COL8,testID)
             val selection = "$COL1 = ?"
             val selectionArgs = arrayOf(id.toString())
 

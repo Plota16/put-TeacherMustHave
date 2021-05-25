@@ -1,6 +1,7 @@
 package com.plocki.teacherDiary.activities
 
 import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
@@ -14,9 +15,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.apollographql.apollo.api.toInput
 import com.apollographql.apollo.coroutines.toDeferred
+import com.google.android.material.textfield.TextInputEditText
+import com.plocki.teacherDiary.AddTestMutation
 import com.plocki.teacherDiary.R
 import com.plocki.teacherDiary.SetTopicMutation
 import com.plocki.teacherDiary.model.SubjectEntry
+import com.plocki.teacherDiary.model.Test
+import com.plocki.teacherDiary.type.TEST_insert_input
 import com.plocki.teacherDiary.utility.ApolloInstance
 import com.plocki.teacherDiary.utility.DatabaseHelper
 import com.plocki.teacherDiary.utility.MainApplication
@@ -51,7 +56,6 @@ class SubjectEntryActivity : AppCompatActivity()  {
     }
 
     override fun onResume() {
-        subjectEntry = SubjectEntry.readOne(db, id)
         updateUI()
         super.onResume()
     }
@@ -115,6 +119,81 @@ class SubjectEntryActivity : AppCompatActivity()  {
         }
     }
 
+    fun setTest(view: View){
+        if(isOnline){
+
+            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+            val customAlertDialogView = View.inflate(this,R.layout.dialog_test,null)
+
+            val topic = customAlertDialogView.findViewById<TextInputEditText>(R.id.dialog_test_topic_input)
+            val type = customAlertDialogView.findViewById<TextInputEditText>(R.id.dialog_test_type_input)
+
+            builder.setView(customAlertDialogView)
+                    .setTitle("Dodawanie testu")
+                    .setMessage("Dodaj test")
+                    .setPositiveButton("OK") { dialog, _ ->
+
+                        val test = Test(
+                                0,
+                                topic.text.toString(),
+                                type.text.toString(),
+                                subjectEntry.id,
+                                "F",
+                                subjectEntry.date,
+                                subjectEntry.startTime)
+
+                        addTestMutation(test,dialog)
+                    }
+                    .setNegativeButton("ANULUJ") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    .show()
+
+
+        }
+        else{
+            Toast.makeText(
+                    MainApplication.appContext, "Dodawanie zadania możliwe tylko w trybie online",
+                    Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun addTestMutation(test: Test, dialog: DialogInterface){
+
+        val input = TEST_insert_input(
+                topic = test.topic.toInput(),
+                type = test.type.toInput(),
+                subject_entry_id = test.subjectId.toInput(),
+                graded = test.graded.toInput()
+        )
+
+        val mutation = AddTestMutation(input)
+
+        GlobalScope.launch(Dispatchers.Main) {
+            val result = ApolloInstance.get().mutate(mutation).toDeferred().await()
+
+            try{
+                if(!result.hasErrors()){
+                    Toast.makeText(
+                            MainApplication.appContext, "Test dodany",
+                            Toast.LENGTH_SHORT).show()
+                    SubjectEntry.updateTest(db,subjectEntry.id,result.data!!.insert_TEST_one!!.id.toString())
+                }
+                else{
+                    Toast.makeText(
+                            MainApplication.appContext, "Błąd dodawania testu",
+                            Toast.LENGTH_SHORT).show()
+                }
+                dialog.dismiss()
+
+            } catch (e: Error){
+                Toast.makeText(
+                        MainApplication.appContext, "Błąd dodawania testu",
+                        Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
+            }
+        }
+    }
 
     private fun setTopicMutation(topic: String){
         val mutation = SetTopicMutation(id.toInput(), topic.toInput())
@@ -141,13 +220,19 @@ class SubjectEntryActivity : AppCompatActivity()  {
     }
 
     private fun updateUI(){
+        subjectEntry = SubjectEntry.readOne(db, id)
+
         val dateTextView = findViewById<TextView>(R.id.subject_top_date)
         val dateStartTimeView = findViewById<TextView>(R.id.subject_top_time_start)
         val dateEndTimeView = findViewById<TextView>(R.id.subject_top_time_end)
         val topicTextView = findViewById<TextView>(R.id.subject_topic_topic)
+        val testTextView = findViewById<TextView>(R.id.subject_test_topic)
+
         val bannerButton = findViewById<Button>(R.id.subject_top_banner)
         val topicButton = findViewById<Button>(R.id.subject_topic_button)
         val presenceButton = findViewById<Button>(R.id.subject_presence_button)
+        val testButton = findViewById<Button>(R.id.subject_test_button)
+
 
         dateTextView.text = subjectEntry.date
         var time = "Od: ${subjectEntry.startTime}"
@@ -169,7 +254,6 @@ class SubjectEntryActivity : AppCompatActivity()  {
             topicButton.setBackgroundColor(ContextCompat.getColor(this, R.color.light_green))
             topicButton.text = "POPRAW"
             topicTextView.text = subjectEntry.topic
-
         }
 
         if(subjectEntry.presence == "" && isLate){
@@ -178,6 +262,12 @@ class SubjectEntryActivity : AppCompatActivity()  {
         else if(subjectEntry.presence == "Y"){
             presenceButton.setBackgroundColor(ContextCompat.getColor(this, R.color.light_green))
             presenceButton.text = "POPRAW"
+        }
+
+        if(subjectEntry.testID != ""){
+            testButton.setBackgroundColor(ContextCompat.getColor(this, R.color.light_green))
+            testButton.text = "POPRAW"
+            testTextView.text = Test.readOne(db,subjectEntry.testID).topic
         }
 
         bannerButton.setBackgroundColor(ContextCompat.getColor(this, subjectEntry.getColor()))
