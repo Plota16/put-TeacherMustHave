@@ -24,6 +24,8 @@ class SettingsFragment : Fragment() {
             val store = Store()
             try{
                 store.removeToken()
+                store.removePassword()
+                store.remove("email")
             }catch (ex :Exception){
 
             }

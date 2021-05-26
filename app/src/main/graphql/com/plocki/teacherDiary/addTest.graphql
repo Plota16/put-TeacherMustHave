@@ -5,5 +5,11 @@ mutation addTest($test: TEST_insert_input!) {
         subject_entry_id
         topic
         type
+        SUBJECT_ENTRY{
+            date
+            LESSON{
+                start_time
+            }
+        }
     }
 }

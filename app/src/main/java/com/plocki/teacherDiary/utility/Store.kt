@@ -59,4 +59,30 @@ class Store() {
         editor.remove("iv")
         editor.commit()
     }
+
+    fun storePassword(value: String){
+        val cipherClass = encrypt.encryptText("ALIAS",value)
+        val encodedValueString = Base64.encodeToString(cipherClass.encrypter, Base64.DEFAULT)
+        val encodedIVString = Base64.encodeToString(cipherClass.iv, Base64.DEFAULT)
+        editor.putString("password",encodedValueString)
+        editor.apply()
+        editor.putString("iv2",encodedIVString)
+        editor.apply()
+        editor.commit()
+    }
+
+    fun retrievePassword() : String{
+        val encodedValue = pref.getString("password","")
+        val encodedIV = pref.getString("iv2","")
+        val encodedValueByteArray = Base64.decode(encodedValue, Base64.DEFAULT)
+        val encodedIVByteArray = Base64.decode(encodedIV, Base64.DEFAULT)
+        val result = decrypt.decryptData("ALIAS",encodedValueByteArray, encodedIVByteArray)
+        return result
+    }
+
+    fun removePassword(){
+        editor.remove("password")
+        editor.remove("iv2")
+        editor.commit()
+    }
 }

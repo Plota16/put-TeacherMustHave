@@ -2,11 +2,14 @@ package com.plocki.teacherDiary.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
 import com.apollographql.apollo.api.toInput
 import com.apollographql.apollo.coroutines.toDeferred
 import com.google.android.material.textfield.TextInputEditText
@@ -18,11 +21,15 @@ import com.plocki.teacherDiary.utility.ApolloInstance
 import com.plocki.teacherDiary.utility.Store
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.util.concurrent.Executor
 
 
 class LoginActivity : AppCompatActivity() {
 
 
+    private lateinit var executor: Executor
+    private lateinit var biometricPrompt: BiometricPrompt
+    private lateinit var promptInfo: BiometricPrompt.PromptInfo
 
     var activeLayout = "login"
     private lateinit var auth: FirebaseAuth
@@ -39,18 +46,72 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var registerPasswordInput2 : TextInputEditText
     private lateinit var registerPasswordLayout2 : TextInputLayout
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.sharedElementsUseOverlay = false
-
         toSignIn()
+
+        var password = ""
+        var email = ""
 
         auth = FirebaseAuth.getInstance()
         store = Store()
 
+        try{
+            password = store.retrievePassword()
+            email = store.retrieve("email")!!
+
+            if(password != "" && email != ""){
+                showBiometricDialog(email,password)
+            }
+
+        }catch (ex : Exception){}
+
 
     }
+
+
+
+    private fun showBiometricDialog(email: String, password: String){
+        executor = ContextCompat.getMainExecutor(this)
+        biometricPrompt = BiometricPrompt(this, executor,
+            object : BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationError(errorCode: Int,
+                                                   errString: CharSequence) {
+                    super.onAuthenticationError(errorCode, errString)
+
+                    Toast.makeText(applicationContext,
+                        "Błąd autentykacji: $errString", Toast.LENGTH_SHORT)
+                        .show()
+                }
+
+                override fun onAuthenticationSucceeded(
+                    result: BiometricPrompt.AuthenticationResult) {
+                    super.onAuthenticationSucceeded(result)
+                    val tmp = findViewById<LinearLayout>(R.id.login_progressBar)
+                    tmp.visibility = View.VISIBLE
+                    loginEmailInput.text = Editable.Factory.getInstance().newEditable(email)
+                    loginPasswordInput.text = Editable.Factory.getInstance().newEditable(password)
+                    signIn(tmp)
+                }
+
+                override fun onAuthenticationFailed() {
+                    super.onAuthenticationFailed()
+                    Toast.makeText(applicationContext, "Autentykacja nieudana",
+                        Toast.LENGTH_SHORT)
+                        .show()
+                }
+            })
+
+        promptInfo = BiometricPrompt.PromptInfo.Builder()
+            .setTitle("Logowanie biometryczne")
+            .setSubtitle("Zaloguj się za pomocą odcisku palca")
+            .setDeviceCredentialAllowed(true)
+            .build()
+        biometricPrompt.authenticate(promptInfo)
+
+    }
+
 
     fun forgotPassword(view : View){
 
@@ -124,7 +185,7 @@ class LoginActivity : AppCompatActivity() {
 
                             user.getIdToken(false).addOnSuccessListener {
                                 store.storeToken(it.token.toString())
-                                whoAmI(loggedUser!!)
+                                whoAmI(loggedUser!!,password)
                             }
 
 
@@ -151,7 +212,7 @@ class LoginActivity : AppCompatActivity() {
                         user.getIdToken(false).addOnSuccessListener {
                             store.storeToken(it.token.toString())
 
-                            whoAmI(user.email!!)
+                            whoAmI(user.email!!,password)
                         }
                     } else {
                         findViewById<LinearLayout>(R.id.login_progressBar).visibility = View.GONE
@@ -178,7 +239,7 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    private fun whoAmI(email: String){
+    private fun whoAmI(email: String, password: String){
 
         val whoAmIQuery = WhoAmIQuery(email.toInput())
 
@@ -187,6 +248,8 @@ class LoginActivity : AppCompatActivity() {
                 val tmp  = ApolloInstance.get().query(whoAmIQuery).toDeferred().await()
                 try{
                     val user = tmp.data!!.uSER[0]
+                    store.store(user.email,"email")
+                    store.storePassword(password)
                     store.store(user.id.toString(),"id")
                     store.store(user.teacher_id.toString(),"teacherId")
                     store.store(user.tEACHER!!.first_name,"firstName")

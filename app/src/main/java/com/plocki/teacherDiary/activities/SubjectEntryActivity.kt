@@ -51,7 +51,6 @@ class SubjectEntryActivity : AppCompatActivity()  {
         if(subjectEntry.late == "Y"){
             isLate = true
         }
-
         updateUI()
     }
 
@@ -177,7 +176,20 @@ class SubjectEntryActivity : AppCompatActivity()  {
                     Toast.makeText(
                             MainApplication.appContext, "Test dodany",
                             Toast.LENGTH_SHORT).show()
-                    SubjectEntry.updateTest(db,subjectEntry.id,result.data!!.insert_TEST_one!!.id.toString())
+                    val resultTest = result.data!!.insert_TEST_one!!
+                    val test = Test(
+                        resultTest.id,
+                        resultTest.topic,
+                        resultTest.type,
+                        resultTest.subject_entry_id,
+                        resultTest.graded!!,
+                        resultTest.sUBJECT_ENTRY.date.toString(),
+                        resultTest.sUBJECT_ENTRY.lESSON.start_time.toString()
+                    )
+                    test.insert(DatabaseHelper(MainApplication.appContext).writableDatabase)
+                    subjectEntry.testID = test.id.toString()
+                    subjectEntry.updateTest(db)
+                    updateUI()
                 }
                 else{
                     Toast.makeText(
