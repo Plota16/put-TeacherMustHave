@@ -39,6 +39,8 @@ class SubjectEntryActivity : AppCompatActivity()  {
     private lateinit var subjectEntry: SubjectEntry
     private lateinit var db: SQLiteDatabase
 
+    //Overrides
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_subject_entry)
@@ -51,6 +53,8 @@ class SubjectEntryActivity : AppCompatActivity()  {
         if(subjectEntry.late == "Y"){
             isLate = true
         }
+
+        setOnClickListeners()
         updateUI()
     }
 
@@ -59,7 +63,10 @@ class SubjectEntryActivity : AppCompatActivity()  {
         super.onResume()
     }
 
-    fun setTopic(view: View){
+
+    //OnClicks
+
+    private fun setTopic() {
         if(isOnline){
             var dialogText: String
             val builder: AlertDialog.Builder = AlertDialog.Builder(this)
@@ -83,7 +90,7 @@ class SubjectEntryActivity : AppCompatActivity()  {
         }
     }
 
-    fun checkPresence(view: View){
+    private fun checkPresence() {
         if(isOnline){
 
             val intent = Intent(MainApplication.appContext, PresenceActivity::class.java)
@@ -104,7 +111,7 @@ class SubjectEntryActivity : AppCompatActivity()  {
         }
     }
 
-    fun setGrade(view: View){
+    private fun setGrade() {
         if(isOnline){
             val intent = Intent(this, GradeActivity::class.java)
             intent.putExtra("className", subjectEntry.className)
@@ -118,37 +125,16 @@ class SubjectEntryActivity : AppCompatActivity()  {
         }
     }
 
-    fun setTest(view: View){
+    private fun setTest() {
         if(isOnline){
-
-            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-            val customAlertDialogView = View.inflate(this,R.layout.dialog_test,null)
-
-            val topic = customAlertDialogView.findViewById<TextInputEditText>(R.id.dialog_test_topic_input)
-            val type = customAlertDialogView.findViewById<TextInputEditText>(R.id.dialog_test_type_input)
-
-            builder.setView(customAlertDialogView)
-                    .setTitle("Dodawanie testu")
-                    .setMessage("Dodaj test")
-                    .setPositiveButton("OK") { dialog, _ ->
-
-                        val test = Test(
-                                0,
-                                topic.text.toString(),
-                                type.text.toString(),
-                                subjectEntry.id,
-                                "F",
-                                subjectEntry.date,
-                                subjectEntry.startTime)
-
-                        addTestMutation(test,dialog)
-                    }
-                    .setNegativeButton("ANULUJ") { dialog, _ ->
-                        dialog.dismiss()
-                    }
-                    .show()
-
-
+            if(subjectEntry.testID == ""){
+                addTest()
+            }
+            else{
+                val intent = Intent(MainApplication.appContext, TestActivity::class.java)
+                intent.putExtra("testId",subjectEntry.testID)
+                MainApplication.appContext!!.startActivity(intent)
+            }
         }
         else{
             Toast.makeText(
@@ -156,6 +142,110 @@ class SubjectEntryActivity : AppCompatActivity()  {
                     Toast.LENGTH_SHORT).show()
         }
     }
+
+
+    //Privates
+
+    private fun addTest(){
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        val customAlertDialogView = View.inflate(this,R.layout.dialog_test,null)
+
+        val topic = customAlertDialogView.findViewById<TextInputEditText>(R.id.dialog_test_topic_input)
+        val type = customAlertDialogView.findViewById<TextInputEditText>(R.id.dialog_test_type_input)
+
+        builder.setView(customAlertDialogView)
+            .setTitle("Dodawanie testu")
+            .setMessage("Dodaj test")
+            .setPositiveButton("OK") { dialog, _ ->
+
+                val test = Test(
+                    0,
+                    topic.text.toString(),
+                    type.text.toString(),
+                    subjectEntry.id,
+                    "F",
+                    subjectEntry.date,
+                    subjectEntry.startTime)
+
+                addTestMutation(test,dialog)
+            }
+            .setNegativeButton("ANULUJ") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+    private fun setOnClickListeners(){
+        findViewById<Button>(R.id.subject_topic_button).setOnClickListener {
+            setTopic()
+        }
+        findViewById<Button>(R.id.subject_grade_button).setOnClickListener {
+            setGrade()
+        }
+        findViewById<Button>(R.id.subject_presence_button).setOnClickListener {
+            checkPresence()
+        }
+        findViewById<Button>(R.id.subject_test_button).setOnClickListener {
+            setTest()
+        }
+    }
+
+    private fun updateUI(){
+        subjectEntry = SubjectEntry.readOne(db, id)
+
+        val dateTextView = findViewById<TextView>(R.id.subject_top_date)
+        val dateStartTimeView = findViewById<TextView>(R.id.subject_top_time_start)
+        val dateEndTimeView = findViewById<TextView>(R.id.subject_top_time_end)
+        val topicTextView = findViewById<TextView>(R.id.subject_topic_topic)
+        val testTextView = findViewById<TextView>(R.id.subject_test_topic)
+
+        val bannerButton = findViewById<Button>(R.id.subject_top_banner)
+        val topicButton = findViewById<Button>(R.id.subject_topic_button)
+        val presenceButton = findViewById<Button>(R.id.subject_presence_button)
+        val testButton = findViewById<Button>(R.id.subject_test_button)
+
+
+        dateTextView.text = subjectEntry.date
+        var time = "Od: ${subjectEntry.startTime}"
+        dateStartTimeView.text = time
+        time = "Do : ${subjectEntry.endTime}"
+        dateEndTimeView.text = time
+
+        val bannerText = subjectEntry.subjectName.substring(0, 3) + "\n" + subjectEntry.className
+        bannerButton.text = bannerText
+
+        if(subjectEntry.topic.isEmpty()){
+            val topic = "Nie podano tematu!"
+            topicTextView.text = topic
+            if(isLate){
+                topicButton.setBackgroundColor(ContextCompat.getColor(this, R.color.Secondary))
+            }
+        }
+        else{
+            topicButton.setBackgroundColor(ContextCompat.getColor(this, R.color.light_green))
+            topicButton.text = getString(R.string.correct)
+            topicTextView.text = subjectEntry.topic
+        }
+
+        if(subjectEntry.presence == "" && isLate){
+            presenceButton.setBackgroundColor(ContextCompat.getColor(this, R.color.Secondary))
+        }
+        else if(subjectEntry.presence == "Y"){
+            presenceButton.setBackgroundColor(ContextCompat.getColor(this, R.color.light_green))
+            presenceButton.text = getString(R.string.correct)
+        }
+
+        if(subjectEntry.testID != ""){
+            testButton.setBackgroundColor(ContextCompat.getColor(this, R.color.light_green))
+            testButton.text = getString(R.string.correct)
+            testTextView.text = Test.readOne(db,subjectEntry.testID).topic
+        }
+
+        bannerButton.setBackgroundColor(ContextCompat.getColor(this, subjectEntry.getColor()))
+    }
+
+
+    //GraphQL
 
     private fun addTestMutation(test: Test, dialog: DialogInterface){
 
@@ -177,7 +267,7 @@ class SubjectEntryActivity : AppCompatActivity()  {
                             MainApplication.appContext, "Test dodany",
                             Toast.LENGTH_SHORT).show()
                     val resultTest = result.data!!.insert_TEST_one!!
-                    val test = Test(
+                    val testInput = Test(
                         resultTest.id,
                         resultTest.topic,
                         resultTest.type,
@@ -186,8 +276,8 @@ class SubjectEntryActivity : AppCompatActivity()  {
                         resultTest.sUBJECT_ENTRY.date.toString(),
                         resultTest.sUBJECT_ENTRY.lESSON.start_time.toString()
                     )
-                    test.insert(DatabaseHelper(MainApplication.appContext).writableDatabase)
-                    subjectEntry.testID = test.id.toString()
+                    testInput.insert(DatabaseHelper(MainApplication.appContext).writableDatabase)
+                    subjectEntry.testID = testInput.id.toString()
                     subjectEntry.updateTest(db)
                     updateUI()
                 }
@@ -230,61 +320,5 @@ class SubjectEntryActivity : AppCompatActivity()  {
             }
         }
     }
-
-    private fun updateUI(){
-        subjectEntry = SubjectEntry.readOne(db, id)
-
-        val dateTextView = findViewById<TextView>(R.id.subject_top_date)
-        val dateStartTimeView = findViewById<TextView>(R.id.subject_top_time_start)
-        val dateEndTimeView = findViewById<TextView>(R.id.subject_top_time_end)
-        val topicTextView = findViewById<TextView>(R.id.subject_topic_topic)
-        val testTextView = findViewById<TextView>(R.id.subject_test_topic)
-
-        val bannerButton = findViewById<Button>(R.id.subject_top_banner)
-        val topicButton = findViewById<Button>(R.id.subject_topic_button)
-        val presenceButton = findViewById<Button>(R.id.subject_presence_button)
-        val testButton = findViewById<Button>(R.id.subject_test_button)
-
-
-        dateTextView.text = subjectEntry.date
-        var time = "Od: ${subjectEntry.startTime}"
-        dateStartTimeView.text = time
-        time = "Do : ${subjectEntry.endTime}"
-        dateEndTimeView.text = time
-
-        val bannerText = subjectEntry.subjectName.substring(0, 3) + "\n" + subjectEntry.className
-        bannerButton.text = bannerText
-
-        if(subjectEntry.topic.isEmpty()){
-            val topic = "Nie podano tematu!"
-            topicTextView.text = topic
-            if(isLate){
-                topicButton.setBackgroundColor(ContextCompat.getColor(this, R.color.Secondary))
-            }
-        }
-        else{
-            topicButton.setBackgroundColor(ContextCompat.getColor(this, R.color.light_green))
-            topicButton.text = "POPRAW"
-            topicTextView.text = subjectEntry.topic
-        }
-
-        if(subjectEntry.presence == "" && isLate){
-            presenceButton.setBackgroundColor(ContextCompat.getColor(this, R.color.Secondary))
-        }
-        else if(subjectEntry.presence == "Y"){
-            presenceButton.setBackgroundColor(ContextCompat.getColor(this, R.color.light_green))
-            presenceButton.text = "POPRAW"
-        }
-
-        if(subjectEntry.testID != ""){
-            testButton.setBackgroundColor(ContextCompat.getColor(this, R.color.light_green))
-            testButton.text = "POPRAW"
-            testTextView.text = Test.readOne(db,subjectEntry.testID).topic
-        }
-
-        bannerButton.setBackgroundColor(ContextCompat.getColor(this, subjectEntry.getColor()))
-    }
-
-
 
 }

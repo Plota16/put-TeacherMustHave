@@ -125,7 +125,6 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:onClick="setTopic"
                 android:text="WPISZ"
                 android:textSize="12sp" />
 
@@ -157,7 +156,7 @@
 
             <ImageView
                 android:id="@+id/subject_presence_image"
-                android:layout_width="wrap_content"
+                android:layout_width="48dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 app:srcCompat="@drawable/ic_people_black_48dp" />
@@ -176,7 +175,6 @@
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:onClick="checkPresence"
                 android:text="Sprawdź"
                 android:textSize="12sp" />
 
@@ -207,8 +205,8 @@
 
             <ImageView
                 android:id="@+id/subject_grade_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_margin="16dp"
                 app:srcCompat="@drawable/ic_grade_black_48dp" />
 
@@ -226,7 +224,6 @@
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:onClick="setGrade"
                 android:text="WYSTAW"
                 android:textSize="12sp" />
 
@@ -257,8 +254,8 @@
 
             <ImageView
                 android:id="@+id/subject_test_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_margin="16dp"
                 app:srcCompat="@drawable/ic_menu_book_black_48dp" />
 
@@ -290,7 +287,6 @@
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:onClick="setTest"
                 android:text="DODAJ"
                 android:textSize="12sp" />
 

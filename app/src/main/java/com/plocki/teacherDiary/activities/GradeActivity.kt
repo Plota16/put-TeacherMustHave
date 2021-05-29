@@ -90,7 +90,8 @@ class GradeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                     findViewById<TextInputEditText>(R.id.grade_grade_input).text.toString().toDouble(),
                     findViewById<TextInputEditText>(R.id.grade_weight_input).text.toString().toInt(),
                     Instant.now().toString(),
-                    findViewById<TextInputEditText>(R.id.grade_description_input).text.toString()
+                    findViewById<TextInputEditText>(R.id.grade_description_input).text.toString(),
+                    null
             )
 
 

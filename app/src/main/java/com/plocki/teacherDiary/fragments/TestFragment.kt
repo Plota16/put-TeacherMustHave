@@ -41,6 +41,7 @@ class TestFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = TestListAdapter(list)
         }
+
     }
 
 

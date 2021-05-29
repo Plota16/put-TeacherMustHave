@@ -1,8 +1,10 @@
 package com.plocki.teacherDiary.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.plocki.teacherDiary.activities.TestActivity
 import com.plocki.teacherDiary.model.Test
 import com.plocki.teacherDiary.utility.DatabaseHelper
 import com.plocki.teacherDiary.utility.MainApplication
@@ -21,6 +23,11 @@ class TestListAdapter(private var list: List<Test>)
         val test: Test = list[position]
         holder.bind(test)
 
+        holder.testCard.setOnClickListener {
+            val intent = Intent(MainApplication.appContext, TestActivity::class.java)
+            intent.putExtra("testId", test.id.toString())
+            MainApplication.appContext!!.startActivity(intent)
+        }
 
     }
 

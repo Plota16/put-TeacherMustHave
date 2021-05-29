@@ -5070,6 +5070,20 @@
             "__typename": "__Field"
           },
           {
+            "name": "testId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
             "name": "weight",
             "description": null,
             "args": [],
@@ -5613,6 +5627,20 @@
             "__typename": "__Field"
           },
           {
+            "name": "testId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
             "name": "weight",
             "description": null,
             "args": [],
@@ -5677,6 +5705,18 @@
           },
           {
             "name": "subject_for_class_id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
+            "name": "testId",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -5864,6 +5904,18 @@
             "__typename": "__InputValue"
           },
           {
+            "name": "testId",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "Int_comparison_exp",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
             "name": "weight",
             "description": null,
             "type": {
@@ -5944,6 +5996,18 @@
           },
           {
             "name": "subject_for_class_id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
+            "name": "testId",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -6075,6 +6139,18 @@
             "__typename": "__InputValue"
           },
           {
+            "name": "testId",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
             "name": "weight",
             "description": null,
             "type": {
@@ -6182,6 +6258,20 @@
             "__typename": "__Field"
           },
           {
+            "name": "testId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
             "name": "weight",
             "description": null,
             "args": [],
@@ -6270,6 +6360,18 @@
           },
           {
             "name": "subject_for_class_id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
+            "name": "testId",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -6388,6 +6490,20 @@
             "__typename": "__Field"
           },
           {
+            "name": "testId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
             "name": "weight",
             "description": null,
             "args": [],
@@ -6476,6 +6592,18 @@
           },
           {
             "name": "subject_for_class_id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
+            "name": "testId",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -6735,6 +6863,18 @@
             "__typename": "__InputValue"
           },
           {
+            "name": "testId",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
             "name": "weight",
             "description": null,
             "type": {
@@ -6832,6 +6972,13 @@
             "__typename": "__EnumValue"
           },
           {
+            "name": "testId",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__EnumValue"
+          },
+          {
             "name": "weight",
             "description": "column name",
             "isDeprecated": false,
@@ -6910,6 +7057,18 @@
           },
           {
             "name": "subject_for_class_id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
+            "name": "testId",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -7000,6 +7159,20 @@
             "__typename": "__Field"
           },
           {
+            "name": "testId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
             "name": "weight",
             "description": null,
             "args": [],
@@ -7064,6 +7237,18 @@
           },
           {
             "name": "subject_for_class_id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
+            "name": "testId",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -7154,6 +7339,20 @@
             "__typename": "__Field"
           },
           {
+            "name": "testId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
             "name": "weight",
             "description": null,
             "args": [],
@@ -7218,6 +7417,18 @@
           },
           {
             "name": "subject_for_class_id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
+            "name": "testId",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -7308,6 +7519,20 @@
             "__typename": "__Field"
           },
           {
+            "name": "testId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
             "name": "weight",
             "description": null,
             "args": [],
@@ -7372,6 +7597,18 @@
           },
           {
             "name": "subject_for_class_id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
+            "name": "testId",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -7462,6 +7699,20 @@
             "__typename": "__Field"
           },
           {
+            "name": "testId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
             "name": "weight",
             "description": null,
             "args": [],
@@ -7526,6 +7777,18 @@
           },
           {
             "name": "subject_for_class_id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
+            "name": "testId",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -7605,6 +7868,13 @@
             "__typename": "__EnumValue"
           },
           {
+            "name": "testId",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__EnumValue"
+          },
+          {
             "name": "weight",
             "description": "column name",
             "isDeprecated": false,
@@ -7664,6 +7934,20 @@
           },
           {
             "name": "subject_for_class_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
+            "name": "testId",
             "description": null,
             "args": [],
             "type": {
@@ -7741,6 +8025,18 @@
           },
           {
             "name": "subject_for_class_id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
+            "name": "testId",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -7831,6 +8127,20 @@
             "__typename": "__Field"
           },
           {
+            "name": "testId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
             "name": "weight",
             "description": null,
             "args": [],
@@ -7895,6 +8205,18 @@
           },
           {
             "name": "subject_for_class_id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
+            "name": "testId",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -7985,6 +8307,20 @@
             "__typename": "__Field"
           },
           {
+            "name": "testId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
             "name": "weight",
             "description": null,
             "args": [],
@@ -8049,6 +8385,18 @@
           },
           {
             "name": "subject_for_class_id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
+            "name": "testId",
             "description": null,
             "type": {
               "kind": "ENUM",

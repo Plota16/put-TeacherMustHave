@@ -2,4 +2,8 @@
     <string name="app_name">Teacher Diary</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+    <string name="correct">POPRAW</string>
+    <string name="test_state_waiting">OCZEKUJACY</string>
+    <string name="test_state_unchecked">NIESPRAWDZONY</string>
+    <string name="test_state_checked">SPRAWDZONY</string>
 </resources>

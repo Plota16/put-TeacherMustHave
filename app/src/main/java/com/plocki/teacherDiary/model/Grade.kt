@@ -6,7 +6,8 @@ class Grade(var id:Int,
             var grade: Double,
             var weight: Int,
             var date: String,
-            var descroption: String
+            var descroption: String,
+            var testid : String?
             ) {
 
 
@@ -26,6 +27,8 @@ class Grade(var id:Int,
         private const val COL6_TYPE = "TEXT"
         private const val COL7 = "DESCRIPTION"
         private const val COL7_TYPE = "TEXT"
+        private const val COL8 = "TEST_ID"
+        private const val COL8_TYPE = "INTEGER"
 
 
         const val CREATE_TABLE = "Create Table $TABLE_NAME (" +
@@ -35,7 +38,8 @@ class Grade(var id:Int,
                 "$COL4 ${COL4_TYPE}, " +
                 "$COL5 ${COL5_TYPE}, " +
                 "$COL6 ${COL6_TYPE}, " +
-                "$COL7 ${COL7_TYPE}); "
+                "$COL7 ${COL7_TYPE}, " +
+                "$COL8 ${COL8_TYPE}); "
 
 
         const val DROP_TABLE = "DROP TABLE IF EXISTS $TABLE_NAME;"

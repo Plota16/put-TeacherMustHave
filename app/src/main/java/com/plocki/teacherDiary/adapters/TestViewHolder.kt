@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.card.MaterialCardView
 import com.plocki.teacherDiary.R
 import com.plocki.teacherDiary.model.Test
 import com.plocki.teacherDiary.utility.MainApplication
@@ -19,7 +20,7 @@ class TestViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     private val stateTextView: TextView = itemView.findViewById(R.id.test_state)
     private val dateTextView: TextView =  itemView.findViewById(R.id.test_end_date)
     private val timeTextView: TextView = itemView.findViewById(R.id.test_end_time)
-
+    val testCard: MaterialCardView = itemView.findViewById(R.id.test_card)
 
 
     fun bind(test: Test) {

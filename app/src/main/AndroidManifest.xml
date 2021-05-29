@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TeacherDiary">
-        <activity android:name=".activities.GradeActivity"></activity>
+        <activity android:name=".activities.TestActivity"></activity>
+        <activity android:name=".activities.GradeActivity" />
         <activity android:name=".activities.PresenceActivity" />
         <activity android:name=".activities.SubjectEntryActivity" />
         <activity android:name=".activities.NonAuthorizedEntryActivity" />
