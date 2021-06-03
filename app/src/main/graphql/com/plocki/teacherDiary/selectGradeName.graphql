@@ -1,0 +1,8 @@
+query selectGradeName {
+    GRADE_NAME {
+        id
+        name
+        symbol
+        value
+    }
+}

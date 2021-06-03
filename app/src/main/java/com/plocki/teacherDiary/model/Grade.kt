@@ -3,7 +3,7 @@ package com.plocki.teacherDiary.model
 class Grade(var id:Int,
             var subjectForClassId: Int,
             var studentId: Int,
-            var grade: Double,
+            var grade: Int,
             var weight: Int,
             var date: String,
             var descroption: String,

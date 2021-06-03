@@ -302,16 +302,246 @@ type DAY_variance_fields {
 "columns and relationships of \"GRADE\""
 type GRADE {
     "An object relationship"
+    GRADE_NAME: GRADE_NAME!
+    "An object relationship"
+    GRADE_WEIGHT: GRADE_WEIGHT!
+    "An object relationship"
     STUDENT: STUDENT!
     "An object relationship"
     SUBJECT_ENTRY: SUBJECT_ENTRY!
     date: timestamp!
     description: String!
-    grade: Float!
+    grade: Int!
     id: Int!
     student_id: Int!
     subject_for_class_id: Int!
+    testId: Int
     weight: Int!
+}
+
+"columns and relationships of \"GRADE_NAME\""
+type GRADE_NAME {
+    id: Int!
+    name: String!
+    symbol: String!
+    value: Float
+}
+
+"aggregated selection of \"GRADE_NAME\""
+type GRADE_NAME_aggregate {
+    aggregate: GRADE_NAME_aggregate_fields
+    nodes: [GRADE_NAME!]!
+}
+
+"aggregate fields of \"GRADE_NAME\""
+type GRADE_NAME_aggregate_fields {
+    avg: GRADE_NAME_avg_fields
+    count(columns: [GRADE_NAME_select_column!], distinct: Boolean): Int!
+    max: GRADE_NAME_max_fields
+    min: GRADE_NAME_min_fields
+    stddev: GRADE_NAME_stddev_fields
+    stddev_pop: GRADE_NAME_stddev_pop_fields
+    stddev_samp: GRADE_NAME_stddev_samp_fields
+    sum: GRADE_NAME_sum_fields
+    var_pop: GRADE_NAME_var_pop_fields
+    var_samp: GRADE_NAME_var_samp_fields
+    variance: GRADE_NAME_variance_fields
+}
+
+"aggregate avg on columns"
+type GRADE_NAME_avg_fields {
+    id: Float
+    value: Float
+}
+
+"aggregate max on columns"
+type GRADE_NAME_max_fields {
+    id: Int
+    name: String
+    symbol: String
+    value: Float
+}
+
+"aggregate min on columns"
+type GRADE_NAME_min_fields {
+    id: Int
+    name: String
+    symbol: String
+    value: Float
+}
+
+"response of any mutation on the table \"GRADE_NAME\""
+type GRADE_NAME_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [GRADE_NAME!]!
+}
+
+"aggregate stddev on columns"
+type GRADE_NAME_stddev_fields {
+    id: Float
+    value: Float
+}
+
+"aggregate stddev_pop on columns"
+type GRADE_NAME_stddev_pop_fields {
+    id: Float
+    value: Float
+}
+
+"aggregate stddev_samp on columns"
+type GRADE_NAME_stddev_samp_fields {
+    id: Float
+    value: Float
+}
+
+"aggregate sum on columns"
+type GRADE_NAME_sum_fields {
+    id: Int
+    value: Float
+}
+
+"aggregate var_pop on columns"
+type GRADE_NAME_var_pop_fields {
+    id: Float
+    value: Float
+}
+
+"aggregate var_samp on columns"
+type GRADE_NAME_var_samp_fields {
+    id: Float
+    value: Float
+}
+
+"aggregate variance on columns"
+type GRADE_NAME_variance_fields {
+    id: Float
+    value: Float
+}
+
+"columns and relationships of \"GRADE_WEIGHT\""
+type GRADE_WEIGHT {
+    "An array relationship"
+    GRADEs(
+        "distinct select on columns"
+        distinct_on: [GRADE_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [GRADE_order_by!],
+        "filter the rows returned"
+        where: GRADE_bool_exp
+    ): [GRADE!]!
+    "An aggregate relationship"
+    GRADEs_aggregate(
+        "distinct select on columns"
+        distinct_on: [GRADE_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [GRADE_order_by!],
+        "filter the rows returned"
+        where: GRADE_bool_exp
+    ): GRADE_aggregate!
+    id: Int!
+    name: String!
+    weight: Int!
+}
+
+"aggregated selection of \"GRADE_WEIGHT\""
+type GRADE_WEIGHT_aggregate {
+    aggregate: GRADE_WEIGHT_aggregate_fields
+    nodes: [GRADE_WEIGHT!]!
+}
+
+"aggregate fields of \"GRADE_WEIGHT\""
+type GRADE_WEIGHT_aggregate_fields {
+    avg: GRADE_WEIGHT_avg_fields
+    count(columns: [GRADE_WEIGHT_select_column!], distinct: Boolean): Int!
+    max: GRADE_WEIGHT_max_fields
+    min: GRADE_WEIGHT_min_fields
+    stddev: GRADE_WEIGHT_stddev_fields
+    stddev_pop: GRADE_WEIGHT_stddev_pop_fields
+    stddev_samp: GRADE_WEIGHT_stddev_samp_fields
+    sum: GRADE_WEIGHT_sum_fields
+    var_pop: GRADE_WEIGHT_var_pop_fields
+    var_samp: GRADE_WEIGHT_var_samp_fields
+    variance: GRADE_WEIGHT_variance_fields
+}
+
+"aggregate avg on columns"
+type GRADE_WEIGHT_avg_fields {
+    id: Float
+    weight: Float
+}
+
+"aggregate max on columns"
+type GRADE_WEIGHT_max_fields {
+    id: Int
+    name: String
+    weight: Int
+}
+
+"aggregate min on columns"
+type GRADE_WEIGHT_min_fields {
+    id: Int
+    name: String
+    weight: Int
+}
+
+"response of any mutation on the table \"GRADE_WEIGHT\""
+type GRADE_WEIGHT_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [GRADE_WEIGHT!]!
+}
+
+"aggregate stddev on columns"
+type GRADE_WEIGHT_stddev_fields {
+    id: Float
+    weight: Float
+}
+
+"aggregate stddev_pop on columns"
+type GRADE_WEIGHT_stddev_pop_fields {
+    id: Float
+    weight: Float
+}
+
+"aggregate stddev_samp on columns"
+type GRADE_WEIGHT_stddev_samp_fields {
+    id: Float
+    weight: Float
+}
+
+"aggregate sum on columns"
+type GRADE_WEIGHT_sum_fields {
+    id: Int
+    weight: Int
+}
+
+"aggregate var_pop on columns"
+type GRADE_WEIGHT_var_pop_fields {
+    id: Float
+    weight: Float
+}
+
+"aggregate var_samp on columns"
+type GRADE_WEIGHT_var_samp_fields {
+    id: Float
+    weight: Float
+}
+
+"aggregate variance on columns"
+type GRADE_WEIGHT_variance_fields {
+    id: Float
+    weight: Float
 }
 
 "aggregated selection of \"GRADE\""
@@ -341,6 +571,7 @@ type GRADE_avg_fields {
     id: Float
     student_id: Float
     subject_for_class_id: Float
+    testId: Float
     weight: Float
 }
 
@@ -348,10 +579,11 @@ type GRADE_avg_fields {
 type GRADE_max_fields {
     date: timestamp
     description: String
-    grade: Float
+    grade: Int
     id: Int
     student_id: Int
     subject_for_class_id: Int
+    testId: Int
     weight: Int
 }
 
@@ -359,10 +591,11 @@ type GRADE_max_fields {
 type GRADE_min_fields {
     date: timestamp
     description: String
-    grade: Float
+    grade: Int
     id: Int
     student_id: Int
     subject_for_class_id: Int
+    testId: Int
     weight: Int
 }
 
@@ -380,6 +613,7 @@ type GRADE_stddev_fields {
     id: Float
     student_id: Float
     subject_for_class_id: Float
+    testId: Float
     weight: Float
 }
 
@@ -389,6 +623,7 @@ type GRADE_stddev_pop_fields {
     id: Float
     student_id: Float
     subject_for_class_id: Float
+    testId: Float
     weight: Float
 }
 
@@ -398,15 +633,17 @@ type GRADE_stddev_samp_fields {
     id: Float
     student_id: Float
     subject_for_class_id: Float
+    testId: Float
     weight: Float
 }
 
 "aggregate sum on columns"
 type GRADE_sum_fields {
-    grade: Float
+    grade: Int
     id: Int
     student_id: Int
     subject_for_class_id: Int
+    testId: Int
     weight: Int
 }
 
@@ -416,6 +653,7 @@ type GRADE_var_pop_fields {
     id: Float
     student_id: Float
     subject_for_class_id: Float
+    testId: Float
     weight: Float
 }
 
@@ -425,6 +663,7 @@ type GRADE_var_samp_fields {
     id: Float
     student_id: Float
     subject_for_class_id: Float
+    testId: Float
     weight: Float
 }
 
@@ -434,6 +673,7 @@ type GRADE_variance_fields {
     id: Float
     student_id: Float
     subject_for_class_id: Float
+    testId: Float
     weight: Float
 }
 
@@ -1800,6 +2040,20 @@ type mutation_root {
         "filter the rows which have to be deleted"
         where: GRADE_bool_exp!
     ): GRADE_mutation_response
+    "delete data from the table: \"GRADE_NAME\""
+    delete_GRADE_NAME(
+        "filter the rows which have to be deleted"
+        where: GRADE_NAME_bool_exp!
+    ): GRADE_NAME_mutation_response
+    "delete single row from the table: \"GRADE_NAME\""
+    delete_GRADE_NAME_by_pk(id: Int!): GRADE_NAME
+    "delete data from the table: \"GRADE_WEIGHT\""
+    delete_GRADE_WEIGHT(
+        "filter the rows which have to be deleted"
+        where: GRADE_WEIGHT_bool_exp!
+    ): GRADE_WEIGHT_mutation_response
+    "delete single row from the table: \"GRADE_WEIGHT\""
+    delete_GRADE_WEIGHT_by_pk(id: Int!): GRADE_WEIGHT
     "delete single row from the table: \"GRADE\""
     delete_GRADE_by_pk(id: Int!): GRADE
     "delete data from the table: \"LESSON\""
@@ -1900,6 +2154,34 @@ type mutation_root {
         "on conflict condition"
         on_conflict: GRADE_on_conflict
     ): GRADE_mutation_response
+    "insert data into the table: \"GRADE_NAME\""
+    insert_GRADE_NAME(
+        "the rows to be inserted"
+        objects: [GRADE_NAME_insert_input!]!,
+        "on conflict condition"
+        on_conflict: GRADE_NAME_on_conflict
+    ): GRADE_NAME_mutation_response
+    "insert a single row into the table: \"GRADE_NAME\""
+    insert_GRADE_NAME_one(
+        "the row to be inserted"
+        object: GRADE_NAME_insert_input!,
+        "on conflict condition"
+        on_conflict: GRADE_NAME_on_conflict
+    ): GRADE_NAME
+    "insert data into the table: \"GRADE_WEIGHT\""
+    insert_GRADE_WEIGHT(
+        "the rows to be inserted"
+        objects: [GRADE_WEIGHT_insert_input!]!,
+        "on conflict condition"
+        on_conflict: GRADE_WEIGHT_on_conflict
+    ): GRADE_WEIGHT_mutation_response
+    "insert a single row into the table: \"GRADE_WEIGHT\""
+    insert_GRADE_WEIGHT_one(
+        "the row to be inserted"
+        object: GRADE_WEIGHT_insert_input!,
+        "on conflict condition"
+        on_conflict: GRADE_WEIGHT_on_conflict
+    ): GRADE_WEIGHT
     "insert a single row into the table: \"GRADE\""
     insert_GRADE_one(
         "the row to be inserted"
@@ -2076,6 +2358,40 @@ type mutation_root {
         "filter the rows which have to be updated"
         where: GRADE_bool_exp!
     ): GRADE_mutation_response
+    "update data of the table: \"GRADE_NAME\""
+    update_GRADE_NAME(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: GRADE_NAME_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: GRADE_NAME_set_input,
+        "filter the rows which have to be updated"
+        where: GRADE_NAME_bool_exp!
+    ): GRADE_NAME_mutation_response
+    "update single row of the table: \"GRADE_NAME\""
+    update_GRADE_NAME_by_pk(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: GRADE_NAME_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: GRADE_NAME_set_input,
+        pk_columns: GRADE_NAME_pk_columns_input!
+    ): GRADE_NAME
+    "update data of the table: \"GRADE_WEIGHT\""
+    update_GRADE_WEIGHT(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: GRADE_WEIGHT_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: GRADE_WEIGHT_set_input,
+        "filter the rows which have to be updated"
+        where: GRADE_WEIGHT_bool_exp!
+    ): GRADE_WEIGHT_mutation_response
+    "update single row of the table: \"GRADE_WEIGHT\""
+    update_GRADE_WEIGHT_by_pk(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: GRADE_WEIGHT_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: GRADE_WEIGHT_set_input,
+        pk_columns: GRADE_WEIGHT_pk_columns_input!
+    ): GRADE_WEIGHT
     "update single row of the table: \"GRADE\""
     update_GRADE_by_pk(
         "increments the numeric columns with given value of the filtered values"
@@ -2309,6 +2625,62 @@ type query_root {
         "filter the rows returned"
         where: GRADE_bool_exp
     ): [GRADE!]!
+    "fetch data from the table: \"GRADE_NAME\""
+    GRADE_NAME(
+        "distinct select on columns"
+        distinct_on: [GRADE_NAME_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [GRADE_NAME_order_by!],
+        "filter the rows returned"
+        where: GRADE_NAME_bool_exp
+    ): [GRADE_NAME!]!
+    "fetch aggregated fields from the table: \"GRADE_NAME\""
+    GRADE_NAME_aggregate(
+        "distinct select on columns"
+        distinct_on: [GRADE_NAME_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [GRADE_NAME_order_by!],
+        "filter the rows returned"
+        where: GRADE_NAME_bool_exp
+    ): GRADE_NAME_aggregate!
+    "fetch data from the table: \"GRADE_NAME\" using primary key columns"
+    GRADE_NAME_by_pk(id: Int!): GRADE_NAME
+    "fetch data from the table: \"GRADE_WEIGHT\""
+    GRADE_WEIGHT(
+        "distinct select on columns"
+        distinct_on: [GRADE_WEIGHT_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [GRADE_WEIGHT_order_by!],
+        "filter the rows returned"
+        where: GRADE_WEIGHT_bool_exp
+    ): [GRADE_WEIGHT!]!
+    "fetch aggregated fields from the table: \"GRADE_WEIGHT\""
+    GRADE_WEIGHT_aggregate(
+        "distinct select on columns"
+        distinct_on: [GRADE_WEIGHT_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [GRADE_WEIGHT_order_by!],
+        "filter the rows returned"
+        where: GRADE_WEIGHT_bool_exp
+    ): GRADE_WEIGHT_aggregate!
+    "fetch data from the table: \"GRADE_WEIGHT\" using primary key columns"
+    GRADE_WEIGHT_by_pk(id: Int!): GRADE_WEIGHT
     "fetch aggregated fields from the table: \"GRADE\""
     GRADE_aggregate(
         "distinct select on columns"
@@ -2648,6 +3020,62 @@ type subscription_root {
         "filter the rows returned"
         where: GRADE_bool_exp
     ): [GRADE!]!
+    "fetch data from the table: \"GRADE_NAME\""
+    GRADE_NAME(
+        "distinct select on columns"
+        distinct_on: [GRADE_NAME_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [GRADE_NAME_order_by!],
+        "filter the rows returned"
+        where: GRADE_NAME_bool_exp
+    ): [GRADE_NAME!]!
+    "fetch aggregated fields from the table: \"GRADE_NAME\""
+    GRADE_NAME_aggregate(
+        "distinct select on columns"
+        distinct_on: [GRADE_NAME_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [GRADE_NAME_order_by!],
+        "filter the rows returned"
+        where: GRADE_NAME_bool_exp
+    ): GRADE_NAME_aggregate!
+    "fetch data from the table: \"GRADE_NAME\" using primary key columns"
+    GRADE_NAME_by_pk(id: Int!): GRADE_NAME
+    "fetch data from the table: \"GRADE_WEIGHT\""
+    GRADE_WEIGHT(
+        "distinct select on columns"
+        distinct_on: [GRADE_WEIGHT_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [GRADE_WEIGHT_order_by!],
+        "filter the rows returned"
+        where: GRADE_WEIGHT_bool_exp
+    ): [GRADE_WEIGHT!]!
+    "fetch aggregated fields from the table: \"GRADE_WEIGHT\""
+    GRADE_WEIGHT_aggregate(
+        "distinct select on columns"
+        distinct_on: [GRADE_WEIGHT_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [GRADE_WEIGHT_order_by!],
+        "filter the rows returned"
+        where: GRADE_WEIGHT_bool_exp
+    ): GRADE_WEIGHT_aggregate!
+    "fetch data from the table: \"GRADE_WEIGHT\" using primary key columns"
+    GRADE_WEIGHT_by_pk(id: Int!): GRADE_WEIGHT
     "fetch aggregated fields from the table: \"GRADE\""
     GRADE_aggregate(
         "distinct select on columns"
@@ -2981,6 +3409,62 @@ enum DAY_update_column {
     name_pl
 }
 
+"unique or primary key constraints on table \"GRADE_NAME\""
+enum GRADE_NAME_constraint {
+    "unique or primary key constraint"
+    GRADE_NAME_pkey
+}
+
+"select columns of table \"GRADE_NAME\""
+enum GRADE_NAME_select_column {
+    "column name"
+    id
+    "column name"
+    name
+    "column name"
+    symbol
+    "column name"
+    value
+}
+
+"update columns of table \"GRADE_NAME\""
+enum GRADE_NAME_update_column {
+    "column name"
+    id
+    "column name"
+    name
+    "column name"
+    symbol
+    "column name"
+    value
+}
+
+"unique or primary key constraints on table \"GRADE_WEIGHT\""
+enum GRADE_WEIGHT_constraint {
+    "unique or primary key constraint"
+    GRADE_WEIGHT_pkey
+}
+
+"select columns of table \"GRADE_WEIGHT\""
+enum GRADE_WEIGHT_select_column {
+    "column name"
+    id
+    "column name"
+    name
+    "column name"
+    weight
+}
+
+"update columns of table \"GRADE_WEIGHT\""
+enum GRADE_WEIGHT_update_column {
+    "column name"
+    id
+    "column name"
+    name
+    "column name"
+    weight
+}
+
 "unique or primary key constraints on table \"GRADE\""
 enum GRADE_constraint {
     "unique or primary key constraint"
@@ -3002,6 +3486,8 @@ enum GRADE_select_column {
     "column name"
     subject_for_class_id
     "column name"
+    testId
+    "column name"
     weight
 }
 
@@ -3019,6 +3505,8 @@ enum GRADE_update_column {
     student_id
     "column name"
     subject_for_class_id
+    "column name"
+    testId
     "column name"
     weight
 }
@@ -3675,6 +4163,125 @@ input Float_comparison_exp {
     _nin: [Float!]
 }
 
+"Boolean expression to filter rows from the table \"GRADE_NAME\". All fields are combined with a logical 'AND'."
+input GRADE_NAME_bool_exp {
+    _and: [GRADE_NAME_bool_exp!]
+    _not: GRADE_NAME_bool_exp
+    _or: [GRADE_NAME_bool_exp!]
+    id: Int_comparison_exp
+    name: String_comparison_exp
+    symbol: String_comparison_exp
+    value: Float_comparison_exp
+}
+
+"input type for incrementing numeric columns in table \"GRADE_NAME\""
+input GRADE_NAME_inc_input {
+    id: Int
+    value: Float
+}
+
+"input type for inserting data into table \"GRADE_NAME\""
+input GRADE_NAME_insert_input {
+    id: Int
+    name: String
+    symbol: String
+    value: Float
+}
+
+"input type for inserting object relation for remote table \"GRADE_NAME\""
+input GRADE_NAME_obj_rel_insert_input {
+    data: GRADE_NAME_insert_input!
+    "on conflict condition"
+    on_conflict: GRADE_NAME_on_conflict
+}
+
+"on conflict condition type for table \"GRADE_NAME\""
+input GRADE_NAME_on_conflict {
+    constraint: GRADE_NAME_constraint!
+    update_columns: [GRADE_NAME_update_column!]! = []
+    where: GRADE_NAME_bool_exp
+}
+
+"Ordering options when selecting data from \"GRADE_NAME\"."
+input GRADE_NAME_order_by {
+    id: order_by
+    name: order_by
+    symbol: order_by
+    value: order_by
+}
+
+"primary key columns input for table: GRADE_NAME"
+input GRADE_NAME_pk_columns_input {
+    id: Int!
+}
+
+"input type for updating data in table \"GRADE_NAME\""
+input GRADE_NAME_set_input {
+    id: Int
+    name: String
+    symbol: String
+    value: Float
+}
+
+"Boolean expression to filter rows from the table \"GRADE_WEIGHT\". All fields are combined with a logical 'AND'."
+input GRADE_WEIGHT_bool_exp {
+    GRADEs: GRADE_bool_exp
+    _and: [GRADE_WEIGHT_bool_exp!]
+    _not: GRADE_WEIGHT_bool_exp
+    _or: [GRADE_WEIGHT_bool_exp!]
+    id: Int_comparison_exp
+    name: String_comparison_exp
+    weight: Int_comparison_exp
+}
+
+"input type for incrementing numeric columns in table \"GRADE_WEIGHT\""
+input GRADE_WEIGHT_inc_input {
+    id: Int
+    weight: Int
+}
+
+"input type for inserting data into table \"GRADE_WEIGHT\""
+input GRADE_WEIGHT_insert_input {
+    GRADEs: GRADE_arr_rel_insert_input
+    id: Int
+    name: String
+    weight: Int
+}
+
+"input type for inserting object relation for remote table \"GRADE_WEIGHT\""
+input GRADE_WEIGHT_obj_rel_insert_input {
+    data: GRADE_WEIGHT_insert_input!
+    "on conflict condition"
+    on_conflict: GRADE_WEIGHT_on_conflict
+}
+
+"on conflict condition type for table \"GRADE_WEIGHT\""
+input GRADE_WEIGHT_on_conflict {
+    constraint: GRADE_WEIGHT_constraint!
+    update_columns: [GRADE_WEIGHT_update_column!]! = []
+    where: GRADE_WEIGHT_bool_exp
+}
+
+"Ordering options when selecting data from \"GRADE_WEIGHT\"."
+input GRADE_WEIGHT_order_by {
+    GRADEs_aggregate: GRADE_aggregate_order_by
+    id: order_by
+    name: order_by
+    weight: order_by
+}
+
+"primary key columns input for table: GRADE_WEIGHT"
+input GRADE_WEIGHT_pk_columns_input {
+    id: Int!
+}
+
+"input type for updating data in table \"GRADE_WEIGHT\""
+input GRADE_WEIGHT_set_input {
+    id: Int
+    name: String
+    weight: Int
+}
+
 "order by aggregate values of table \"GRADE\""
 input GRADE_aggregate_order_by {
     avg: GRADE_avg_order_by
@@ -3703,11 +4310,14 @@ input GRADE_avg_order_by {
     id: order_by
     student_id: order_by
     subject_for_class_id: order_by
+    testId: order_by
     weight: order_by
 }
 
 "Boolean expression to filter rows from the table \"GRADE\". All fields are combined with a logical 'AND'."
 input GRADE_bool_exp {
+    GRADE_NAME: GRADE_NAME_bool_exp
+    GRADE_WEIGHT: GRADE_WEIGHT_bool_exp
     STUDENT: STUDENT_bool_exp
     SUBJECT_ENTRY: SUBJECT_ENTRY_bool_exp
     _and: [GRADE_bool_exp!]
@@ -3715,32 +4325,37 @@ input GRADE_bool_exp {
     _or: [GRADE_bool_exp!]
     date: timestamp_comparison_exp
     description: String_comparison_exp
-    grade: Float_comparison_exp
+    grade: Int_comparison_exp
     id: Int_comparison_exp
     student_id: Int_comparison_exp
     subject_for_class_id: Int_comparison_exp
+    testId: Int_comparison_exp
     weight: Int_comparison_exp
 }
 
 "input type for incrementing numeric columns in table \"GRADE\""
 input GRADE_inc_input {
-    grade: Float
+    grade: Int
     id: Int
     student_id: Int
     subject_for_class_id: Int
+    testId: Int
     weight: Int
 }
 
 "input type for inserting data into table \"GRADE\""
 input GRADE_insert_input {
+    GRADE_NAME: GRADE_NAME_obj_rel_insert_input
+    GRADE_WEIGHT: GRADE_WEIGHT_obj_rel_insert_input
     STUDENT: STUDENT_obj_rel_insert_input
     SUBJECT_ENTRY: SUBJECT_ENTRY_obj_rel_insert_input
     date: timestamp
     description: String
-    grade: Float
+    grade: Int
     id: Int
     student_id: Int
     subject_for_class_id: Int
+    testId: Int
     weight: Int
 }
 
@@ -3752,6 +4367,7 @@ input GRADE_max_order_by {
     id: order_by
     student_id: order_by
     subject_for_class_id: order_by
+    testId: order_by
     weight: order_by
 }
 
@@ -3763,6 +4379,7 @@ input GRADE_min_order_by {
     id: order_by
     student_id: order_by
     subject_for_class_id: order_by
+    testId: order_by
     weight: order_by
 }
 
@@ -3775,6 +4392,8 @@ input GRADE_on_conflict {
 
 "Ordering options when selecting data from \"GRADE\"."
 input GRADE_order_by {
+    GRADE_NAME: GRADE_NAME_order_by
+    GRADE_WEIGHT: GRADE_WEIGHT_order_by
     STUDENT: STUDENT_order_by
     SUBJECT_ENTRY: SUBJECT_ENTRY_order_by
     date: order_by
@@ -3783,6 +4402,7 @@ input GRADE_order_by {
     id: order_by
     student_id: order_by
     subject_for_class_id: order_by
+    testId: order_by
     weight: order_by
 }
 
@@ -3795,10 +4415,11 @@ input GRADE_pk_columns_input {
 input GRADE_set_input {
     date: timestamp
     description: String
-    grade: Float
+    grade: Int
     id: Int
     student_id: Int
     subject_for_class_id: Int
+    testId: Int
     weight: Int
 }
 
@@ -3808,6 +4429,7 @@ input GRADE_stddev_order_by {
     id: order_by
     student_id: order_by
     subject_for_class_id: order_by
+    testId: order_by
     weight: order_by
 }
 
@@ -3817,6 +4439,7 @@ input GRADE_stddev_pop_order_by {
     id: order_by
     student_id: order_by
     subject_for_class_id: order_by
+    testId: order_by
     weight: order_by
 }
 
@@ -3826,6 +4449,7 @@ input GRADE_stddev_samp_order_by {
     id: order_by
     student_id: order_by
     subject_for_class_id: order_by
+    testId: order_by
     weight: order_by
 }
 
@@ -3835,6 +4459,7 @@ input GRADE_sum_order_by {
     id: order_by
     student_id: order_by
     subject_for_class_id: order_by
+    testId: order_by
     weight: order_by
 }
 
@@ -3844,6 +4469,7 @@ input GRADE_var_pop_order_by {
     id: order_by
     student_id: order_by
     subject_for_class_id: order_by
+    testId: order_by
     weight: order_by
 }
 
@@ -3853,6 +4479,7 @@ input GRADE_var_samp_order_by {
     id: order_by
     student_id: order_by
     subject_for_class_id: order_by
+    testId: order_by
     weight: order_by
 }
 
@@ -3862,6 +4489,7 @@ input GRADE_variance_order_by {
     id: order_by
     student_id: order_by
     subject_for_class_id: order_by
+    testId: order_by
     weight: order_by
 }
 

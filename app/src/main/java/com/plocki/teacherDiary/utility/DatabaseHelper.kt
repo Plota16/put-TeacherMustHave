@@ -36,13 +36,17 @@ class DatabaseHelper(
                                     Presence.CREATE_TABLE +
                                     Task.CREATE_TABLE +
                                     Grade.CREATE_TABLE +
-                                    Test.CREATE_TABLE
+                                    Test.CREATE_TABLE +
+                                    GradeName.CREATE_TABLE +
+                                    GradeWeight.CREATE_TABLE
 
         const val DB_DELETE_ALL =   SubjectEntry.DROP_TABLE +
                                     MyClassStudent.DROP_TABLE +
                                     Presence.DROP_TABLE +
                                     Task.DROP_TABLE +
                                     Grade.DROP_TABLE +
-                                    Test.DROP_TABLE
+                                    Test.DROP_TABLE +
+                                    GradeName.DROP_TABLE +
+                                    GradeWeight.DROP_TABLE
     }
 }

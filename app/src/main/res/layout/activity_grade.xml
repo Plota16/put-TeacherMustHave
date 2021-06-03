@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
         android:fontFamily="@font/roboto_black"
         android:text="Wpisz ocenę"
         android:textSize="24sp" />
@@ -25,40 +26,69 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp" />
+        android:layout_marginBottom="16dp"
+        android:layout_toRightOf="@id/grade_student_text" />
 
+    <TextView
+        android:id="@+id/grade_student_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/grade_text"
+        android:layout_alignBaseline="@id/grade_studnet"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="false"
+        android:fontFamily="@font/roboto"
+        android:text="Uczeń"
+        android:textSize="16sp" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/grade_grade"
+    <Spinner
+        android:id="@+id/grade_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/grade_studnet">
+        android:layout_below="@id/grade_studnet"
+        android:layout_alignParentTop="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="16dp"
+        android:layout_toRightOf="@id/grade_name_text" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/grade_grade_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="Ocena"
-            android:inputType="number" />
+    <TextView
+        android:id="@+id/grade_name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/grade_studnet"
+        android:layout_alignBaseline="@id/grade_name"
+        android:layout_alignParentStart="true"
+        android:fontFamily="@font/roboto"
+        android:text="Ocena"
+        android:textSize="16sp" />
 
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
+    <Spinner
         android:id="@+id/grade_weight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/grade_grade">
+        android:layout_below="@id/grade_name"
+        android:layout_alignParentTop="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="16dp"
+        android:layout_toRightOf="@id/grade_weight_name" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/grade_weight_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="Waga"
-            android:inputType="number" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:id="@+id/grade_weight_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/grade_name"
+        android:layout_alignBaseline="@id/grade_weight"
+        android:layout_alignParentStart="true"
+        android:fontFamily="@font/roboto"
+        android:text="Waga"
+        android:textSize="16sp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/grade_description"

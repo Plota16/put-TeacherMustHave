@@ -1,0 +1,7 @@
+query selectGradeWeight{
+    GRADE_WEIGHT{
+        id
+        name
+        weight
+    }
+}

@@ -3,14 +3,8 @@ package com.plocki.teacherDiary.utility
 import android.widget.Toast
 import com.apollographql.apollo.api.toInput
 import com.apollographql.apollo.coroutines.toDeferred
-import com.plocki.teacherDiary.MyCalendarQuery
-import com.plocki.teacherDiary.MyClassesQuery
-import com.plocki.teacherDiary.SelectTaskQuery
-import com.plocki.teacherDiary.SelectTestQuery
-import com.plocki.teacherDiary.model.MyClassStudent
-import com.plocki.teacherDiary.model.SubjectEntry
-import com.plocki.teacherDiary.model.Task
-import com.plocki.teacherDiary.model.Test
+import com.plocki.teacherDiary.*
+import com.plocki.teacherDiary.model.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
@@ -30,6 +24,10 @@ class ApiDownload(val id : Int, private val userId: Int) {
             task.join()
             val test = selectTests(id)
             test.join()
+            val gradeName = selectGradeNames()
+            gradeName.join()
+            val gradeWeight = selectGradeWeights()
+            gradeWeight.join()
 
             updateLate()
         }
@@ -200,11 +198,85 @@ class ApiDownload(val id : Int, private val userId: Int) {
         }
     }
 
+    private fun selectGradeNames(): Job {
+
+        val query = SelectGradeNameQuery()
+        val db = DatabaseHelper(MainApplication.appContext).writableDatabase
+
+        return GlobalScope.launch(Dispatchers.Main) {
+            try{
+                val tmp  = ApolloInstance.get().query(query).toDeferred().await()
+                try {
+                    if(!tmp.hasErrors()){
+                        db.execSQL(GradeName.DROP_TABLE)
+                        db.execSQL(GradeName.CREATE_TABLE)
+
+                        for(entry in tmp.data!!.gRADE_NAME){
+                           val gradeName = GradeName(
+                                                        entry.id,
+                                                        entry.symbol,
+                                                        entry.name,
+                                                        entry.value!!
+                           )
+                            gradeName.insert(db)
+                        }
+                    }
+                }catch (e: NullPointerException){
+                    Toast.makeText(
+                            MainApplication.appContext, "Błąd pobierania nazw ocen",
+                            Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }catch (e: Exception){
+                Toast.makeText(
+                        MainApplication.appContext, "Bład połączenia z serwerem",
+                        Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
+    private fun selectGradeWeights(): Job {
+
+        val query = SelectGradeWeightQuery()
+        val db = DatabaseHelper(MainApplication.appContext).writableDatabase
+
+        return GlobalScope.launch(Dispatchers.Main) {
+            try{
+                val tmp  = ApolloInstance.get().query(query).toDeferred().await()
+                try {
+                    if(!tmp.hasErrors()){
+                        db.execSQL(GradeWeight.DROP_TABLE)
+                        db.execSQL(GradeWeight.CREATE_TABLE)
+
+                        for(entry in tmp.data!!.gRADE_WEIGHT){
+                            val gradeWeight = GradeWeight(
+                                    entry.id,
+                                    entry.name,
+                                    entry.weight
+                            )
+                            gradeWeight.insert(db)
+                        }
+                    }
+                }catch (e: NullPointerException){
+                    Toast.makeText(
+                            MainApplication.appContext, "Błąd pobierania wag ocen",
+                            Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }catch (e: Exception){
+                Toast.makeText(
+                        MainApplication.appContext, "Bład połączenia z serwerem",
+                        Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
+
     private fun updateLate(){
         val db = DatabaseHelper(MainApplication.appContext).writableDatabase
         db.execSQL("UPDATE SUBJECT_ENTRY SET LATE = \"Y\" WHERE (DATE < CURRENT_DATE) or (DATE = CURRENT_DATE and END_TIME < CURRENT_TIME )")
     }
-
-
 
 }

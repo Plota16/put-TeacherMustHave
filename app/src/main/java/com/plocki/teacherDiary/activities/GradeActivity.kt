@@ -14,6 +14,8 @@ import com.google.android.material.textfield.TextInputLayout
 import com.plocki.teacherDiary.AddGradeMutation
 import com.plocki.teacherDiary.R
 import com.plocki.teacherDiary.model.Grade
+import com.plocki.teacherDiary.model.GradeName
+import com.plocki.teacherDiary.model.GradeWeight
 import com.plocki.teacherDiary.model.MyClassStudent
 import com.plocki.teacherDiary.type.GRADE_insert_input
 import com.plocki.teacherDiary.utility.ApolloInstance
@@ -26,8 +28,13 @@ import java.time.Instant
 
 class GradeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
-    private val map = HashMap<Int, Int>()
+    private val studentMap = HashMap<Int, Int>()
+    private val gradeNameMap = HashMap<Int, Int>()
+    private val gradeWeightMap = HashMap<Int, Int>()
+
     private var chosenStudentId = 0
+    private var chosenWeightId = 0
+    private var chosenNameId = 0
     private var subjectId = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,60 +42,100 @@ class GradeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_grade)
 
-        val className = intent.getStringExtra("className")!!
         subjectId = intent.getStringExtra("subjectEntryId")!!.toInt()
 
-        val myClass = MyClassStudent.readOneClass(DatabaseHelper(MainApplication.appContext).readableDatabase, className)
-        val spinnerList = ArrayList<String>()
-        for((counter, student: MyClassStudent) in myClass.withIndex()){
-            spinnerList.add("${student.firstName} ${student.lastName}")
-            map[counter] = student.id
-        }
-        chosenStudentId = map[0]!!
+        setStudentSpinner()
+        setGradeNameSpinner()
+        setGradeWeightSpinner()
 
-        val spinner = findViewById<Spinner>(R.id.grade_studnet)
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerList)
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner.adapter = adapter
-        spinner.onItemSelectedListener = this
-
-        findViewById<TextInputEditText>(R.id.grade_grade_input).setOnFocusChangeListener{ _, hasFocus ->
-            if(!hasFocus){
-                validateGrade()
-            }
-        }
-
-        findViewById<TextInputEditText>(R.id.grade_weight_input).setOnFocusChangeListener{ _, hasFocus ->
-            if(!hasFocus){
-                validateWeight()
-            }
-        }
-
-        findViewById<TextInputEditText>(R.id.grade_description_input).setOnFocusChangeListener{ _, hasFocus ->
-            if(!hasFocus){
-                validateDescription()
-            }
-        }
+        setOnFocusChangeListeners()
 
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        chosenStudentId = map[position]!!
+        when(view!!.id){
+            R.id.grade_studnet -> chosenStudentId = studentMap[position]!!
+            R.id.grade_name -> chosenNameId = gradeNameMap[position]!!
+            R.id.grade_weight -> chosenWeightId = gradeWeightMap[position]!!
+        }
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
 
     }
 
+    private fun setStudentSpinner(){
+
+        val className = intent.getStringExtra("className")!!
+        val myClass = MyClassStudent.readOneClass(DatabaseHelper(MainApplication.appContext).readableDatabase, className)
+        val studentSpinnerList = ArrayList<String>()
+        for((counter, student: MyClassStudent) in myClass.withIndex()){
+            studentSpinnerList.add("${student.firstName} ${student.lastName}")
+            studentMap[counter] = student.id
+        }
+        chosenStudentId = studentMap[0]!!
+
+        val studentSpinner = findViewById<Spinner>(R.id.grade_studnet)
+        val studentAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, studentSpinnerList)
+
+        studentAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        studentSpinner.adapter = studentAdapter
+        studentSpinner.onItemSelectedListener = this
+    }
+
+    private fun setGradeNameSpinner(){
+
+        val gradeNames = GradeName.readAll(DatabaseHelper(MainApplication.appContext).readableDatabase)
+        val gradeNameSpinnerList = ArrayList<String>()
+        for((counter, name: GradeName) in gradeNames.withIndex()){
+            gradeNameSpinnerList.add(name.symbol)
+            gradeNameMap[counter] = name.id
+        }
+        chosenNameId = gradeNameMap[0]!!
+
+        val gradeNameSpinner = findViewById<Spinner>(R.id.grade_name)
+        val gradeNameAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, gradeNameSpinnerList)
+
+        gradeNameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        gradeNameSpinner.adapter = gradeNameAdapter
+        gradeNameSpinner.onItemSelectedListener = this
+    }
+
+    private fun setGradeWeightSpinner(){
+
+        val gradeWeights = GradeWeight.readAll(DatabaseHelper(MainApplication.appContext).readableDatabase)
+        val gradeWeightSpinnerList = ArrayList<String>()
+        for((counter, weight: GradeWeight) in gradeWeights.withIndex()){
+            gradeWeightSpinnerList.add(weight.name)
+            gradeWeightMap[counter] = weight.id
+        }
+        chosenWeightId = gradeWeightMap[0]!!
+
+        val gradeWeightSpinner = findViewById<Spinner>(R.id.grade_weight)
+        val gradeWeightAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, gradeWeightSpinnerList)
+
+        gradeWeightAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        gradeWeightSpinner.adapter = gradeWeightAdapter
+        gradeWeightSpinner.onItemSelectedListener = this
+    }
+
+    private fun setOnFocusChangeListeners(){
+
+        findViewById<TextInputEditText>(R.id.grade_description_input).setOnFocusChangeListener{ _, hasFocus ->
+            if(!hasFocus){
+                validateDescription()
+            }
+        }
+    }
+
     fun submit(view: View){
-        if(validateDescription() && validateGrade() && validateWeight()){
+        if(validateDescription()){
             val grade = Grade(
                     0,
                     subjectId,
                     chosenStudentId,
-                    findViewById<TextInputEditText>(R.id.grade_grade_input).text.toString().toDouble(),
-                    findViewById<TextInputEditText>(R.id.grade_weight_input).text.toString().toInt(),
+                    chosenNameId,
+                    chosenNameId,
                     Instant.now().toString(),
                     findViewById<TextInputEditText>(R.id.grade_description_input).text.toString(),
                     null
@@ -126,28 +173,6 @@ class GradeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                     MainApplication.appContext, "Nie wybrano ucznia",
                     Toast.LENGTH_SHORT).show()
         }
-    }
-
-    private fun validateGrade() : Boolean{
-        return if(findViewById<TextInputEditText>(R.id.grade_grade_input).text.toString() == ""){
-            findViewById<TextInputLayout>(R.id.grade_grade).error = "Nie podano oceny"
-            false
-        } else{
-            findViewById<TextInputLayout>(R.id.grade_grade).error = ""
-            true
-        }
-
-    }
-
-    private fun validateWeight() : Boolean{
-        return if(findViewById<TextInputEditText>(R.id.grade_weight_input).text.toString() == ""){
-            findViewById<TextInputLayout>(R.id.grade_weight).error = "Nie podano wagi"
-            false
-        } else{
-            findViewById<TextInputLayout>(R.id.grade_weight).error = ""
-            true
-        }
-
     }
 
     private fun validateDescription(): Boolean {
