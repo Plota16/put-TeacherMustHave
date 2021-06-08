@@ -7,7 +7,9 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import com.plocki.teacherDiary.R
+import com.plocki.teacherDiary.model.GradeWeight
 import com.plocki.teacherDiary.model.Test
+import com.plocki.teacherDiary.utility.DatabaseHelper
 import com.plocki.teacherDiary.utility.MainApplication
 
 
@@ -24,8 +26,10 @@ class TestViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
 
 
     fun bind(test: Test) {
+        val gradeWeights = GradeWeight.readAll(DatabaseHelper(MainApplication.appContext).readableDatabase)
+
         topicTextView.text = test.topic
-        typeTextView.text = test.type
+        typeTextView.text = gradeWeights[test.type.toInt() - 1].name
         stateTextView.text = test.graded
         dateTextView.text = test.date
         timeTextView.text = test.time

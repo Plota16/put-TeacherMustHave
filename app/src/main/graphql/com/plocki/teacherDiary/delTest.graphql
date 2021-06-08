@@ -1,0 +1,7 @@
+mutation delTets($testId: Int) {
+    delete_TEST(where: {id: {_eq: $testId}}) {
+        returning {
+            id
+        }
+    }
+}

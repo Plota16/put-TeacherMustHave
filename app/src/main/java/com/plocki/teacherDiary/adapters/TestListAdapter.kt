@@ -36,6 +36,7 @@ class TestListAdapter(private var list: List<Test>)
         notifyDataSetChanged()
     }
 
+
     override fun getItemCount(): Int = list.size
 
 

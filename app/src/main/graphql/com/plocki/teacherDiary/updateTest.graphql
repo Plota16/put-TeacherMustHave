@@ -1,0 +1,11 @@
+mutation updateTest($testId: Int, $graded: String, $topic: String, $type: String) {
+    update_TEST(where: {id: {_eq: $testId}}, _set: {graded: $graded, topic: $topic, type: $type}) {
+        returning {
+            graded
+            id
+            subject_entry_id
+            topic
+            type
+        }
+    }
+}

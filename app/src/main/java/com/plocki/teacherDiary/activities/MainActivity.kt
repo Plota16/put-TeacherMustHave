@@ -108,7 +108,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         closeApp()
-        super.onBackPressed()
     }
 
 

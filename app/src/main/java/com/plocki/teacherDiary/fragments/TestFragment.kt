@@ -44,7 +44,10 @@ class TestFragment : Fragment() {
 
     }
 
-
+    override fun onResume() {
+        applyRecycler()
+        super.onResume()
+    }
 
 
 }

@@ -1,0 +1,14 @@
+mutation addTestGrades($object: [GRADE_insert_input!]!){
+    insert_GRADE(objects: $object){
+        returning{
+            id
+            subject_for_class_id
+            student_id
+            grade
+            weight
+            date
+            description
+            testId
+        }
+    }
+}

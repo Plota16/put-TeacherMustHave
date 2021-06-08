@@ -5,9 +5,9 @@ import android.database.sqlite.SQLiteDatabase
 
 class Test(val id: Int,
            val topic: String,
-           val type: String,
+           var type: String,
            val subjectId: Int,
-           val graded: String,
+           var graded: String,
            val date: String,
            val time: String) {
 
@@ -128,6 +128,10 @@ class Test(val id: Int,
             val sum: Int = cursor.getInt(0)
             cursor.close()
             return sum
+        }
+
+        fun delete(db: SQLiteDatabase, id:String){
+            db.delete(TABLE_NAME, "$COL1 = $id", null)
         }
 
         private const val TABLE_NAME = "TEST"

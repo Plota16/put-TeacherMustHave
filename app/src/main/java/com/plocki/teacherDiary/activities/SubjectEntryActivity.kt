@@ -7,10 +7,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.text.InputType
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.apollographql.apollo.api.toInput
@@ -19,6 +16,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.plocki.teacherDiary.AddTestMutation
 import com.plocki.teacherDiary.R
 import com.plocki.teacherDiary.SetTopicMutation
+import com.plocki.teacherDiary.model.GradeWeight
 import com.plocki.teacherDiary.model.SubjectEntry
 import com.plocki.teacherDiary.model.Test
 import com.plocki.teacherDiary.type.TEST_insert_input
@@ -30,7 +28,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
-class SubjectEntryActivity : AppCompatActivity()  {
+class SubjectEntryActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener  {
 
     private var isOnline = true
     private var isLate = false
@@ -38,6 +36,8 @@ class SubjectEntryActivity : AppCompatActivity()  {
 
     private lateinit var subjectEntry: SubjectEntry
     private lateinit var db: SQLiteDatabase
+    private val gradeWeightMap = HashMap<Int, Int>()
+    private var chosenWeightId = 0
 
     //Overrides
 
@@ -63,7 +63,13 @@ class SubjectEntryActivity : AppCompatActivity()  {
         super.onResume()
     }
 
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        chosenWeightId = gradeWeightMap[position]!!
+    }
 
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+
+    }
     //OnClicks
 
     private fun setTopic() {
@@ -151,7 +157,22 @@ class SubjectEntryActivity : AppCompatActivity()  {
         val customAlertDialogView = View.inflate(this,R.layout.dialog_test,null)
 
         val topic = customAlertDialogView.findViewById<TextInputEditText>(R.id.dialog_test_topic_input)
-        val type = customAlertDialogView.findViewById<TextInputEditText>(R.id.dialog_test_type_input)
+        val type = customAlertDialogView.findViewById<Spinner>(R.id.dialog_test_type)
+
+        val gradeWeights = GradeWeight.readAll(DatabaseHelper(MainApplication.appContext).readableDatabase)
+        val gradeWeightSpinnerList = ArrayList<String>()
+        for((counter, weight: GradeWeight) in gradeWeights.withIndex()){
+            gradeWeightSpinnerList.add(weight.name)
+            gradeWeightMap[counter] = weight.id
+        }
+        chosenWeightId = gradeWeightMap[0]!!
+
+        val gradeWeightAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, gradeWeightSpinnerList)
+
+        gradeWeightAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        type.adapter = gradeWeightAdapter
+        type.onItemSelectedListener = this
+
 
         builder.setView(customAlertDialogView)
             .setTitle("Dodawanie testu")
@@ -161,7 +182,7 @@ class SubjectEntryActivity : AppCompatActivity()  {
                 val test = Test(
                     0,
                     topic.text.toString(),
-                    type.text.toString(),
+                    chosenWeightId.toString(),
                     subjectEntry.id,
                     "F",
                     subjectEntry.date,

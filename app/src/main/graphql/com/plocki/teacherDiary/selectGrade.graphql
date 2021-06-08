@@ -1,0 +1,12 @@
+query selectGrade($testId: Int) {
+    GRADE(where: {testId: {_eq: $testId}}){
+        id
+        subject_for_class_id
+        student_id
+        grade
+        weight
+        date
+        description
+        testId
+    }
+}
