@@ -15,21 +15,8 @@ class PresenceViewHolder (inflater: LayoutInflater, parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.presence, parent, false)) {
 
 
-    private var presenceTextView: TextView? = null
-    private var presenceRadioGroup: RadioGroup? = null
-
-
-
-
-    init {
-        presenceTextView = itemView.findViewById(R.id.presence_text)
-        presenceRadioGroup = itemView.findViewById(R.id.presence_radio_group)
-
-
-    }
-
-
-
+    private var presenceTextView = itemView.findViewById<TextView>(R.id.presence_text)!!
+    private var presenceRadioGroup = itemView.findViewById<RadioGroup>(R.id.presence_radio_group)!!
 
     fun bind(presence: Presence) {
 
@@ -41,8 +28,8 @@ class PresenceViewHolder (inflater: LayoutInflater, parent: ViewGroup) :
             "BRAK" -> R.id.presence_radio_unknown
             else -> R.id.presence_radio_unknown
         }
-        presenceRadioGroup!!.check(id)
-        presenceRadioGroup!!.setOnCheckedChangeListener { _, checkedId ->
+        presenceRadioGroup.check(id)
+        presenceRadioGroup.setOnCheckedChangeListener { _, checkedId ->
              presence.presence = when(checkedId){
                 R.id.presence_radio_present -> "OBECNY"
                 R.id.presence_radio_absent -> "NIEOBECNY"
@@ -54,7 +41,7 @@ class PresenceViewHolder (inflater: LayoutInflater, parent: ViewGroup) :
             val db = DatabaseHelper(MainApplication.appContext).writableDatabase
             presence.updatePresence(db)
         }
-        presenceTextView!!.text = presence.name
+        presenceTextView.text = presence.name
 
     }
 

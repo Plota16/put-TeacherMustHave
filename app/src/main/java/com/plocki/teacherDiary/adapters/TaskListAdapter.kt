@@ -35,11 +35,11 @@ class TaskListAdapter(private var list: List<Task>)
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val movie: Task = list[position]
         holder.bind(movie)
-        holder.deleteButton!!.setOnClickListener{
+        holder.deleteButton.setOnClickListener{
             deleteTask(holder)
         }
 
-        holder.editButton!!.setOnClickListener{
+        holder.editButton.setOnClickListener{
             editTask(holder)
         }
 

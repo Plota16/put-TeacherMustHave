@@ -36,15 +36,15 @@ class TestViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         when(test.graded){
             "F" -> {
                 stateTextView.setTextColor(ContextCompat.getColor(MainApplication.appContext!!, R.color.light_red))
-                stateTextView.text = "OCZEKUJACY"
+                stateTextView.text = MainApplication.appContext!!.getString(R.string.test_state_waiting)
             }
             "N" -> {
                 stateTextView.setTextColor(ContextCompat.getColor(MainApplication.appContext!!, R.color.light_yellow))
-                stateTextView.text = "NIESPRAWDZONY"
+                stateTextView.text = MainApplication.appContext!!.getString(R.string.test_state_unchecked)
             }
             "Y" -> {
                 stateTextView.setTextColor(ContextCompat.getColor(MainApplication.appContext!!, R.color.light_green))
-                stateTextView.text = "SPRAWDZONY"
+                stateTextView.text = MainApplication.appContext!!.getString(R.string.test_state_checked)
             }
         }
 

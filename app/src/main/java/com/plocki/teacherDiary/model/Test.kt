@@ -4,7 +4,7 @@ import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
 
 class Test(val id: Int,
-           val topic: String,
+           var topic: String,
            var type: String,
            val subjectId: Int,
            var graded: String,

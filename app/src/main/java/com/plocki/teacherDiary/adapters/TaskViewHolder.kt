@@ -15,24 +15,20 @@ class TaskViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
 
 
     lateinit var task : Task
-    var titleTextView: TextView? = null
-    var endDateTextView: TextView? = null
-    var descriptionTextView: TextView? = null
-    var deleteButton: Button? = null
-    var editButton: Button? = null
+    private var titleTextView= itemView.findViewById<TextView>(R.id.task_title)!!
+    private var endDateTextView = itemView.findViewById<TextView>(R.id.task_end_date)!!
+    private var descriptionTextView = itemView.findViewById<TextView>(R.id.task_description)!!
+    var deleteButton = itemView.findViewById<Button>(R.id.task_delete)!!
+    var editButton = itemView.findViewById<Button>(R.id.task_edit)!!
 
     init {
-        titleTextView = itemView.findViewById(R.id.task_title)
-        endDateTextView = itemView.findViewById(R.id.task_end_date)
-        descriptionTextView = itemView.findViewById(R.id.task_description)
-        deleteButton = itemView.findViewById(R.id.task_delete)
-        editButton = itemView.findViewById(R.id.task_edit)
+
     }
 
     fun bind(task: Task) {
-        titleTextView!!.text = task.name
-        endDateTextView!!.text = task.end_date
-        descriptionTextView!!.text = task.description
+        titleTextView.text = task.name
+        endDateTextView.text = task.end_date
+        descriptionTextView.text = task.description
         this.task = task
 
 
