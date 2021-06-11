@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.TestActivity">
+    tools:context=".activities.TestActivity"
+    android:overScrollMode="ifContentScrolls"
+    android:scrollbarStyle="insideOverlay"
+    android:scrollbars="vertical">
 
     <TextView
         android:id="@+id/test_details_topic"
@@ -139,6 +143,25 @@
         android:layout_alignParentBottom="true"
         android:text="Zatwierdź" />
 
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/test_state_waiting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/subject_topic_card"
+        android:layout_marginStart="32dp"
+        android:text="Odbył się" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/test_state_checked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/subject_topic_card"
+        android:layout_alignBaseline="@id/test_state_waiting"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="32dp"
+        android:clickable="false"
+        android:text="Do oceny" />
+
     <Button
         android:id="@+id/test_details_delete"
         style="@android:style/Widget.Material.Button.Borderless.Colored"
@@ -165,6 +188,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/test_details_edit"
-        android:layout_below="@id/subject_topic_card"
-        android:layout_margin="16dp" />
+        android:layout_below="@id/test_state_waiting"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:visibility="gone" />
 </RelativeLayout>

@@ -1,10 +1,6 @@
 package com.plocki.teacherDiary.utility
 
-import com.apollographql.apollo.ApolloCall
 import com.apollographql.apollo.ApolloClient
-import com.apollographql.apollo.api.Mutation
-import com.apollographql.apollo.api.Operation
-import com.apollographql.apollo.api.Query
 import okhttp3.OkHttpClient
 
 
@@ -35,32 +31,17 @@ object ApolloInstance {
         return okHttpClient.build()
     }
 
-    fun buildApolloClient(token: String?) {
+    private fun buildApolloClient(token: String?) {
         val okHttpClient = buildOkHttpClient(token)
 
         apolloClient = ApolloClient.builder()
             .serverUrl(BASE_URL)
             .okHttpClient(okHttpClient)
             .build()
-
-
     }
 
     fun get() : ApolloClient{
         return  apolloClient!!
     }
 
-    fun <OperationData: Operation.Data, OperationVariables: Operation.Variables> query(
-        query: Query<OperationData, OperationData, OperationVariables>,
-        callback: ApolloCall.Callback<OperationData>
-    ) {
-        apolloClient!!.query(query).enqueue(callback)
-    }
-
-    fun <OperationData: Operation.Data, OperationVariables: Operation.Variables> mutate(
-        mutation: Mutation<OperationData, OperationData, OperationVariables>,
-        callback: ApolloCall.Callback<OperationData>
-    ) {
-        apolloClient!!.mutate(mutation).enqueue(callback)
-    }
 }

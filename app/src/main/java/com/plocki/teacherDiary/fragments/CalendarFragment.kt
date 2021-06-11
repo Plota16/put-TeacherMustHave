@@ -39,8 +39,8 @@ class CalendarFragment : Fragment() {
 
     override fun onStart() {
 
-        mWeekView = view!!.findViewById(R.id.weekView);
-        mWeekView.setOnEventClickListener { weekViewEvent: WeekViewEvent, rectF: RectF ->
+        mWeekView = requireView().findViewById(R.id.weekView)
+        mWeekView.setOnEventClickListener { weekViewEvent: WeekViewEvent, _: RectF ->
             val intent = Intent(MainApplication.appContext, SubjectEntryActivity::class.java)
             intent.putExtra("subjectId", weekViewEvent.id.toString())
             startActivity(intent)
@@ -63,7 +63,7 @@ class CalendarFragment : Fragment() {
         super.onStart()
     }
 
-    private fun getEventsForMonth(year: Int, month: Int): List<WeekViewEvent>? {
+    private fun getEventsForMonth(year: Int, month: Int): List<WeekViewEvent> {
         val tempList: MutableList<WeekViewEvent> = ArrayList()
         for (weekViewEvent in entries) {
             if (weekViewEvent.startTime[Calendar.MONTH] == month && weekViewEvent.startTime[Calendar.YEAR] ==
@@ -81,8 +81,7 @@ class CalendarFragment : Fragment() {
 
             for( entry: SubjectEntry in subjectEntries){
 
-                    var name = ""
-                    name = if (entry.topic == ""){
+                    val name = if (entry.topic == ""){
                         entry.subjectName
                     }else{
                         entry.topic
@@ -103,7 +102,7 @@ class CalendarFragment : Fragment() {
                             entry.endTime.split(":")[1].toInt()
                     )
                     event.location = "\n${entry.className}"
-                    event.color = ContextCompat.getColor(this.context!!, entry.getColor())
+                    event.color = ContextCompat.getColor(requireContext(), entry.getColor())
                     weekViewEvents.add(event)
                 }
 

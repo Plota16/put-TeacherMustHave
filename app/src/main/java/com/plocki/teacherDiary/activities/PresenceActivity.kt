@@ -53,7 +53,13 @@ class PresenceActivity : AppCompatActivity() {
         SubjectEntry.updatePresence(db,subjectId)
     }
 
-    fun addPresence(view : View){
+    fun setupListeners(view: View){
+        when(view.id){
+            R.id.button -> addPresence()
+        }
+    }
+
+    private fun addPresence() {
         val db = DatabaseHelper(MainApplication.appContext).readableDatabase
         val presenceList = Presence.readAll(db)
 
@@ -73,12 +79,12 @@ class PresenceActivity : AppCompatActivity() {
             val result = ApolloInstance.get().mutate(mutation).toDeferred().await()
 
             try{
-                val tmp = result.data!!.insert_STUDNET_SUBJECT_ENTRY_PRESENCE!!.returning[0]
-                Toast.makeText(
-                    MainApplication.appContext, "Dodano obecność",
-                    Toast.LENGTH_SHORT).show()
-                finish()
-
+                if(!result.hasErrors()){
+                    Toast.makeText(
+                        MainApplication.appContext, "Dodano obecność",
+                        Toast.LENGTH_SHORT).show()
+                    finish()
+                }
             } catch (e: Error){
                 Toast.makeText(
                         MainApplication.appContext, "Błąd dodawania obecności",

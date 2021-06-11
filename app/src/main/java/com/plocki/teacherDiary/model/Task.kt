@@ -43,7 +43,7 @@ class Task(var id: Int, var name: String, var description: String?, var end_date
             val selection = "$COL5 = ?"
             val selectionArgs = arrayOf("ACTIVE")
 
-            val sortOrder = "$COL4"
+            val sortOrder = COL4
 
             val cursor = db.query(
                     TABLE_NAME,   // The table to query

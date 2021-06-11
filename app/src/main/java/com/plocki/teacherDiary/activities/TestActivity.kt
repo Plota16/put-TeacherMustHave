@@ -7,6 +7,7 @@ import android.text.Editable
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -33,6 +34,11 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private val gradeWeightMap = HashMap<Int, Int>()
     private var chosenWeightId = 0
 
+
+    private lateinit var testCheckSwitch : SwitchCompat
+    private lateinit var testWaitSwitch : SwitchCompat
+
+
     var isOnline = true
 
     //overrides
@@ -44,7 +50,8 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         val testId = intent.getStringExtra("testId")
         db = DatabaseHelper(MainApplication.appContext).writableDatabase
-
+        testCheckSwitch = findViewById(R.id.test_state_checked)
+        testWaitSwitch = findViewById(R.id.test_state_waiting)
 
         test = Test.readOne(db,testId!!)
         val subjectEntry = SubjectEntry.readOne(db,test.subjectId)
@@ -88,15 +95,24 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             "N" -> {
                 stateTextView.setTextColor(ContextCompat.getColor(MainApplication.appContext!!, R.color.light_yellow))
                 stateTextView.text = getString(R.string.test_state_unchecked)
+                testWaitSwitch.isChecked = true
+                testCheckSwitch.isClickable = true
             }
             "Y" -> {
                 stateTextView.setTextColor(ContextCompat.getColor(MainApplication.appContext!!, R.color.light_green))
                 stateTextView.text = getString(R.string.test_state_checked)
+                findViewById<RecyclerView>(R.id.test_recycler).visibility = View.VISIBLE
+                testCheckSwitch.isChecked = true
+                testCheckSwitch.isClickable = true
+                testWaitSwitch.isChecked = true
+                testWaitSwitch.isClickable = false
             }
         }
     }
 
     private fun setOnClicks(){
+        val stateTextView: TextView = findViewById(R.id.test_details_state)
+
         findViewById<Button>(R.id.test_details_confirm).setOnClickListener {
             submit()
         }
@@ -106,6 +122,33 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         findViewById<Button>(R.id.test_details_edit).setOnClickListener {
             editTest()
         }
+
+        testWaitSwitch.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked){
+                testCheckSwitch.isClickable = true
+                stateTextView.setTextColor(ContextCompat.getColor(MainApplication.appContext!!, R.color.light_yellow))
+                stateTextView.text = getString(R.string.test_state_unchecked)
+            }else{
+                stateTextView.setTextColor(ContextCompat.getColor(MainApplication.appContext!!, R.color.light_red))
+                stateTextView.text = getString(R.string.test_state_waiting)
+                testCheckSwitch.isClickable = false
+            }
+        }
+        testCheckSwitch.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked){
+                findViewById<RecyclerView>(R.id.test_recycler).visibility = View.VISIBLE
+                testWaitSwitch.isClickable = false
+                stateTextView.setTextColor(ContextCompat.getColor(MainApplication.appContext!!, R.color.light_green))
+                stateTextView.text = getString(R.string.test_state_checked)
+            }
+            else{
+                testWaitSwitch.isClickable = true
+                findViewById<RecyclerView>(R.id.test_recycler).visibility = View.GONE
+                stateTextView.setTextColor(ContextCompat.getColor(MainApplication.appContext!!, R.color.light_yellow))
+                stateTextView.text = getString(R.string.test_state_unchecked)
+            }
+        }
+
     }
 
     private fun applyRecycler() {
@@ -124,11 +167,23 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     //onClick
     private fun submit(){
-        if(test.graded == "Y"){
-            updateGrades()
+        if(testCheckSwitch.isChecked){
+            if(test.graded == "Y"){
+            updateGrades("update")
+        }
+            else{
+                insertNewGrades()
+            }
+        }
+        else if(!testCheckSwitch.isChecked && testWaitSwitch.isChecked){
+            updateGrades("delete")
+            test.graded = "N"
+            updateTestState()
         }
         else{
-            insertNewGrades()
+            updateGrades("delete")
+            test.graded = "F"
+            updateTestState()
         }
     }
 
@@ -235,7 +290,7 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                     0,
                     test.subjectId,
                     student.id,
-                    1,
+                    0,
                     test.type.toInt(),
                     test.date,
                     test.topic,
@@ -302,7 +357,9 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 testId = grade.testid!!.toInt().toInput(),
                 weight = grade.weight.toInput()
             )
-            input.add(gradeInput)
+            if(grade.grade != 0){
+                input.add(gradeInput)
+            }
         }
 
         val mutation = AddTestGradesMutation(input)
@@ -342,7 +399,7 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
     }
 
-    private fun updateGrades(){
+    private fun updateGrades(mode : String){
         val mutation = DelTestGradesMutation(test.id.toInput())
 
         GlobalScope.launch(Dispatchers.Main) {
@@ -351,7 +408,12 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
                 try {
                     if(!tmp.hasErrors()){
-                        insertNewGrades()
+                        if(mode == "update"){
+                            insertNewGrades()
+                        }
+                        if(mode == "delete"){
+                            updateTestState()
+                        }
                     }
                     else{
                         Toast.makeText(

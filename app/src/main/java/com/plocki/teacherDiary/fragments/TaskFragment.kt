@@ -44,7 +44,7 @@ class TaskFragment : Fragment() {
 
         applyRecycler()
 
-        view!!.findViewById<FloatingActionButton>(R.id.task_button).setOnClickListener{
+        requireView().findViewById<FloatingActionButton>(R.id.task_button).setOnClickListener{
             addTask()
         }
         super.onStart()
@@ -122,7 +122,7 @@ class TaskFragment : Fragment() {
 
     private fun applyRecycler(){
         val list = Task.readAll(DatabaseHelper(MainApplication.appContext).readableDatabase)
-        val recycler = view!!.findViewById<RecyclerView>(R.id.task_recycler)
+        val recycler = requireView().findViewById<RecyclerView>(R.id.task_recycler)
 
         recycler.apply {
             layoutManager = LinearLayoutManager(MainApplication.appContext)

@@ -12,7 +12,7 @@ class MyClassStudent(var id: Int, var className: String, var firstName: String, 
             put(COL2, className)
             put(COL3, firstName)
             put(COL4, lastName)
-            put(COL5, className)
+            put(COL5, classId)
 
         }
         db.insert(TABLE_NAME, null, values)
@@ -26,7 +26,7 @@ class MyClassStudent(var id: Int, var className: String, var firstName: String, 
 
 
             val selection = "$COL2 = ?"
-            val selectionArgs = arrayOf(id.toString())
+            val selectionArgs = arrayOf(id)
 
             val sortOrder = "$COL2 DESC"
 

@@ -19,7 +19,7 @@ class SettingsFragment : Fragment() {
 
     override fun onStart() {
 
-        view!!.findViewById<Button>(R.id.settings_button).setOnClickListener {
+        requireView().findViewById<Button>(R.id.settings_button).setOnClickListener {
             val intent = Intent(MainApplication.appContext, PresenceActivity::class.java)
             val store = Store()
             try{

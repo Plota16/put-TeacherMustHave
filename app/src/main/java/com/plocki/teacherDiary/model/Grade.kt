@@ -146,6 +146,5 @@ class Grade(var id:Int,
 
         const val DROP_TABLE = "DROP TABLE IF EXISTS $TABLE_NAME;"
 
-        const val DELETE_TABLE = "DELETE FROM $TABLE_NAME;"
     }
 }

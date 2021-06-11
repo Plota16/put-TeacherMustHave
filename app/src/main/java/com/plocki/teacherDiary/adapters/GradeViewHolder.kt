@@ -44,9 +44,12 @@ class GradeViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
 
         val gradeNames = GradeName.readAll(DatabaseHelper(MainApplication.appContext).readableDatabase)
         val gradeNameSpinnerList = ArrayList<String>()
+
+        gradeNameSpinnerList.add("Brak")
+        gradeNameMap[0] = 0
         for((counter, name: GradeName) in gradeNames.withIndex()){
             gradeNameSpinnerList.add(name.symbol)
-            gradeNameMap[counter] = name.id
+            gradeNameMap[counter+1] = name.id
         }
         chosenNameId = gradeNameMap[0]!!
 
@@ -61,7 +64,7 @@ class GradeViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        chosenNameId = gradeNameMap[position]!!
+        chosenNameId = gradeNameMap[position+1]!!
         Grade.updateGrade(DatabaseHelper(MainApplication.appContext).writableDatabase, testId, chosenNameId, studentId)
     }
 

@@ -29,14 +29,14 @@ class HomeFragment : Fragment() {
 
         val db = DatabaseHelper(MainApplication.appContext).readableDatabase
 
-        view!!.findViewById<TextView>(R.id.home_title_name).text = name
-        view!!.findViewById<TextView>(R.id.home_task_count).text = Task.count(db).toString()
+        requireView().findViewById<TextView>(R.id.home_title_name).text = name
+        requireView().findViewById<TextView>(R.id.home_task_count).text = Task.count(db).toString()
 
-        view!!.findViewById<TextView>(R.id.home_test_count).text = Test.countFresh(db).toString()
-        view!!.findViewById<TextView>(R.id.home_test_grade_count).text = Test.countUnchecked(db).toString()
+        requireView().findViewById<TextView>(R.id.home_test_count).text = Test.countFresh(db).toString()
+        requireView().findViewById<TextView>(R.id.home_test_grade_count).text = Test.countUnchecked(db).toString()
 
-        view!!.findViewById<TextView>(R.id.home_classes_presence_count).text = SubjectEntry.countPresence(db).toString()
-        view!!.findViewById<TextView>(R.id.home_classes_count).text = SubjectEntry.countTopics(db).toString()
+        requireView().findViewById<TextView>(R.id.home_classes_presence_count).text = SubjectEntry.countPresence(db).toString()
+        requireView().findViewById<TextView>(R.id.home_classes_count).text = SubjectEntry.countTopics(db).toString()
 
         super.onStart()
     }

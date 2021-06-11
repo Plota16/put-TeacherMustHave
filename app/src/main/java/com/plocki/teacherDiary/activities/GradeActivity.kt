@@ -64,6 +64,12 @@ class GradeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     }
 
+    fun setupListeners(view: View){
+        when(view.id){
+            R.id.grade_submit -> submit()
+        }
+    }
+
     private fun setStudentSpinner(){
 
         val className = intent.getStringExtra("className")!!
@@ -128,7 +134,7 @@ class GradeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
     }
 
-    fun submit(view: View){
+    private fun submit() {
         if(validateDescription()){
             val grade = Grade(
                     0,

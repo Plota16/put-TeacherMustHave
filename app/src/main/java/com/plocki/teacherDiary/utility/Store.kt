@@ -1,13 +1,13 @@
 package com.plocki.teacherDiary.utility
 
 import android.content.SharedPreferences
-import android.preference.PreferenceManager
 import android.util.Base64
+import androidx.preference.PreferenceManager
 import com.plocki.teacherDiary.cipher.Decrypt
 import com.plocki.teacherDiary.cipher.Encrypt
 
 
-class Store() {
+class Store {
 
     private val context  = MainApplication.appContext
 
@@ -50,8 +50,7 @@ class Store() {
         val encodedIV = pref.getString("iv","")
         val encodedValueByteArray = Base64.decode(encodedValue, Base64.DEFAULT)
         val encodedIVByteArray = Base64.decode(encodedIV, Base64.DEFAULT)
-        val result = decrypt.decryptData("ALIAS",encodedValueByteArray, encodedIVByteArray)
-        return result
+        return decrypt.decryptData("ALIAS",encodedValueByteArray, encodedIVByteArray)
     }
 
     fun removeToken(){
@@ -76,8 +75,7 @@ class Store() {
         val encodedIV = pref.getString("iv2","")
         val encodedValueByteArray = Base64.decode(encodedValue, Base64.DEFAULT)
         val encodedIVByteArray = Base64.decode(encodedIV, Base64.DEFAULT)
-        val result = decrypt.decryptData("ALIAS",encodedValueByteArray, encodedIVByteArray)
-        return result
+        return decrypt.decryptData("ALIAS",encodedValueByteArray, encodedIVByteArray)
     }
 
     fun removePassword(){

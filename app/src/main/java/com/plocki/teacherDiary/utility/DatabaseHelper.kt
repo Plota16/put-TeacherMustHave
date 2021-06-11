@@ -24,12 +24,8 @@ class DatabaseHelper(
 
     companion object {
 
-
-
-
-        const val DB_VERSION = 1;
-        const val DB_NAME = "teacherMust.db";
-
+        const val DB_VERSION = 1
+        const val DB_NAME = "teacherMust.db"
 
         const val DB_CREATE_ALL =   SubjectEntry.CREATE_TABLE +
                                     MyClassStudent.CREATE_TABLE +

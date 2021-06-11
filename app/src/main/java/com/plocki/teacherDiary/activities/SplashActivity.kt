@@ -30,7 +30,7 @@ class SplashActivity : Activity() {
     override fun onCreate(icicle: Bundle?) {
         setContentView(R.layout.activity_splash)
         super.onCreate(icicle)
-        window.sharedElementsUseOverlay = false;
+        window.sharedElementsUseOverlay = false
         progres = findViewById(R.id.progres)
         initVariables()
         GlobalScope.launch(Main) {

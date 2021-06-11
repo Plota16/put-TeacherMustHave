@@ -15,7 +15,7 @@ import com.plocki.teacherDiary.utility.MainApplication
 import com.plocki.teacherDiary.utility.Store
 
 class TestFragment : Fragment() {
-    private val isOnline = true
+//    private val isOnline = true
     private var userId: Int = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -35,7 +35,7 @@ class TestFragment : Fragment() {
 
     private fun applyRecycler() {
         val list = Test.readAll(DatabaseHelper(MainApplication.appContext).readableDatabase)
-        val recycler = view!!.findViewById<RecyclerView>(R.id.test_recycler)
+        val recycler = requireView().findViewById<RecyclerView>(R.id.test_recycler)
 
         recycler.apply {
             layoutManager = LinearLayoutManager(context)

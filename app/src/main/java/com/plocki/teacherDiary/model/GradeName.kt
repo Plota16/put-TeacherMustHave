@@ -21,7 +21,7 @@ class GradeName(val id: Int, val symbol: String, val name: String, val value: Do
         fun readAll(db: SQLiteDatabase): ArrayList<GradeName> {
             val projection = arrayOf(COL1, COL2, COL3, COL4)
 
-            val sortOrder = "$COL1"
+            val sortOrder = COL1
 
             val cursor = db.query(
                     TABLE_NAME,   // The table to query

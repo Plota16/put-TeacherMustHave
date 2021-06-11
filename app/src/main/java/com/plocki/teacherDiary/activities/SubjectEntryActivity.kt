@@ -54,7 +54,6 @@ class SubjectEntryActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
             isLate = true
         }
 
-        setOnClickListeners()
         updateUI()
     }
 
@@ -196,18 +195,12 @@ class SubjectEntryActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
             .show()
     }
 
-    private fun setOnClickListeners(){
-        findViewById<Button>(R.id.subject_topic_button).setOnClickListener {
-            setTopic()
-        }
-        findViewById<Button>(R.id.subject_grade_button).setOnClickListener {
-            setGrade()
-        }
-        findViewById<Button>(R.id.subject_presence_button).setOnClickListener {
-            checkPresence()
-        }
-        findViewById<Button>(R.id.subject_test_button).setOnClickListener {
-            setTest()
+    fun setOnClickListeners(view: View){
+        when(view.id){
+            R.id.subject_topic_button -> setTopic()
+            R.id.subject_grade_button -> setGrade()
+            R.id.subject_presence_button -> checkPresence()
+            R.id.subject_test_button -> setTest()
         }
     }
 

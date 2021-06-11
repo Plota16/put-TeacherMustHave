@@ -48,18 +48,16 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         window.sharedElementsUseOverlay = false
         toSignIn()
-
-        var password = ""
-        var email = ""
 
         auth = FirebaseAuth.getInstance()
         store = Store()
 
         try{
-            password = store.retrievePassword()
-            email = store.retrieve("email")!!
+            val password = store.retrievePassword()
+            val email = store.retrieve("email")!!
 
             if(password != "" && email != ""){
                 showBiometricDialog(email,password)
@@ -70,7 +68,14 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+    fun setupListeners(view: View){
+         when(view.id){
+             R.id.login_signIn_button -> signIn()
+             R.id.login_forgot_text -> forgotPassword()
+             R.id.login_signIn_text -> toSignUp()
+         }
 
+    }
 
     private fun showBiometricDialog(email: String, password: String){
         executor = ContextCompat.getMainExecutor(this)
@@ -92,7 +97,7 @@ class LoginActivity : AppCompatActivity() {
                     tmp.visibility = View.VISIBLE
                     loginEmailInput.text = Editable.Factory.getInstance().newEditable(email)
                     loginPasswordInput.text = Editable.Factory.getInstance().newEditable(password)
-                    signIn(tmp)
+                    signIn()
                 }
 
                 override fun onAuthenticationFailed() {
@@ -112,12 +117,11 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-
-    fun forgotPassword(view : View){
+    private fun forgotPassword() {
 
     }
 
-    fun toSignUp(view : View) {
+    private fun toSignUp() {
 
         setContentView(R.layout.activity_register)
 
@@ -171,7 +175,7 @@ class LoginActivity : AppCompatActivity() {
         activeLayout = "login"
     }
 
-    fun signIn(view : View){
+    private fun signIn(){
         val email = loginEmailInput.text.toString()
         val password = loginPasswordInput.text.toString()
 
