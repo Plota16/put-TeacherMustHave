@@ -1,0 +1,9 @@
+query SelectSubjectes($classId: Int) {
+    SUBJECT_FOR_CLASS(where: {CLASS: {id: {_eq: $classId}}}) {
+        subject_name
+        TEACHER {
+            first_name
+            last_name
+        }
+    }
+}

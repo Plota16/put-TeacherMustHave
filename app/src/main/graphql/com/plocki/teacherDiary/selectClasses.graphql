@@ -1,0 +1,13 @@
+query selectClasses($teacherId: Int) {
+    CLASS(where: {SUBJECT_FOR_CLASSes: {SUBJECT_ENTRies: {SUBJECT_FOR_CLASS: {TEACHER: {id: {_eq: $teacherId}}}}}}) {
+        name
+        id
+        STUDENTs{
+            id
+        }
+        class_teacher_id
+        SUBJECT_FOR_CLASSes{
+            id
+        }
+    }
+}

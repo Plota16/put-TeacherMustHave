@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <TableLayout
-        android:id="@+id/database_layout"
+        android:id="@+id/subjects_layout"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:stretchColumns="0,1,2"
@@ -18,7 +18,7 @@
             android:background="@android:color/darker_gray">
 
             <TextView
-                android:layout_width="80dp"
+                android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_column="0"
                 android:layout_marginTop="1dp"
@@ -26,19 +26,19 @@
                 android:background="#FFFFFF"
 
                 android:gravity="center"
-                android:text="Klasa"
+                android:text="Przedmiot"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_column="1"
                 android:layout_marginTop="1dp"
                 android:layout_marginBottom="1dp"
                 android:background="#FFFFFF"
                 android:gravity="center"
-                android:text="Uczniów "
+                android:text="Nauczyciel "
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textStyle="bold" />
 
@@ -50,18 +50,10 @@
                 android:layout_marginBottom="1dp"
                 android:background="#FFFFFF"
                 android:gravity="center"
-                android:text="Przedmiotów"
+                android:text=""
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textStyle="bold" />
         </TableRow>
-
-
-
-
-
-
-
-
 
     </TableLayout>
 </ScrollView>

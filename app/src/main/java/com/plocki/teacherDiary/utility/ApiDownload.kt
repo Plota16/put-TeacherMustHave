@@ -20,15 +20,16 @@ class ApiDownload(val id : Int, private val userId: Int) {
             myClassesJob.join()
             val calendarJob = myCalendar(id)
             calendarJob.join()
+            val selectClasses = selectClasses(id)
             val task = selectTasks(userId)
-            task.join()
             val test = selectTests(id)
-            test.join()
             val gradeName = selectGradeNames()
-            gradeName.join()
             val gradeWeight = selectGradeWeights()
+            task.join()
+            test.join()
+            gradeName.join()
             gradeWeight.join()
-
+            selectClasses.join()
             updateLate()
         }
     }
@@ -273,6 +274,44 @@ class ApiDownload(val id : Int, private val userId: Int) {
         }
     }
 
+    private fun selectClasses(teacherId: Int): Job {
+
+        val query = SelectClassesQuery(teacherId.toInput())
+        val db = DatabaseHelper(MainApplication.appContext).writableDatabase
+
+        return GlobalScope.launch(Dispatchers.Main) {
+            try{
+                val tmp  = ApolloInstance.get().query(query).toDeferred().await()
+                try {
+                    if(!tmp.hasErrors()){
+                        db.execSQL(Class.DROP_TABLE)
+                        db.execSQL(Class.CREATE_TABLE)
+
+                        for(entry in tmp.data!!.cLASS){
+                            val myClass = Class(
+                                    entry.id,
+                                    entry.name,
+                                    entry.sTUDENTs.size,
+                                    entry.sUBJECT_FOR_CLASSes.size
+
+                            )
+                            myClass.insert(db)
+                        }
+                    }
+                }catch (e: NullPointerException){
+                    Toast.makeText(
+                            MainApplication.appContext, "Błąd pobierania klas",
+                            Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }catch (e: Exception){
+                Toast.makeText(
+                        MainApplication.appContext, "Bład połączenia z serwerem",
+                        Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
 
     private fun updateLate(){
         val db = DatabaseHelper(MainApplication.appContext).writableDatabase

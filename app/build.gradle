@@ -65,4 +65,5 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
     annotationProcessor 'androidx.room:room-compiler:2.2.5'
     implementation 'androidx.biometric:biometric:1.0.0-beta01'
+    implementation 'com.github.salehyarahmadi:DataTable:v1.0.1'
 }

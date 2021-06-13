@@ -217,7 +217,7 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             builder.setView(customAlertDialogView)
                 .setTitle("Dodawanie testu")
                 .setMessage("Dodaj test")
-                .setPositiveButton("OK") { dialog, _ ->
+                .setPositiveButton("OK") { _, _ ->
 
                     test.topic = topic.text.toString()
                     test.type = chosenWeightId.toString()
