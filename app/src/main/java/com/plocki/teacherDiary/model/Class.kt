@@ -6,7 +6,8 @@ import android.database.sqlite.SQLiteDatabase
 class Class(var id:Int,
             var name: String,
             var studentCount: Int,
-            var subjectCount: Int
+            var subjectCount: Int,
+            var teacherName: String
             ) {
 
 
@@ -16,6 +17,7 @@ class Class(var id:Int,
             put(COL2, name)
             put(COL3, studentCount)
             put(COL4, subjectCount)
+            put(COL5, teacherName)
 
         }
         db.insert(TABLE_NAME, null, values)
@@ -25,7 +27,7 @@ class Class(var id:Int,
     companion object{
 
         fun readAll(db: SQLiteDatabase): ArrayList<Class> {
-            val projection = arrayOf(COL1, COL2, COL3, COL4)
+            val projection = arrayOf(COL1, COL2, COL3, COL4, COL5)
 
 
             val sortOrder = COL1
@@ -47,6 +49,7 @@ class Class(var id:Int,
                             cursor.getString(1),
                             cursor.getInt(2),
                             cursor.getInt(3),
+                            cursor.getString(4),
                     )
                     entries.add(entry)
                 }
@@ -65,13 +68,16 @@ class Class(var id:Int,
         private const val COL3_TYPE = "INTEGER"
         private const val COL4 = "SUBJECT_COUNT"
         private const val COL4_TYPE = "INTEGER"
+        private const val COL5 = "TEACHER_NAME"
+        private const val COL5_TYPE = "TEXT"
 
 
         const val CREATE_TABLE = "Create Table $TABLE_NAME (" +
                 "$COL1 $COL1_TYPE, " +
                 "$COL2 $COL2_TYPE, " +
                 "$COL3 $COL3_TYPE, " +
-                "$COL4 $COL4_TYPE); "
+                "$COL4 $COL4_TYPE, " +
+                "$COL5 $COL5_TYPE); "
 
 
         const val DROP_TABLE = "DROP TABLE IF EXISTS $TABLE_NAME;"

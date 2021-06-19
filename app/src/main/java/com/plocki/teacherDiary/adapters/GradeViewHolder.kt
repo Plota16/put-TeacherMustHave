@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.plocki.teacherDiary.R
 import com.plocki.teacherDiary.model.Grade
 import com.plocki.teacherDiary.model.GradeName
-import com.plocki.teacherDiary.model.MyClassStudent
+import com.plocki.teacherDiary.model.Student
 import com.plocki.teacherDiary.utility.DatabaseHelper
 import com.plocki.teacherDiary.utility.MainApplication
 
@@ -30,7 +30,7 @@ class GradeViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
 
     var pos = 0
 
-    fun bind(student: MyClassStudent, test: Int, subject: Int) {
+    fun bind(student: Student, test: Int, subject: Int) {
         val studentName = "${student.firstName} ${student.lastName}"
         testId = test
         studentId = student.id

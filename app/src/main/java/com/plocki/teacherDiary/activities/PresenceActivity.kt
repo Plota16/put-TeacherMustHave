@@ -10,7 +10,7 @@ import com.apollographql.apollo.api.toInput
 import com.apollographql.apollo.coroutines.toDeferred
 import com.plocki.teacherDiary.*
 import com.plocki.teacherDiary.adapters.PresenceListAdapter
-import com.plocki.teacherDiary.model.MyClassStudent
+import com.plocki.teacherDiary.model.Student
 import com.plocki.teacherDiary.model.Presence
 import com.plocki.teacherDiary.model.SubjectEntry
 import com.plocki.teacherDiary.type.STUDNET_SUBJECT_ENTRY_PRESENCE_insert_input
@@ -95,8 +95,8 @@ class PresenceActivity : AppCompatActivity() {
     }
 
     private fun populateNewPresence() {
-        val studentList = MyClassStudent.readOneClass(DatabaseHelper(MainApplication.appContext).readableDatabase, className)
-        for (student: MyClassStudent in studentList) {
+        val studentList = Student.readOneClass(DatabaseHelper(MainApplication.appContext).readableDatabase, className)
+        for (student: Student in studentList) {
 
             val presence = Presence(subjectId, student.id, "${student.firstName} ${student.lastName}", "BRAK")
             list.add(presence)
@@ -126,7 +126,7 @@ class PresenceActivity : AppCompatActivity() {
                                 val presence = Presence(
                                         singlePresence.subject_entry_id,
                                         singlePresence.student_id,
-                                        MyClassStudent.getStudentName(db,singlePresence.student_id.toString()),
+                                        Student.getStudentName(db,singlePresence.student_id.toString()),
                                         singlePresence.presence
                                 )
                                 list.add(presence)

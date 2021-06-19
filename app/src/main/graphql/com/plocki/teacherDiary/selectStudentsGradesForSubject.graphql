@@ -1,0 +1,29 @@
+query selectStudentsGradesForSubject($subjectId: Int, $studentId: Int) {
+    SUBJECT_FOR_CLASS(where: {id: {_eq: $subjectId}}) {
+        subject_name
+        CLASS {
+            name
+            STUDENTs(where: {id: {_eq: $studentId}}) {
+                id
+                first_name
+                last_name
+                GRADEs {
+                    id
+                    GRADE_WEIGHT {
+                        weight
+                        name
+                    }
+                    GRADE_NAME {
+                        name
+                        symbol
+                        value
+                    }
+                    testId
+                    description
+                    date
+                    subject_for_class_id
+                }
+            }
+        }
+    }
+}

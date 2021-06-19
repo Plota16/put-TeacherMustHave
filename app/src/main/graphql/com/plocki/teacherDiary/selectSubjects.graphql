@@ -1,5 +1,29 @@
-query SelectSubjectes($classId: Int) {
-    SUBJECT_FOR_CLASS(where: {CLASS: {id: {_eq: $classId}}}) {
+query SelectSubjectes($studentId: Int) {
+    SUBJECT_FOR_CLASS(where: {CLASS: {STUDENTs: {id: {_eq: $studentId}}}}) {
+        CLASS{
+            STUDENTs{
+                adress_city
+                adress_number
+                adress_street
+                citizen
+                class_id
+                contact_mail
+                contact_phone
+                first_name
+                gender
+                id
+                last_name
+                parent1_contact_mail
+                parent1_contact_phone
+                parent1_name
+                parent2_contact_mail
+                parent2_contact_phone
+                parent2_name
+                pesel
+                second_name
+            }
+        }
+        id
         subject_name
         TEACHER {
             first_name

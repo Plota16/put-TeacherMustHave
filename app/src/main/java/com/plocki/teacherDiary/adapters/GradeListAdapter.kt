@@ -3,9 +3,9 @@ package com.plocki.teacherDiary.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.plocki.teacherDiary.model.MyClassStudent
+import com.plocki.teacherDiary.model.Student
 
-class GradeListAdapter(private val list: List<MyClassStudent>, val testId : Int, private val subjectId: Int)
+class GradeListAdapter(private val list: List<Student>, val testId : Int, private val subjectId: Int)
     : RecyclerView.Adapter<GradeViewHolder>() {
 
 
@@ -16,7 +16,7 @@ class GradeListAdapter(private val list: List<MyClassStudent>, val testId : Int,
     }
 
     override fun onBindViewHolder(holder: GradeViewHolder, position: Int) {
-        val student: MyClassStudent = list[position]
+        val student: Student = list[position]
         holder.bind(student, testId, subjectId)
 
         holder.gradeSpinner.setSelection(holder.pos-1,false)

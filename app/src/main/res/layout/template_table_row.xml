@@ -1,5 +1,5 @@
 <com.google.android.material.card.MaterialCardView
-    android:id="@+id/classes_row_id"
+    android:id="@+id/template_row_tableLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -11,41 +11,32 @@
 
 
         <RelativeLayout
+            android:id="@+id/template_row_relativeLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/database_row1"
-                    android:layout_width="80dp"
+                    android:id="@+id/template_row_column1"
+                    android:layout_width="160dp"
                     android:layout_height="60dp"
                     android:layout_alignParentStart="true"
                     android:layout_marginBottom="1dp"
                     android:background="#04FFFFFF"
+                    android:fontFamily="@font/roboto"
                     android:gravity="center"
-                    android:text=" Text"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/database_row2"
-                    android:layout_width="100dp"
-                    android:layout_height="60dp"
-                    android:layout_marginBottom="1dp"
-                    android:layout_toEndOf="@id/database_row1"
-                    android:background="#04FFFFFF"
-                    android:gravity="center"
-                    android:text=" Text"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
-
-                <TextView
-                    android:id="@+id/database_row3"
+                    android:id="@+id/template_row_column2"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginBottom="1dp"
-                    android:layout_toEndOf="@id/database_row2"
+                    android:layout_toEndOf="@id/template_row_column1"
                     android:background="#04FFFFFF"
+                    android:fontFamily="@font/roboto"
                     android:gravity="center"
-                    android:text=" Text"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="14sp" />
 
         </RelativeLayout>
 </com.google.android.material.card.MaterialCardView>

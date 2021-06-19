@@ -1,0 +1,7 @@
+query selectStudents($classId: Int) {
+    STUDENT(where: {class_id: {_eq: $classId}}) {
+        id
+        first_name
+        last_name
+    }
+}

@@ -16,7 +16,7 @@ import com.plocki.teacherDiary.R
 import com.plocki.teacherDiary.model.Grade
 import com.plocki.teacherDiary.model.GradeName
 import com.plocki.teacherDiary.model.GradeWeight
-import com.plocki.teacherDiary.model.MyClassStudent
+import com.plocki.teacherDiary.model.Student
 import com.plocki.teacherDiary.type.GRADE_insert_input
 import com.plocki.teacherDiary.utility.ApolloInstance
 import com.plocki.teacherDiary.utility.DatabaseHelper
@@ -73,9 +73,9 @@ class GradeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private fun setStudentSpinner(){
 
         val className = intent.getStringExtra("className")!!
-        val myClass = MyClassStudent.readOneClass(DatabaseHelper(MainApplication.appContext).readableDatabase, className)
+        val myClass = Student.readOneClass(DatabaseHelper(MainApplication.appContext).readableDatabase, className)
         val studentSpinnerList = ArrayList<String>()
-        for((counter, student: MyClassStudent) in myClass.withIndex()){
+        for((counter, student: Student) in myClass.withIndex()){
             studentSpinnerList.add("${student.firstName} ${student.lastName}")
             studentMap[counter] = student.id
         }

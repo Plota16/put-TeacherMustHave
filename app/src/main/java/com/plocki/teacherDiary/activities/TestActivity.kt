@@ -28,7 +28,7 @@ import kotlinx.coroutines.launch
 class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     lateinit var test: Test
-    private var studentList = ArrayList<MyClassStudent>()
+    private var studentList = ArrayList<Student>()
     lateinit var  db : SQLiteDatabase
 
     private val gradeWeightMap = HashMap<Int, Int>()
@@ -154,7 +154,7 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private fun applyRecycler() {
         val db = DatabaseHelper(MainApplication.appContext).readableDatabase
         val subjectEntry = SubjectEntry.readOne(db, test.subjectId)
-        studentList = MyClassStudent.readOneClass(db, subjectEntry.className)
+        studentList = Student.readOneClass(db, subjectEntry.className)
         val recycler = findViewById<RecyclerView>(R.id.test_recycler)
         populateGrades()
         recycler.apply {
@@ -285,7 +285,7 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private fun createEmptyGrades(){
         DatabaseHelper(MainApplication.appContext).writableDatabase.execSQL(Grade.DROP_TABLE)
         DatabaseHelper(MainApplication.appContext).writableDatabase.execSQL(Grade.CREATE_TABLE)
-        for(student: MyClassStudent in studentList){
+        for(student: Student in studentList){
             val grade = Grade(
                     0,
                     test.subjectId,

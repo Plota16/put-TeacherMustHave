@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/select_student_progressBar"
+        layout="@layout/progress_brar" />
+
+    <ScrollView android:id="@+id/select_student_visibility"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <TableLayout
+            android:id="@+id/select_student_tableLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="0,1,2"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/select_student_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:text="Uczniowie klasy VB"
+                android:textColor="@color/Primary"
+                android:textSize="18sp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/select_student_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="@color/card_background">
+
+                <RelativeLayout
+                    android:id="@+id/select_student_relativeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:background="@android:color/darker_gray">
+
+
+                    <TextView
+                        android:id="@+id/select_student_column1"
+                        android:layout_width="160dp"
+                        android:layout_height="70dp"
+                        android:layout_alignParentStart="true"
+
+                        android:background="#FFFFFF"
+                        android:gravity="center"
+                        android:text="Przedmiot"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/select_student_column2"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_toEndOf="@id/select_student_column1"
+                        android:background="#FFFFFF"
+                        android:gravity="center"
+                        android:text="Nauczyciel "
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </TableLayout>
+    </ScrollView>
+</androidx.appcompat.widget.LinearLayoutCompat>

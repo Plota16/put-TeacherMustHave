@@ -52,7 +52,7 @@ class ApiDownload(val id : Int, private val userId: Int) {
                             var presence = ""
                             var testID = ""
 
-                            if (entry.sTUDNET_SUBJECT_ENTRY_PRESENCEs.size == MyClassStudent.classSize(db, entry.sUBJECT_FOR_CLASS.cLASS.name)){
+                            if (entry.sTUDNET_SUBJECT_ENTRY_PRESENCEs.size == Student.classSize(db, entry.sUBJECT_FOR_CLASS.cLASS.name)){
                                 presence = "Y"
                             }
                             if(entry.tESTs.isNotEmpty()){
@@ -103,11 +103,11 @@ class ApiDownload(val id : Int, private val userId: Int) {
 
                 try {
                     if(!tmp.hasErrors()){
-                        db.execSQL(MyClassStudent.DROP_TABLE)
-                        db.execSQL(MyClassStudent.CREATE_TABLE)
+                        db.execSQL(Student.DROP_TABLE)
+                        db.execSQL(Student.CREATE_TABLE)
                         for(studentClass in tmp.data!!.cLASS){
                             for (student in studentClass.sTUDENTs){
-                                val myClassStudent = MyClassStudent(student.id,studentClass.name,student.first_name,student.last_name, studentClass.id)
+                                val myClassStudent = Student(student.id,studentClass.name,student.first_name,student.last_name, studentClass.id)
                                 myClassStudent.insert(db)
                             }
                         }
@@ -292,8 +292,8 @@ class ApiDownload(val id : Int, private val userId: Int) {
                                     entry.id,
                                     entry.name,
                                     entry.sTUDENTs.size,
-                                    entry.sUBJECT_FOR_CLASSes.size
-
+                                    entry.sUBJECT_FOR_CLASSes.size,
+                                    "${entry.tEACHER.first_name} ${entry.tEACHER.last_name}"
                             )
                             myClass.insert(db)
                         }

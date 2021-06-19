@@ -3,7 +3,7 @@ package com.plocki.teacherDiary.model
 import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
 
-class MyClassStudent(var id: Int, var className: String, var firstName: String, var lastName: String, var classId: Int) {
+class Student(var id: Int, var className: String, var firstName: String, var lastName: String, var classId: Int) {
 
 
     fun insert(db: SQLiteDatabase) {
@@ -21,7 +21,7 @@ class MyClassStudent(var id: Int, var className: String, var firstName: String, 
 
     companion object{
 
-        fun readOneClass(db: SQLiteDatabase, id: String): ArrayList<MyClassStudent> {
+        fun readOneClass(db: SQLiteDatabase, id: String): ArrayList<Student> {
             val projection = arrayOf(COL1, COL2, COL3, COL4, COL5)
 
 
@@ -42,10 +42,10 @@ class MyClassStudent(var id: Int, var className: String, var firstName: String, 
 
 
 
-            val entries = ArrayList<MyClassStudent>()
+            val entries = ArrayList<Student>()
             with(cursor) {
                 while (moveToNext()) {
-                    val entry = MyClassStudent(
+                    val entry = Student(
                             cursor.getInt(0),
                             cursor.getString(1),
                             cursor.getString(2),

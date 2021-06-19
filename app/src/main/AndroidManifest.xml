@@ -10,7 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TeacherDiary">
-        <activity android:name=".SelectClassActivity"></activity>
+        <activity android:name=".activities.SubjectDetailActivity"></activity>
+        <activity android:name=".activities.SelectStudentActivity" />
+        <activity android:name=".activities.SelectSubjectActivity" />
         <activity android:name=".activities.TestActivity" />
         <activity android:name=".activities.GradeActivity" />
         <activity android:name=".activities.PresenceActivity" />
