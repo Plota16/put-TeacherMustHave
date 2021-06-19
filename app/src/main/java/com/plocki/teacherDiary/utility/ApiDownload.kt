@@ -31,6 +31,7 @@ class ApiDownload(val id : Int, private val userId: Int) {
             gradeWeight.join()
             selectClasses.join()
             updateLate()
+            Store().store("YES","ready")
         }
     }
 

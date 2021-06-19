@@ -21,6 +21,7 @@ import com.plocki.teacherDiary.utility.ApolloInstance
 import com.plocki.teacherDiary.utility.Store
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.lang.Thread.sleep
 import java.util.concurrent.Executor
 
 
@@ -258,10 +259,17 @@ class LoginActivity : AppCompatActivity() {
                     store.store(user.teacher_id.toString(),"teacherId")
                     store.store(user.tEACHER!!.first_name,"firstName")
                     store.store(user.tEACHER.last_name,"lastName")
+                    Store().remove("ready")
                     val api = ApiDownload(user.teacher_id!!, user.id)
                     api.init()
-                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                    startActivity(intent)
+                    GlobalScope.launch {
+                        while (!isReady()){
+                            sleep(100)
+                        }
+                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                        startActivity(intent)
+                    }
+
 
                 } catch (ex : NullPointerException){
                     val intent = Intent(this@LoginActivity, NonAuthorizedEntryActivity::class.java)
@@ -360,5 +368,15 @@ class LoginActivity : AppCompatActivity() {
 
     private fun validateSign() : Boolean{
         return (validateEmail() and validatePassword())
+    }
+
+    private fun isReady(): Boolean {
+        return try {
+            val ready = Store().retrieve("ready")
+            ready == "YES"
+        }
+        catch (e: java.lang.Exception){
+            false
+        }
     }
 }

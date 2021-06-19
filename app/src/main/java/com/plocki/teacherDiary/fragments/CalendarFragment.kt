@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.alamkanak.weekview.DateTimeInterpreter
 import com.alamkanak.weekview.WeekView
 import com.alamkanak.weekview.WeekViewEvent
 import com.plocki.teacherDiary.R
@@ -18,6 +19,7 @@ import com.plocki.teacherDiary.utility.DatabaseHelper
 import com.plocki.teacherDiary.utility.MainApplication
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -28,9 +30,9 @@ class CalendarFragment : Fragment() {
     private  var entries = ArrayList<WeekViewEvent>()
     private lateinit var  db : SQLiteDatabase
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
 
         return inflater.inflate(R.layout.fragment_calendar, container, false)
@@ -50,6 +52,18 @@ class CalendarFragment : Fragment() {
 
         entries = toWeekViewEvents(SubjectEntry.readAll(db))
 
+        mWeekView.dateTimeInterpreter = object : DateTimeInterpreter {
+            override fun interpretDate(date: Calendar): String? {
+                val dateFormat = SimpleDateFormat("dd.MM.yy", Locale.getDefault())
+                val weekdayFormat = SimpleDateFormat("EEE", Locale.getDefault())
+                val weekday: String = weekdayFormat.format(date.time).toUpperCase(Locale.getDefault())
+                return "$weekday ${dateFormat.format(date.time)}"
+            }
+
+            override fun interpretTime(hour: Int): String {
+                return "$hour:00"
+            }
+        }
 
         mWeekView.setMonthChangeListener{ newYear, newMonth ->
             val month: Int = newMonth - 1

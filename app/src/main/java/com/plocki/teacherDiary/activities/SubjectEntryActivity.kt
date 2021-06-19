@@ -5,7 +5,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
-import android.text.InputType
+import android.text.Editable
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -74,19 +74,27 @@ class SubjectEntryActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
     private fun setTopic() {
         if(isOnline){
             var dialogText: String
+            var title: String
             val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-            builder.setTitle("Podaj Temat")
+            val customAlertDialogView = View.inflate(this, R.layout.dialog_topic,null)
+            val topic = customAlertDialogView.findViewById<TextInputEditText>(R.id.dialog_topic_input)
 
-            val input = EditText(this)
-            input.inputType = InputType.TYPE_CLASS_TEXT
-            input.setText(subjectEntry.topic)
-            builder.setView(input)
-            builder.setPositiveButton("OK") { _, _ ->
-                dialogText = input.text.toString()
-                setTopicMutation(dialogText)
+            if(subjectEntry.topic != ""){
+                topic.text = Editable.Factory.getInstance().newEditable(subjectEntry.topic)
+                title = "Edytuj zadanie"
             }
-            builder.setNegativeButton("Cancel") { dialog, _ -> dialog.cancel() }
-            builder.show()
+            else{
+                title = "Dodaj zadanie"
+            }
+
+            builder.setView(customAlertDialogView)
+                .setTitle(title)
+                .setPositiveButton("OK") { dialog, _ ->
+                    dialogText = topic.text.toString()
+                    setTopicMutation(dialogText)
+                }
+                .setNegativeButton("ANULUJ") { dialog, _ -> dialog.cancel()}
+                .show()
         }
         else{
             Toast.makeText(

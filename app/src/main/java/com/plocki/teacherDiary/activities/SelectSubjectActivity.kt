@@ -70,7 +70,7 @@ class SelectSubjectActivity : AppCompatActivity() {
             row.findViewById<TextView>(R.id.template_row_column2).text = teacherName
 
             row.setOnClickListener {
-                val intent = Intent(MainApplication.appContext, SelectSubjectActivity::class.java)
+                val intent = Intent(MainApplication.appContext, SubjectDetailActivity::class.java)
                 intent.putExtra("subjectId", subject.id.toString())
                 intent.putExtra("studentId", response.data!!.sUBJECT_FOR_CLASS[0].cLASS.sTUDENTs[0].id.toString())
                 startActivity(intent)
