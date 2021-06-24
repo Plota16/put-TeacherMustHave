@@ -1,5 +1,6 @@
 package com.plocki.teacherDiary.activities
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -18,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.plocki.teacherDiary.*
 import com.plocki.teacherDiary.utility.ApiDownload
 import com.plocki.teacherDiary.utility.ApolloInstance
+import com.plocki.teacherDiary.utility.MainApplication
 import com.plocki.teacherDiary.utility.Store
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -61,10 +63,10 @@ class LoginActivity : AppCompatActivity() {
             val email = store.retrieve("email")!!
 
             if(password != "" && email != ""){
-                showBiometricDialog(email,password)
+                showBiometricDialog(email, password)
             }
 
-        }catch (ex : Exception){}
+        }catch (ex: Exception){}
 
 
     }
@@ -81,33 +83,33 @@ class LoginActivity : AppCompatActivity() {
     private fun showBiometricDialog(email: String, password: String){
         executor = ContextCompat.getMainExecutor(this)
         biometricPrompt = BiometricPrompt(this, executor,
-            object : BiometricPrompt.AuthenticationCallback() {
-                override fun onAuthenticationError(errorCode: Int,
-                                                   errString: CharSequence) {
-                    super.onAuthenticationError(errorCode, errString)
+                object : BiometricPrompt.AuthenticationCallback() {
+                    override fun onAuthenticationError(errorCode: Int,
+                                                       errString: CharSequence) {
+                        super.onAuthenticationError(errorCode, errString)
 
-                    Toast.makeText(applicationContext,
-                        "Błąd autentykacji: $errString", Toast.LENGTH_SHORT)
-                        .show()
-                }
+                        Toast.makeText(applicationContext,
+                                "Błąd autentykacji: $errString", Toast.LENGTH_SHORT)
+                                .show()
+                    }
 
-                override fun onAuthenticationSucceeded(
-                    result: BiometricPrompt.AuthenticationResult) {
-                    super.onAuthenticationSucceeded(result)
-                    val tmp = findViewById<LinearLayout>(R.id.login_progressBar)
-                    tmp.visibility = View.VISIBLE
-                    loginEmailInput.text = Editable.Factory.getInstance().newEditable(email)
-                    loginPasswordInput.text = Editable.Factory.getInstance().newEditable(password)
-                    signIn()
-                }
+                    override fun onAuthenticationSucceeded(
+                            result: BiometricPrompt.AuthenticationResult) {
+                        super.onAuthenticationSucceeded(result)
+                        val tmp = findViewById<LinearLayout>(R.id.login_progressBar)
+                        tmp.visibility = View.VISIBLE
+                        loginEmailInput.text = Editable.Factory.getInstance().newEditable(email)
+                        loginPasswordInput.text = Editable.Factory.getInstance().newEditable(password)
+                        signIn()
+                    }
 
-                override fun onAuthenticationFailed() {
-                    super.onAuthenticationFailed()
-                    Toast.makeText(applicationContext, "Autentykacja nieudana",
-                        Toast.LENGTH_SHORT)
-                        .show()
-                }
-            })
+                    override fun onAuthenticationFailed() {
+                        super.onAuthenticationFailed()
+                        Toast.makeText(applicationContext, "Autentykacja nieudana",
+                                Toast.LENGTH_SHORT)
+                                .show()
+                    }
+                })
 
         promptInfo = BiometricPrompt.PromptInfo.Builder()
             .setTitle("Logowanie biometryczne")
@@ -119,7 +121,32 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun forgotPassword() {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        val customAlertDialogView = View.inflate(this, R.layout.dialog_email, null)
+        val inputEmail = customAlertDialogView.findViewById<TextInputEditText>(R.id.dialog_email_input)
 
+        builder.setView(customAlertDialogView)
+                .setTitle("Zapomniane hasło")
+                .setMessage("Podaj adress email")
+                .setPositiveButton("OK") { dialog, _ ->
+                    FirebaseAuth.getInstance().sendPasswordResetEmail(inputEmail.text.toString())
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    Toast.makeText(MainApplication.appContext, "Wysłano mail",
+                                            Toast.LENGTH_SHORT).show()
+                                    store.removeToken()
+                                    store.removePassword()
+                                    store.remove("email")
+                                }
+                                else{
+                                    Toast.makeText(MainApplication.appContext, "Nie wysłano maila",
+                                            Toast.LENGTH_SHORT).show()
+                                }
+                                dialog.dismiss()
+                            }
+                }
+                .setNegativeButton("ANULUJ") { dialog, _ -> dialog.cancel()}
+                .show()
     }
 
     private fun toSignUp() {
@@ -190,7 +217,7 @@ class LoginActivity : AppCompatActivity() {
 
                             user.getIdToken(false).addOnSuccessListener {
                                 store.storeToken(it.token.toString())
-                                whoAmI(loggedUser!!,password)
+                                whoAmI(loggedUser!!, password)
                             }
 
 
@@ -217,7 +244,7 @@ class LoginActivity : AppCompatActivity() {
                         user.getIdToken(false).addOnSuccessListener {
                             store.storeToken(it.token.toString())
 
-                            whoAmI(user.email!!,password)
+                            whoAmI(user.email!!, password)
                         }
                     } else {
                         findViewById<LinearLayout>(R.id.login_progressBar).visibility = View.GONE
@@ -253,12 +280,12 @@ class LoginActivity : AppCompatActivity() {
                 val tmp  = ApolloInstance.get().query(whoAmIQuery).toDeferred().await()
                 try{
                     val user = tmp.data!!.uSER[0]
-                    store.store(user.email,"email")
+                    store.store(user.email, "email")
                     store.storePassword(password)
-                    store.store(user.id.toString(),"id")
-                    store.store(user.teacher_id.toString(),"teacherId")
-                    store.store(user.tEACHER!!.first_name,"firstName")
-                    store.store(user.tEACHER.last_name,"lastName")
+                    store.store(user.id.toString(), "id")
+                    store.store(user.teacher_id.toString(), "teacherId")
+                    store.store(user.tEACHER!!.first_name, "firstName")
+                    store.store(user.tEACHER.last_name, "lastName")
                     Store().remove("ready")
                     val api = ApiDownload(user.teacher_id!!, user.id)
                     api.init()
@@ -271,17 +298,16 @@ class LoginActivity : AppCompatActivity() {
                     }
 
 
-                } catch (ex : NullPointerException){
+                } catch (ex: NullPointerException){
                     val intent = Intent(this@LoginActivity, NonAuthorizedEntryActivity::class.java)
                     startActivity(intent)
                 }
-            } catch (e : Exception){
+            } catch (e: Exception){
                 val intent = Intent(this@LoginActivity, NonAuthorizedEntryActivity::class.java)
                 startActivity(intent)
             }
         }
     }
-
 
     private fun validateEmail(): Boolean {
 
@@ -309,7 +335,7 @@ class LoginActivity : AppCompatActivity() {
         return allGood
     }
 
-    private fun validateOnePassword(no : Int): Boolean {
+    private fun validateOnePassword(no: Int): Boolean {
         var allGood = true
 
         if(no == 1){

@@ -224,6 +224,7 @@ class ApiDownload(val id : Int, private val userId: Int) {
                         }
                     }
                 }catch (e: NullPointerException){
+                    val m = e
                     Toast.makeText(
                             MainApplication.appContext, "Błąd pobierania nazw ocen",
                             Toast.LENGTH_SHORT
