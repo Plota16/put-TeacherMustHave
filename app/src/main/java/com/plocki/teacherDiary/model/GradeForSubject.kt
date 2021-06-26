@@ -7,8 +7,8 @@ class GradeForSubject(
     var gradeName: String,
     var gradeSymbol: String,
     var gradeValue: Double,
-    var testId: Int,
-    var description: String,
+    var testId: Int?,
+    var description: String = "",
     var date: String,
     var subjectForClass: Int
 ) {

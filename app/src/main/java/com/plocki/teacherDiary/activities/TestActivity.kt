@@ -1,6 +1,7 @@
 package com.plocki.teacherDiary.activities
 
 import android.app.AlertDialog
+import android.content.DialogInterface
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.text.Editable
@@ -55,7 +56,7 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         test = Test.readOne(db,testId!!)
         val subjectEntry = SubjectEntry.readOne(db,test.subjectId)
-        populateGrades()
+//        populateGrades()
         setTextViews(test,subjectEntry)
         setOnClicks()
 
@@ -155,12 +156,8 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         val db = DatabaseHelper(MainApplication.appContext).readableDatabase
         val subjectEntry = SubjectEntry.readOne(db, test.subjectId)
         studentList = Student.readOneClass(db, subjectEntry.className)
-        val recycler = findViewById<RecyclerView>(R.id.test_recycler)
+
         populateGrades()
-        recycler.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = GradeListAdapter(studentList, test.id, test.subjectId)
-        }
 
     }
 
@@ -215,8 +212,7 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             //TODO zmiana daty?
 
             builder.setView(customAlertDialogView)
-                .setTitle("Dodawanie testu")
-                .setMessage("Dodaj test")
+                .setTitle("Edytowanie testu")
                 .setPositiveButton("OK") { _, _ ->
 
                     test.topic = topic.text.toString()
@@ -237,38 +233,16 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     private fun deleteTest(){
-        val mutation = DelTetsMutation(test.id.toInput())
-        GlobalScope.launch(Dispatchers.Main) {
-            try{
-                val result  = ApolloInstance.get().mutate(mutation).toDeferred().await()
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
 
-                try {
-                    if(!result.hasErrors()){
-                        Toast.makeText(
-                            MainApplication.appContext, "Usunięto test",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        Test.delete(db,test.id.toString())
-                        val subjectEntry = SubjectEntry.readOne(db,test.subjectId)
-                        subjectEntry.testID = ""
-                        subjectEntry.updateTest(db)
-                        finish()
-                    }
-                }catch (e: NullPointerException){
-                    Toast.makeText(
-                        MainApplication.appContext, "Błąd pobierania obecności",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
+        builder.setTitle("Test")
+                .setMessage("Czy chcesz usunąć test?")
+                .setPositiveButton("Tak") { dialog, _ ->
+                    deleteTestMutation(dialog)
                 }
-            }catch (e: Exception){
-                Toast.makeText(
-                    MainApplication.appContext, "Bład pobierania obecności",
-                    Toast.LENGTH_SHORT
-                ).show()
-
-            }
-        }
+                .setNegativeButton("Nie") { dialog, _ ->
+                    dialog.cancel()}
+                .show()
     }
 
     //private
@@ -298,6 +272,11 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             )
             grade.insert(DatabaseHelper(MainApplication.appContext).writableDatabase)
         }
+        val recycler = findViewById<RecyclerView>(R.id.test_recycler)
+        recycler.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = GradeListAdapter(studentList, test.id, test.subjectId)
+        }
     }
 
 
@@ -318,6 +297,12 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                         for (grade in tmp.data!!.gRADE){
                             val gradeVal = Grade(grade.id,grade.subject_for_class_id,grade.student_id,grade.grade,grade.weight,grade.date.toString(),grade.description,grade.testId.toString())
                             gradeVal.insert(db)
+                        }
+                        getZeroGrades()
+                        val recycler = findViewById<RecyclerView>(R.id.test_recycler)
+                        recycler.apply {
+                            layoutManager = LinearLayoutManager(context)
+                            adapter = GradeListAdapter(studentList, test.id, test.subjectId)
                         }
                     }
                     else{
@@ -351,7 +336,7 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             val gradeInput = GRADE_insert_input(
                 date = grade.date.toInput(),
                 description = grade.descroption.toInput(),
-                grade = grade.grade.toInput(),
+                grade = (grade.grade+1).toInput(),
                 student_id = grade.studentId.toInput(),
                 subject_for_class_id = grade.subjectForClassId.toInput(),
                 testId = grade.testid!!.toInt().toInput(),
@@ -437,6 +422,41 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
     }
 
+    private fun deleteTestMutation(dialog : DialogInterface){
+        val mutation = DelTetsMutation(test.id.toInput())
+        GlobalScope.launch(Dispatchers.Main) {
+            try{
+                val result  = ApolloInstance.get().mutate(mutation).toDeferred().await()
+
+                try {
+                    if(!result.hasErrors()){
+                        Toast.makeText(
+                                MainApplication.appContext, "Usunięto test",
+                                Toast.LENGTH_SHORT
+                        ).show()
+                        Test.delete(db,test.id.toString())
+                        val subjectEntry = SubjectEntry.readOne(db,test.subjectId)
+                        subjectEntry.testID = ""
+                        subjectEntry.updateTest(db)
+                        finish()
+                    }
+                }catch (e: NullPointerException){
+                    Toast.makeText(
+                            MainApplication.appContext, "Błąd pobierania obecności",
+                            Toast.LENGTH_SHORT
+                    ).show()
+
+                }
+            }catch (e: Exception){
+                Toast.makeText(
+                        MainApplication.appContext, "Bład pobierania obecności",
+                        Toast.LENGTH_SHORT
+                ).show()
+
+            }
+        }
+    }
+
     private fun updateTestState(){
         val mutation = UpdateTestMutation(test.id.toInput(),test.graded.toInput(), test.topic.toInput(), test.type.toInput())
 
@@ -466,6 +486,31 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                     Toast.LENGTH_SHORT
                 ).show()
 
+            }
+        }
+    }
+
+    private fun getZeroGrades(){
+        for (student in studentList){
+            var isGraded = false
+            val gradeList = Grade.readAll(DatabaseHelper(MainApplication.appContext).readableDatabase)
+            for(grade in gradeList){
+                if(student.id == grade.studentId){
+                    isGraded = true
+                }
+            }
+            if(!isGraded){
+                val grade = Grade(
+                        0,
+                        test.subjectId,
+                        student.id,
+                        0,
+                        test.type.toInt(),
+                        test.date,
+                        test.topic,
+                        test.id.toString()
+                )
+                grade.insert(DatabaseHelper(MainApplication.appContext).writableDatabase)
             }
         }
     }

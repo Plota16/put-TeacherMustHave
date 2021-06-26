@@ -39,7 +39,6 @@ class GradeViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         setGradeNameSpinner()
     }
 
-
     private fun setGradeNameSpinner(){
 
         val gradeNames = GradeName.readAll(DatabaseHelper(MainApplication.appContext).readableDatabase)
@@ -58,9 +57,14 @@ class GradeViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         gradeNameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         gradeSpinner.adapter = gradeNameAdapter
         gradeSpinner.onItemSelectedListener = this
-        val gradeNameId = Grade.readOne(DatabaseHelper(MainApplication.appContext).readableDatabase, studentId.toString(), testId.toString(), subjectId.toString()).grade
 
-        pos = gradeNameAdapter.getPosition(gradeNameSpinnerList[gradeNameId])
+        pos = try{
+            val gradeNameId = Grade.readOne(DatabaseHelper(MainApplication.appContext).readableDatabase, studentId.toString(), testId.toString(), subjectId.toString()).grade
+            gradeNameAdapter.getPosition(gradeNameSpinnerList[gradeNameId])
+        }catch (e : IndexOutOfBoundsException){
+            0
+        }
+
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {

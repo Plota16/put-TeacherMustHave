@@ -1,0 +1,7 @@
+mutation deleteGrade($gradeId: Int){
+    delete_GRADE(where: {id: {_eq: $gradeId}}){
+        returning{
+            id
+        }
+    }
+}

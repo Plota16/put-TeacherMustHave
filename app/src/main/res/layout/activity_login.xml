@@ -106,5 +106,5 @@
     <include
         android:id="@+id/login_progressBar"
         android:visibility="gone"
-        layout="@layout/progress_brar"/>
+        layout="@layout/progress_bar"/>
 </RelativeLayout>

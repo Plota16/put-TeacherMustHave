@@ -1,0 +1,8 @@
+mutation updateGrade($gradeId : Int, $gradeNameId : Int){
+    update_GRADE(where: {id: {_eq: $gradeId}}, _set: {grade: $gradeNameId}){
+        returning{
+            id
+            grade
+        }
+    }
+}

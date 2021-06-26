@@ -141,7 +141,7 @@ class GradeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                     subjectId,
                     chosenStudentId,
                     chosenNameId,
-                    chosenNameId,
+                    chosenWeightId,
                     Instant.now().toString(),
                     findViewById<TextInputEditText>(R.id.grade_description_input).text.toString(),
                     null

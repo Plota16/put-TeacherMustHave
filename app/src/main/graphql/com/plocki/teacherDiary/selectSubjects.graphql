@@ -1,7 +1,7 @@
 query SelectSubjectes($studentId: Int) {
     SUBJECT_FOR_CLASS(where: {CLASS: {STUDENTs: {id: {_eq: $studentId}}}}) {
         CLASS{
-            STUDENTs{
+            STUDENTs(where: {id: {_eq: $studentId}}){
                 adress_city
                 adress_number
                 adress_street

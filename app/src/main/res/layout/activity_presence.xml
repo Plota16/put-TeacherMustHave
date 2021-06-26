@@ -8,7 +8,7 @@
     tools:context=".activities.PresenceActivity">
     <include
         android:id="@+id/presence_progressBar"
-        layout="@layout/progress_brar"/>
+        layout="@layout/progress_bar"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/presence_recycler"
         android:layout_width="match_parent"
