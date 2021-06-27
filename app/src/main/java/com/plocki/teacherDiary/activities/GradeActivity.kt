@@ -53,7 +53,7 @@ class GradeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        when(view!!.id){
+        when(parent!!.id){
             R.id.grade_studnet -> chosenStudentId = studentMap[position]!!
             R.id.grade_name -> chosenNameId = gradeNameMap[position]!!
             R.id.grade_weight -> chosenWeightId = gradeWeightMap[position]!!

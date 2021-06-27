@@ -1,7 +1,7 @@
 query selectStudentsGradesForSubject($subjectId: Int, $studentId: Int) {
     SUBJECT_FOR_CLASS(where: {id: {_eq: $subjectId}}) {
         subject_name
-        TEACHER{
+        TEACHER {
             first_name
             last_name
         }
@@ -11,7 +11,7 @@ query selectStudentsGradesForSubject($subjectId: Int, $studentId: Int) {
                 id
                 first_name
                 last_name
-                GRADEs {
+                GRADEs(where: {SUBJECT_ENTRY: {SUBJECT_FOR_CLASS: {id: {_eq: $subjectId}}}}) {
                     id
                     GRADE_WEIGHT {
                         weight
@@ -26,6 +26,17 @@ query selectStudentsGradesForSubject($subjectId: Int, $studentId: Int) {
                     description
                     date
                     subject_for_class_id
+                }
+                STUDNET_SUBJECT_ENTRY_PRESENCEs(where: {SUBJECT_ENTRY: {SUBJECT_FOR_CLASS: {id: {_eq: $subjectId}}}}) {
+                    presence
+                    SUBJECT_ENTRY {
+                        id
+                        date
+                        topic
+                        LESSON {
+                            start_time
+                        }
+                    }
                 }
             }
         }

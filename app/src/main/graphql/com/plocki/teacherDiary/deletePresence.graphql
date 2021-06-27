@@ -1,0 +1,9 @@
+mutation deletePresence($subjectEntryiD: Int, $studentId: Int) {
+    delete_STUDNET_SUBJECT_ENTRY_PRESENCE(where: {subject_entry_id: {_eq: $subjectEntryiD}, student_id: {_eq: $studentId}}) {
+        returning {
+            presence
+            student_id
+            subject_entry_id
+        }
+    }
+}

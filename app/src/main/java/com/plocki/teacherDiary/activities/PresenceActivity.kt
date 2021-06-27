@@ -10,8 +10,8 @@ import com.apollographql.apollo.api.toInput
 import com.apollographql.apollo.coroutines.toDeferred
 import com.plocki.teacherDiary.*
 import com.plocki.teacherDiary.adapters.PresenceListAdapter
-import com.plocki.teacherDiary.model.Student
 import com.plocki.teacherDiary.model.Presence
+import com.plocki.teacherDiary.model.Student
 import com.plocki.teacherDiary.model.SubjectEntry
 import com.plocki.teacherDiary.type.STUDNET_SUBJECT_ENTRY_PRESENCE_insert_input
 import com.plocki.teacherDiary.utility.ApolloInstance

@@ -1,0 +1,9 @@
+mutation updatePresnece($studentId: Int, $subjectEntry: Int, $presence: String) {
+    update_STUDNET_SUBJECT_ENTRY_PRESENCE(where: {student_id: {_eq: $studentId}, subject_entry_id: {_eq: $subjectEntry}}, _set: {presence: $presence}) {
+        returning {
+            student_id
+            subject_entry_id
+            presence
+        }
+    }
+}

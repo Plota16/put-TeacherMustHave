@@ -63,7 +63,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="Imię:"
                             android:textColor="@color/black"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -79,7 +79,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="Michał"
                             android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/select_subject_main_secondName"
@@ -93,7 +93,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="Drugie:"
                             android:textColor="@color/black"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -109,7 +109,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="Maciej"
                             android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/select_subject_main_LastName"
@@ -123,7 +123,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="Nazwisko:"
                             android:textColor="@color/black"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -139,7 +139,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="Płocki"
                             android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/select_subject_main_pesel"
@@ -153,7 +153,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="PESEL:"
                             android:textColor="@color/black"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -169,7 +169,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="123456789"
                             android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/select_subject_main_gender"
@@ -183,7 +183,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="Płeć:"
                             android:textColor="@color/black"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -199,7 +199,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="Mężczyzna"
                             android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/select_subject_main_citizen"
@@ -213,7 +213,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="Obywatelstwo:"
                             android:textColor="@color/black"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -229,7 +229,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="Polskie"
                             android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
                     </RelativeLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -273,7 +273,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="Miasto:"
                             android:textColor="@color/black"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -289,7 +289,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="Poznań"
                             android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/select_subject_adress_street"
@@ -303,7 +303,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="Ulica:"
                             android:textColor="@color/black"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -319,7 +319,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="Górna Wilda"
                             android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/select_subject_adress_number"
@@ -333,7 +333,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="Numer:"
                             android:textColor="@color/black"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -349,7 +349,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="47a/14"
                             android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
                     </RelativeLayout>
 
@@ -395,7 +395,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="789456123"
                             android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/select_subject_contact_name"
@@ -409,7 +409,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="IMIE NAZWISKO"
                             android:textColor="@color/black"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -424,7 +424,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="mail@gmail.com"
                             android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/select_subject_contact_p1_name"
@@ -438,7 +438,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="Rodzic: MAMA"
                             android:textColor="@color/black"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -453,7 +453,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="456789123"
                             android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/select_subject_contact_p1_mail"
@@ -467,7 +467,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="mail@mama.pl"
                             android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/select_subject_contact_p2_name"
@@ -481,7 +481,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="Rodzic 2 TATA"
                             android:textColor="@color/black"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -496,7 +496,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="123654789"
                             android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/select_subject_contact_p2_mail"
@@ -510,7 +510,7 @@
                             android:fontFamily="@font/roboto"
                             android:text="mail@tata.pl"
                             android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
 
                     </RelativeLayout>

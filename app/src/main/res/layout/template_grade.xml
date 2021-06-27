@@ -4,22 +4,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="70dp"
+    android:layout_width="50dp"
     android:layout_height="wrap_content"
     android:layout_margin="12dp"
-    android:background="@color/Primary"
-    android:padding="6dp">
+    android:padding="4dp">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/template_grade_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/Primary">
+        app:cardBackgroundColor="@color/Primary">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/Primary">
+            android:background="@android:color/transparent">
 
             <TextView
                 android:id="@+id/template_grade_grade"
@@ -29,7 +28,7 @@
                 android:fontFamily="@font/roboto_black"
                 android:text="5"
                 android:textColor="@color/black"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/template_grade_desc"
@@ -41,7 +40,7 @@
                 android:gravity="center"
                 android:lines="2"
                 android:text="Praca klasowa"
-                android:textSize="12sp" />
+                android:textSize="10sp" />
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
 </RelativeLayout>

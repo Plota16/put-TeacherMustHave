@@ -8,6 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.api.toInput
 import com.apollographql.apollo.coroutines.toDeferred
@@ -16,8 +19,10 @@ import com.plocki.teacherDiary.DeleteGradeMutation
 import com.plocki.teacherDiary.R
 import com.plocki.teacherDiary.SelectStudentsGradesForSubjectQuery
 import com.plocki.teacherDiary.UpdateGradeMutation
+import com.plocki.teacherDiary.adapters.StudentPresenceAdapter
 import com.plocki.teacherDiary.model.GradeForSubject
 import com.plocki.teacherDiary.model.GradeName
+import com.plocki.teacherDiary.model.StudentPresence
 import com.plocki.teacherDiary.utility.ApolloInstance
 import com.plocki.teacherDiary.utility.DatabaseHelper
 import com.plocki.teacherDiary.utility.MainApplication
@@ -35,7 +40,7 @@ class SubjectDetailActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_subject_detail)
-        getGradesQuery()
+        getGradesAndPresenceQuery()
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -83,7 +88,8 @@ class SubjectDetailActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
 
     }
 
-    private fun setupGrades() {
+    private fun setupGrades(grades: List<SelectStudentsGradesForSubjectQuery.GRADE>) {
+
         val layout = findViewById<RelativeLayout>(R.id.subject_detail_grade_realativeLayout)
         layout.removeAllViews()
         findViewById<ImageButton>(R.id.subject_detail_show_grades).setOnClickListener {
@@ -95,13 +101,34 @@ class SubjectDetailActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
                 layout.visibility = View.GONE
             }
         }
-        for((index, grade) in gradeList.withIndex()){
 
+        for ((index, gradeInput) in grades.withIndex()){
+            val grade = GradeForSubject(
+                    gradeInput.id,
+                    gradeInput.gRADE_WEIGHT.weight,
+                    gradeInput.gRADE_WEIGHT.name,
+                    gradeInput.gRADE_NAME.name,
+                    gradeInput.gRADE_NAME.symbol,
+                    gradeInput.gRADE_NAME.value!!,
+                    gradeInput.testId,
+                    gradeInput.description,
+                    gradeInput.date.toString(),
+                    gradeInput.subject_for_class_id
+            )
+            gradeList.add(grade)
             val gradeBox = LayoutInflater.from(this).inflate(R.layout.template_grade, null)
             val desc = grade.weightName.replace(" ", "\n")
             val noColumns = calculateNoOfColumns()
             val column = index%noColumns
 
+            when(grade.weight){
+                1 -> gradeBox.findViewById<MaterialCardView>(R.id.template_grade_card).setBackgroundColor(ContextCompat.getColor(this, R.color.light_red))
+                2 -> gradeBox.findViewById<MaterialCardView>(R.id.template_grade_card).setBackgroundColor(ContextCompat.getColor(this, R.color.light_blue))
+                3 -> gradeBox.findViewById<MaterialCardView>(R.id.template_grade_card).setBackgroundColor(ContextCompat.getColor(this, R.color.light_green))
+                4 -> gradeBox.findViewById<MaterialCardView>(R.id.template_grade_card).setBackgroundColor(ContextCompat.getColor(this, R.color.light_yellow))
+                6 -> gradeBox.findViewById<MaterialCardView>(R.id.template_grade_card).setBackgroundColor(ContextCompat.getColor(this, R.color.light_unknown))
+                else ->  gradeBox.findViewById<MaterialCardView>(R.id.template_grade_card).setBackgroundColor(ContextCompat.getColor(this, R.color.light_purple))
+            }
             gradeBox.findViewById<TextView>(R.id.template_grade_grade).text = grade.gradeSymbol
             gradeBox.findViewById<TextView>(R.id.template_grade_desc).text = desc
             gradeBox.findViewById<MaterialCardView>(R.id.template_grade_card).setOnClickListener {
@@ -109,7 +136,7 @@ class SubjectDetailActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
             }
             gradeBox.id = 1000000 + index
 
-            val lp = RelativeLayout.LayoutParams(120 * this.resources.displayMetrics.density.toInt(), RelativeLayout.LayoutParams.WRAP_CONTENT)
+            val lp = RelativeLayout.LayoutParams(90 * this.resources.displayMetrics.density.toInt(), RelativeLayout.LayoutParams.WRAP_CONTENT)
             lp.setMargins(24, 24, 24, 24)
 
             when {
@@ -125,7 +152,46 @@ class SubjectDetailActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
                 }
             }
             layout.addView(gradeBox, lp)
+        }
 
+    }
+
+    private fun setupPresences(studentSubjectEntryPresences: List<SelectStudentsGradesForSubjectQuery.STUDNET_SUBJECT_ENTRY_PRESENCE>, studentId: Int) {
+        val recycler = findViewById<RecyclerView>(R.id.subject_detail_presence_recycler)
+        findViewById<ImageButton>(R.id.subject_detail_show_presence).setOnClickListener {
+            it.rotation = it.rotation + 180
+            if(recycler.visibility == View.GONE){
+                recycler.visibility = View.VISIBLE
+            }
+            else{
+                recycler.visibility = View.GONE
+            }
+        }
+
+        val presenceList = ArrayList<StudentPresence>()
+        for(presence in studentSubjectEntryPresences){
+
+            val topic = if(presence.sUBJECT_ENTRY.topic.isNullOrEmpty()){
+                "BEZ TEMATU"
+            }
+            else{
+                presence.sUBJECT_ENTRY.topic
+            }
+            val studentPresence = StudentPresence(
+                    studentId,
+                    presence.sUBJECT_ENTRY.id,presence.presence,
+                    presence.sUBJECT_ENTRY.date.toString(),
+                    presence.sUBJECT_ENTRY.lESSON.start_time.toString(),
+                    topic
+            )
+            presenceList.add(studentPresence)
+        }
+
+
+
+        recycler.apply {
+            layoutManager = LinearLayoutManager(MainApplication.appContext)
+            adapter = StudentPresenceAdapter(presenceList)
         }
     }
 
@@ -133,7 +199,7 @@ class SubjectDetailActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
         val displayMetrics: DisplayMetrics = this.resources.displayMetrics
         val screenWidthDp = displayMetrics.widthPixels / displayMetrics.density
         val card = screenWidthDp - 40 - 16
-        return (card / 120f + 0.5).toInt()
+        return (card / 90f + 0.5).toInt()
     }
 
 
@@ -207,7 +273,7 @@ class SubjectDetailActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
     }
 
 
-    private fun getGradesQuery(){
+    private fun getGradesAndPresenceQuery(){
 
         val studentId = intent.getStringExtra("studentId")!!.toInt()
         val subjectId = intent.getStringExtra("subjectId")!!.toInt()
@@ -219,26 +285,14 @@ class SubjectDetailActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
                 val response  = ApolloInstance.get().query(query).toDeferred().await()
                 try {
                     if(!response.hasErrors()){
-                        for (grade in response.data!!.sUBJECT_FOR_CLASS[0].cLASS.sTUDENTs[0].gRADEs){
-                            gradeList.add(GradeForSubject(
-                                    grade.id,
-                                    grade.gRADE_WEIGHT.weight,
-                                    grade.gRADE_WEIGHT.name,
-                                    grade.gRADE_NAME.name,
-                                    grade.gRADE_NAME.symbol,
-                                    grade.gRADE_NAME.value!!,
-                                    grade.testId,
-                                    grade.description,
-                                    grade.date.toString(),
-                                    grade.subject_for_class_id
-                            ))
-                        }
+                        setupPresences(response.data!!.sUBJECT_FOR_CLASS[0].cLASS.sTUDENTs[0].sTUDNET_SUBJECT_ENTRY_PRESENCEs,studentId)
+                        setupGrades(response.data!!.sUBJECT_FOR_CLASS[0].cLASS.sTUDENTs[0].gRADEs)
+                        setupTitles(response)
 
                         findViewById<View>(R.id.subject_detail_progressBar).visibility = View.GONE
                         findViewById<RelativeLayout>(R.id.subject_detail_relativeLayout).visibility = View.VISIBLE
 
-                        setupGrades()
-                        setupTitles(response)
+
                     }
                 }catch (e: NullPointerException){
                     Toast.makeText(
@@ -248,7 +302,6 @@ class SubjectDetailActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
                     finish()
                 }
             }catch (e: Exception){
-                val c = e
                 Toast.makeText(
                         MainApplication.appContext, "Bład połączenia z serwerem",
                         Toast.LENGTH_SHORT
@@ -272,7 +325,7 @@ class SubjectDetailActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
                     Toast.makeText(
                             MainApplication.appContext, "Ocena usunieta",
                             Toast.LENGTH_SHORT).show()
-                    getGradesQuery()
+                    getGradesAndPresenceQuery()
 
                 }
                 else{
@@ -305,7 +358,7 @@ class SubjectDetailActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
                     Toast.makeText(
                             MainApplication.appContext, "Ocena uaktualniona",
                             Toast.LENGTH_SHORT).show()
-                    getGradesQuery()
+                    getGradesAndPresenceQuery()
                 }
                 else{
                     Toast.makeText(

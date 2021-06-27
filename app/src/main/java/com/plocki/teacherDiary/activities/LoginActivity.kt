@@ -96,7 +96,7 @@ class LoginActivity : AppCompatActivity() {
                     override fun onAuthenticationSucceeded(
                             result: BiometricPrompt.AuthenticationResult) {
                         super.onAuthenticationSucceeded(result)
-                        val tmp = findViewById<LinearLayout>(R.id.login_progressBar)
+                        val tmp = findViewById<View>(R.id.login_progressBar)
                         tmp.visibility = View.VISIBLE
                         loginEmailInput.text = Editable.Factory.getInstance().newEditable(email)
                         loginPasswordInput.text = Editable.Factory.getInstance().newEditable(password)
@@ -208,7 +208,7 @@ class LoginActivity : AppCompatActivity() {
         val password = loginPasswordInput.text.toString()
 
         if(validateSign()){
-            findViewById<LinearLayout>(R.id.login_progressBar).visibility = View.VISIBLE
+            findViewById<View>(R.id.login_progressBar).visibility = View.VISIBLE
             auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
