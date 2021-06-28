@@ -211,14 +211,14 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                         }
                         else{
                             Toast.makeText(
-                                    MainApplication.appContext, "Błąd dodawania ocen",
+                                    MainApplication.appContext, "Błąd edycji testu",
                                     Toast.LENGTH_SHORT
                             ).show()
                         }
 
                     }catch (e: NullPointerException){
                         Toast.makeText(
-                                MainApplication.appContext, "Błąd dodawania ocen",
+                                MainApplication.appContext, "Błąd edycji testu",
                                 Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -398,7 +398,7 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             val gradeInput = GRADE_insert_input(
                 date = grade.date.toInput(),
                 description = grade.descroption.toInput(),
-                grade = (grade.grade+1).toInput(),
+                grade = (grade.grade).toInput(),
                 student_id = grade.studentId.toInput(),
                 subject_for_class_id = grade.subjectForClassId.toInput(),
                 testId = grade.testid!!.toInt().toInput(),
@@ -425,6 +425,7 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                         updateTestState(null)
                     }
                     else{
+                        val c =0
                         Toast.makeText(
                             MainApplication.appContext, "Błąd dodawania ocen",
                             Toast.LENGTH_SHORT
@@ -432,6 +433,7 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                     }
 
                 }catch (e: NullPointerException){
+                    val c = e
                     Toast.makeText(
                         MainApplication.appContext, "Błąd dodawania ocen",
                         Toast.LENGTH_SHORT

@@ -19,7 +19,7 @@ class GradeListAdapter(private val list: List<Student>, val testId : Int, privat
         val student: Student = list[position]
         holder.bind(student, testId, subjectId)
 
-        holder.gradeSpinner.setSelection(holder.pos-1,false)
+        holder.gradeSpinner.setSelection(holder.pos,false)
     }
 
     override fun getItemCount(): Int = list.size

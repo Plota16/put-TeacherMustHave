@@ -165,7 +165,7 @@ class SubjectEntryActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 
         val topic = customAlertDialogView.findViewById<TextInputEditText>(R.id.dialog_test_topic_input)
         val type = customAlertDialogView.findViewById<Spinner>(R.id.dialog_test_type)
-        customAlertDialogView.findViewById<TextView>(R.id.dialog_test_date).visibility = View.GONE
+        customAlertDialogView.findViewById<Spinner>(R.id.dialog_test_date).visibility = View.GONE
         customAlertDialogView.findViewById<TextView>(R.id.dialog_test_date_text).visibility = View.GONE
 
         val gradeWeights = GradeWeight.readAll(DatabaseHelper(MainApplication.appContext).readableDatabase)

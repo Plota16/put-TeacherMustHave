@@ -68,7 +68,12 @@ class GradeViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        chosenNameId = gradeNameMap[position+1]!!
+        chosenNameId = if(position!= 0) {
+            gradeNameMap[position-1]!!+1
+        }else{
+            0
+        }
+
         Grade.updateGrade(DatabaseHelper(MainApplication.appContext).writableDatabase, testId, chosenNameId, studentId)
     }
 
