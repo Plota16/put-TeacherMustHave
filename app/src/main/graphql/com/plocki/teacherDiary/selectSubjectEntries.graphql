@@ -1,0 +1,12 @@
+query selectSubjectEntries($teacherId: Int, $subjecentryId: Int) {
+    SUBJECT_ENTRY(where: {SUBJECT_FOR_CLASS: {TEACHER: {id: {_eq: $teacherId}}, SUBJECT_ENTRies: {id: {_eq: $subjecentryId}}}}) {
+        id
+        date
+        DAY{
+            name_pl
+        }
+        LESSON {
+            start_time
+        }
+    }
+}

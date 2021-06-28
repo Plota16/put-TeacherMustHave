@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/subject_detail_scrollView"
@@ -15,332 +15,336 @@
             layout="@layout/progress_bar"
             android:visibility="visible" />
 
-        <RelativeLayout
-            android:id="@+id/subject_detail_relativeLayout"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"
-            tools:context=".activities.SubjectDetailActivity">
-
-            <TextView
-                android:id="@+id/subject_detail_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_margin="8dp"
-                android:fontFamily="@font/roboto_black"
-                android:text="Michał Płocki"
-                android:textColor="@color/Primary"
-                android:textSize="24sp" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/subject_detail_card_main"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:id="@+id/subject_detail_relativeLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/subject_detail_title"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
-                app:cardBackgroundColor="@color/card_background">
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                tools:context=".activities.SubjectDetailActivity">
 
-                <RelativeLayout
+                <TextView
+                    android:id="@+id/subject_detail_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="8dp"
+                    android:fontFamily="@font/roboto_black"
+                    android:text="Michał Płocki"
+                    android:textColor="@color/Primary"
+                    android:textSize="24sp" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/subject_detail_card_main"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:id="@+id/subject_detail_subject_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="4dp"
-                        android:fontFamily="@font/roboto"
-                        android:text="Przedmiot:"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/subject_detail_subject_input"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBaseline="@id/subject_detail_subject_label"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_toEndOf="@id/subject_detail_subject_label"
-                        android:fontFamily="@font/roboto"
-                        android:text="Polski"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/subject_detail_teacher_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/subject_detail_subject_label"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_marginBottom="4dp"
-                        android:fontFamily="@font/roboto"
-                        android:text="Nauczyciel:"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/subject_detail_teacher_input"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBaseline="@id/subject_detail_teacher_label"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_toEndOf="@id/subject_detail_teacher_label"
-                        android:fontFamily="@font/roboto"
-                        android:text="Petr Cech"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/subject_detail_gradeAvg_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/subject_detail_teacher_label"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_marginBottom="4dp"
-                        android:fontFamily="@font/roboto"
-                        android:text="Średnia ocen:"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/subject_detail_gradeAvg_input"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBaseline="@id/subject_detail_gradeAvg_label"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_toEndOf="@id/subject_detail_gradeAvg_label"
-                        android:fontFamily="@font/roboto"
-                        android:text="brak"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/subject_detail_proposedGrade_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/subject_detail_gradeAvg_label"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_marginBottom="4dp"
-                        android:fontFamily="@font/roboto"
-                        android:text="Ocena proponowana:"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/subject_detail_proposedGrade_input"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/subject_detail_gradeAvg_label"
-                        android:layout_alignBaseline="@id/subject_detail_proposedGrade_label"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_toEndOf="@id/subject_detail_proposedGrade_label"
-                        android:fontFamily="@font/roboto"
-                        android:text="brak"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/subject_detail_grade_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/subject_detail_proposedGrade_label"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_marginBottom="4dp"
-                        android:fontFamily="@font/roboto"
-                        android:text="Ocena końcowa:"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/subject_detail_grade_input"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBaseline="@id/subject_detail_grade_label"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_toEndOf="@id/subject_detail_grade_label"
-                        android:fontFamily="@font/roboto"
-                        android:text="brak"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/subject_detail_frequency_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/subject_detail_grade_label"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_marginBottom="4dp"
-                        android:fontFamily="@font/roboto"
-                        android:text="Frekwencja"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/subject_detail_frequency_input"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBaseline="@id/subject_detail_frequency_label"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_toEndOf="@id/subject_detail_frequency_label"
-                        android:fontFamily="@font/roboto"
-                        android:text="100 %"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-                </RelativeLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/subject_detail_card_grade"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/subject_detail_card_main"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
-                app:cardBackgroundColor="@color/card_background">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageButton
-                        android:id="@+id/subject_detail_show_grades"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:backgroundTint="#00FFFFFF"
-                        android:rotation="180"
-                        app:srcCompat="@drawable/ic_expand_more_black_48dp" />
-
-                    <TextView
-                        android:id="@+id/subject_deail_grade_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBaseline="@id/subject_detail_show_grades"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:fontFamily="@font/roboto"
-                        android:text="OCENY:"
-                        android:textColor="@color/Primary"
-                        android:textStyle="bold" />
+                    android:layout_below="@id/subject_detail_title"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp"
+                    app:cardBackgroundColor="@color/card_background">
 
                     <RelativeLayout
-                        android:id="@+id/subject_detail_grade_realativeLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/subject_deail_grade_title"
-                        android:padding="12dp">
+                        android:padding="8dp">
 
+                        <TextView
+                            android:id="@+id/subject_detail_subject_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:fontFamily="@font/roboto"
+                            android:text="Przedmiot:"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/subject_detail_subject_input"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@id/subject_detail_subject_label"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_toEndOf="@id/subject_detail_subject_label"
+                            android:fontFamily="@font/roboto"
+                            android:text="Polski"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/subject_detail_teacher_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/subject_detail_subject_label"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="@font/roboto"
+                            android:text="Nauczyciel:"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/subject_detail_teacher_input"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@id/subject_detail_teacher_label"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_toEndOf="@id/subject_detail_teacher_label"
+                            android:fontFamily="@font/roboto"
+                            android:text="Petr Cech"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/subject_detail_gradeAvg_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/subject_detail_teacher_label"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="@font/roboto"
+                            android:text="Średnia ocen:"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/subject_detail_gradeAvg_input"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@id/subject_detail_gradeAvg_label"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_toEndOf="@id/subject_detail_gradeAvg_label"
+                            android:fontFamily="@font/roboto"
+                            android:text="brak"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/subject_detail_proposedGrade_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/subject_detail_gradeAvg_label"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="@font/roboto"
+                            android:text="Ocena proponowana:"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/subject_detail_proposedGrade_input"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/subject_detail_gradeAvg_label"
+                            android:layout_alignBaseline="@id/subject_detail_proposedGrade_label"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_toEndOf="@id/subject_detail_proposedGrade_label"
+                            android:fontFamily="@font/roboto"
+                            android:text="brak"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/subject_detail_grade_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/subject_detail_proposedGrade_label"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="@font/roboto"
+                            android:text="Ocena końcowa:"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/subject_detail_grade_input"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@id/subject_detail_grade_label"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_toEndOf="@id/subject_detail_grade_label"
+                            android:fontFamily="@font/roboto"
+                            android:text="brak"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/subject_detail_frequency_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/subject_detail_grade_label"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="@font/roboto"
+                            android:text="Frekwencja"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/subject_detail_frequency_input"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@id/subject_detail_frequency_label"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_toEndOf="@id/subject_detail_frequency_label"
+                            android:fontFamily="@font/roboto"
+                            android:text="100 %"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+                    </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/subject_detail_card_grade"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/subject_detail_card_main"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp"
+                    app:cardBackgroundColor="@color/card_background">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageButton
+                            android:id="@+id/subject_detail_show_grades"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:backgroundTint="#00FFFFFF"
+                            android:rotation="180"
+                            app:srcCompat="@drawable/ic_expand_more_black_48dp" />
+
+                        <TextView
+                            android:id="@+id/subject_deail_grade_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@id/subject_detail_show_grades"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:fontFamily="@font/roboto"
+                            android:text="OCENY:"
+                            android:textColor="@color/Primary"
+                            android:textStyle="bold" />
+
+                        <RelativeLayout
+                            android:id="@+id/subject_detail_grade_realativeLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/subject_deail_grade_title"
+                            android:padding="12dp">
+
+
+                        </RelativeLayout>
 
                     </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
 
-                </RelativeLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/subject_detail_card_presence"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/subject_detail_card_grade"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
-                android:clickable="false"
-                android:focusable="false"
-                app:cardBackgroundColor="@color/card_background">
-
-                <RelativeLayout
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/subject_detail_card_presence"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/subject_detail_card_grade"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    app:cardBackgroundColor="@color/card_background">
 
-                    <ImageButton
-                        android:id="@+id/subject_detail_show_presence"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:backgroundTint="#00FFFFFF"
-                        android:rotation="180"
-                        app:srcCompat="@drawable/ic_expand_more_black_48dp" />
-
-                    <TextView
-                        android:id="@+id/subject_deail_presence_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBaseline="@id/subject_detail_show_presence"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:fontFamily="@font/roboto"
-                        android:text="OBECNOŚĆ:"
-                        android:textColor="@color/Primary"
-                        android:textStyle="bold" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/subject_detail_presence_recycler"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/subject_deail_presence_title"
-                        android:padding="12dp">
+                        android:layout_height="match_parent">
+
+                        <ImageButton
+                            android:id="@+id/subject_detail_show_presence"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:backgroundTint="#00FFFFFF"
+                            android:rotation="180"
+                            app:srcCompat="@drawable/ic_expand_more_black_48dp" />
+
+                        <TextView
+                            android:id="@+id/subject_deail_presence_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@id/subject_detail_show_presence"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:fontFamily="@font/roboto"
+                            android:text="OBECNOŚĆ:"
+                            android:textColor="@color/Primary"
+                            android:textStyle="bold" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/subject_detail_presence_recycler"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/subject_deail_presence_title"
+                            android:padding="12dp">
 
 
-                    </androidx.recyclerview.widget.RecyclerView>
+                        </androidx.recyclerview.widget.RecyclerView>
 
-                </RelativeLayout>
-            </com.google.android.material.card.MaterialCardView>
-        </RelativeLayout>
+                    </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </RelativeLayout>
+        </ScrollView>
     </androidx.appcompat.widget.LinearLayoutCompat>
-</ScrollView>
+</RelativeLayout>

@@ -22,6 +22,7 @@ import com.plocki.teacherDiary.type.GRADE_insert_input
 import com.plocki.teacherDiary.utility.ApolloInstance
 import com.plocki.teacherDiary.utility.DatabaseHelper
 import com.plocki.teacherDiary.utility.MainApplication
+import com.plocki.teacherDiary.utility.Store
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -34,14 +35,15 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     private val gradeWeightMap = HashMap<Int, Int>()
     private var chosenWeightId = 0
+    private var chosenDateId = 0
 
 
     private lateinit var testCheckSwitch : SwitchCompat
     private lateinit var testWaitSwitch : SwitchCompat
-
-
+    private val subjectEntryLists = ArrayList<Int>()
+    private val dateSpinnerList = ArrayList<String>()
+    private val gradeWeightSpinnerList = ArrayList<String>()
     var isOnline = true
-
     //overrides
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,7 +67,10 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        chosenWeightId = gradeWeightMap[position]!!
+        when(parent!!.id){
+            R.id.dialog_test_type -> chosenWeightId = gradeWeightMap[position]!!
+            R.id.dialog_test_date -> chosenDateId = subjectEntryLists[position]
+        }
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -175,60 +180,62 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         else if(!testCheckSwitch.isChecked && testWaitSwitch.isChecked){
             updateGrades("delete")
             test.graded = "N"
-            updateTestState()
+            updateTestState(null)
         }
         else{
             updateGrades("delete")
             test.graded = "F"
-            updateTestState()
+            updateTestState(null)
         }
     }
 
     private fun editTest(){
         if(isOnline){
-            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-            val customAlertDialogView = View.inflate(this,R.layout.dialog_test,null)
 
-            val topic = customAlertDialogView.findViewById<TextInputEditText>(R.id.dialog_test_topic_input)
-            val type = customAlertDialogView.findViewById<Spinner>(R.id.dialog_test_type)
+            val teacherId = Store().retrieve("teacherId")
+            val query = SelectSubjectEntriesQuery(teacherId!!.toInt().toInput(),test.subjectId.toInput())
 
-            val gradeWeights = GradeWeight.readAll(DatabaseHelper(MainApplication.appContext).readableDatabase)
-            val gradeWeightSpinnerList = ArrayList<String>()
-            for((counter, weight: GradeWeight) in gradeWeights.withIndex()){
-                gradeWeightSpinnerList.add(weight.name)
-                gradeWeightMap[counter] = weight.id
+            GlobalScope.launch(Dispatchers.Main) {
+                try{
+                    val tmp  = ApolloInstance.get().query(query).toDeferred().await()
+                    try {
+                        if(!tmp.hasErrors()){
+                            dateSpinnerList.clear()
+                            subjectEntryLists.clear()
+                            for (entry in tmp.data!!.sUBJECT_ENTRY){
+                                val label = "${entry.date} - ${entry.dAY.name_pl} - ${entry.lESSON.start_time}"
+                                dateSpinnerList.add(label)
+                                subjectEntryLists.add(entry.id)
+                            }
+                            setupSpinners()
+                        }
+                        else{
+                            Toast.makeText(
+                                    MainApplication.appContext, "Błąd dodawania ocen",
+                                    Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                    }catch (e: NullPointerException){
+                        Toast.makeText(
+                                MainApplication.appContext, "Błąd dodawania ocen",
+                                Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }catch (e: Exception){
+                    Toast.makeText(
+                            MainApplication.appContext, "Bład połączenia z serwerem",
+                            Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
-            chosenWeightId = gradeWeightMap[0]!!
 
-            val gradeWeightAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, gradeWeightSpinnerList)
-
-            gradeWeightAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            type.adapter = gradeWeightAdapter
-            type.onItemSelectedListener = this
-
-            topic.text = Editable.Factory.getInstance().newEditable(test.topic)
-            type.setSelection(test.type.toInt()-1)
-
-            //TODO zmiana daty?
-
-            builder.setView(customAlertDialogView)
-                .setTitle("Edytowanie testu")
-                .setPositiveButton("OK") { _, _ ->
-
-                    test.topic = topic.text.toString()
-                    test.type = chosenWeightId.toString()
-                    updateTestState()
-                }
-                .setNegativeButton("ANULUJ") { dialog, _ ->
-                    dialog.dismiss()
-                }
-                .show()
-        }
-        else{
-            Toast.makeText(
-                MainApplication.appContext, "Edycja tetu możłiwa tylko w trybie online",
-                Toast.LENGTH_SHORT).show()
-        }
+            }
+            else{
+                Toast.makeText(
+                    MainApplication.appContext, "Edycja tetu możłiwa tylko w trybie online",
+                    Toast.LENGTH_SHORT).show()
+            }
 
     }
 
@@ -279,6 +286,61 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
     }
 
+    private fun setupSpinners(){
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        val customAlertDialogView = View.inflate(this,R.layout.dialog_test,null)
+
+        val topic = customAlertDialogView.findViewById<TextInputEditText>(R.id.dialog_test_topic_input)
+        topic.text = Editable.Factory.getInstance().newEditable(test.topic)
+        gradeWeightSpinnerList.clear()
+
+
+        val gradeWeights = GradeWeight.readAll(DatabaseHelper(MainApplication.appContext).readableDatabase)
+        var current = 0
+        for((counter, weight: GradeWeight) in gradeWeights.withIndex()){
+            gradeWeightSpinnerList.add(weight.name)
+            gradeWeightMap[counter] = weight.id
+            if(weight.id == test.type.toInt()){
+                current = counter
+            }
+        }
+
+        chosenWeightId = test.type.toInt()
+        val type = customAlertDialogView.findViewById<Spinner>(R.id.dialog_test_type)
+        val gradeWeightAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, gradeWeightSpinnerList)
+        gradeWeightAdapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+        type.adapter = gradeWeightAdapter
+        type.onItemSelectedListener = this
+        type.setSelection(current)
+
+        chosenDateId = test.subjectId
+        val allTestDates = customAlertDialogView.findViewById<Spinner>(R.id.dialog_test_date)
+        val dateAdapter = ArrayAdapter(this@TestActivity, android.R.layout.simple_spinner_item, dateSpinnerList)
+        dateAdapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+        allTestDates.adapter = dateAdapter
+        allTestDates.onItemSelectedListener = this@TestActivity
+        allTestDates.setSelection(subjectEntryLists.indexOf(test.subjectId))
+
+
+        type.setSelection(test.type.toInt()-1)
+
+        builder.setView(customAlertDialogView)
+                .setTitle("Edytowanie testu")
+                .setPositiveButton("OK") { _, _ ->
+                    val oldSubjectId = test.subjectId
+                    test.topic = topic.text.toString()
+                    test.date = dateSpinnerList[subjectEntryLists.indexOf(chosenDateId)].split(" - ")[0]
+                    test.time = dateSpinnerList[subjectEntryLists.indexOf(chosenDateId)].split(" - ")[2]
+                    test.type = chosenWeightId.toString()
+                    test.subjectId = chosenDateId
+                    updateTestState(oldSubjectId)
+                }
+                .setNegativeButton("ANULUJ") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
+
+    }
 
     //graphql
 
@@ -360,7 +422,7 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                             Toast.LENGTH_SHORT
                         ).show()
                         test.graded = "Y"
-                        updateTestState()
+                        updateTestState(null)
                     }
                     else{
                         Toast.makeText(
@@ -397,7 +459,7 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                             insertNewGrades()
                         }
                         if(mode == "delete"){
-                            updateTestState()
+                            updateTestState(null)
                         }
                     }
                     else{
@@ -457,8 +519,8 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
     }
 
-    private fun updateTestState(){
-        val mutation = UpdateTestMutation(test.id.toInput(),test.graded.toInput(), test.topic.toInput(), test.type.toInput())
+    private fun updateTestState(oldSubjectId: Int?) {
+        val mutation = UpdateTestMutation(test.id.toInput(),test.graded.toInput(), test.topic.toInput(), test.type.toInput(), test.subjectId.toInput())
 
         GlobalScope.launch(Dispatchers.Main) {
             try{
@@ -471,6 +533,11 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                             Toast.LENGTH_SHORT
                         ).show()
                         test.update(db)
+                        if(oldSubjectId != null && oldSubjectId != test.subjectId){
+                            val oldSubjectEntry = SubjectEntry.readOne(db,oldSubjectId)
+                            oldSubjectEntry.testID = ""
+                            oldSubjectEntry.updateTest(db)
+                        }
                         finish()
                     }
                 }catch (e: NullPointerException){
@@ -514,4 +581,6 @@ class TestActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             }
         }
     }
+
+
 }

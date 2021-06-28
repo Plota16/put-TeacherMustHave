@@ -13,6 +13,7 @@ import com.plocki.teacherDiary.model.Test
 import com.plocki.teacherDiary.utility.DatabaseHelper
 import com.plocki.teacherDiary.utility.MainApplication
 import com.plocki.teacherDiary.utility.Store
+import java.time.LocalDate
 
 class TestFragment : Fragment() {
 //    private val isOnline = true
@@ -35,11 +36,15 @@ class TestFragment : Fragment() {
 
     private fun applyRecycler() {
         val list = Test.readAll(DatabaseHelper(MainApplication.appContext).readableDatabase)
+        val newList = list.filter {
+            val localTime = LocalDate.now().minusMonths(2).toString()
+            it.date > localTime
+        }
         val recycler = requireView().findViewById<RecyclerView>(R.id.test_recycler)
 
         recycler.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = TestListAdapter(list)
+            adapter = TestListAdapter(newList)
         }
 
     }

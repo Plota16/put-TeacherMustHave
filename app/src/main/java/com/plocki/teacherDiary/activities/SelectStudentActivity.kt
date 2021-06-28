@@ -23,6 +23,9 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class SelectStudentActivity : AppCompatActivity() {
+
+    private var subjectForClassId = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_student)
@@ -30,8 +33,6 @@ class SelectStudentActivity : AppCompatActivity() {
         val classId = intent.getStringExtra("classId")!!.toInt()
         val className = intent.getStringExtra("className")
         val title = "Uczniowie klasy $className"
-
-        findViewById<TextView>(R.id.select_student_title).text = title
 
         val query = SelectStudentsQuery(classId.toInput())
         GlobalScope.launch(Dispatchers.Main) {
@@ -60,6 +61,13 @@ class SelectStudentActivity : AppCompatActivity() {
                 finish()
             }
         }
+
+        subjectForClassId = try {
+            intent.getStringExtra("subjectForClassId")!!.toInt()
+        }catch (e : Exception){
+            0
+        }
+        findViewById<TextView>(R.id.select_student_title).text = title
     }
 
     private fun setupTableView(response: Response<SelectStudentsQuery.Data>) {
@@ -76,10 +84,21 @@ class SelectStudentActivity : AppCompatActivity() {
             row.findViewById<TextView>(R.id.template_row_column2).text = name
 
             row.setOnClickListener {
-                val intent = Intent(MainApplication.appContext, SelectSubjectActivity::class.java)
-                intent.putExtra("studentId", student.id.toString())
-                intent.putExtra("studentName", name)
-                startActivity(intent)
+
+                if(subjectForClassId != 0) {
+                    val intent = Intent(MainApplication.appContext, SubjectDetailActivity::class.java)
+                    intent.putExtra("studentId", student.id.toString())
+                    intent.putExtra("studentName", name)
+                    intent.putExtra("subjectId", subjectForClassId.toString())
+                    startActivity(intent)
+                }
+                else{
+                    val intent = Intent(MainApplication.appContext, SelectSubjectActivity::class.java)
+                    intent.putExtra("studentId", student.id.toString())
+                    intent.putExtra("studentName", name)
+                    intent.putExtra("studentId", student.id.toString())
+                    startActivity(intent)
+                }
             }
             dataTable.addView(row,index+2)
         }

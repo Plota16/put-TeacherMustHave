@@ -6,8 +6,9 @@ query selectClasses($teacherId: Int) {
             id
         }
         class_teacher_id
-        SUBJECT_FOR_CLASSes{
+        SUBJECT_FOR_CLASSes(where: {teacher_id: {_eq: $teacherId}}){
             id
+            subject_name
         }
         TEACHER{
             first_name

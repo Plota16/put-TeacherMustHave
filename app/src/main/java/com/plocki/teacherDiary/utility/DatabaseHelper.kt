@@ -35,7 +35,8 @@ class DatabaseHelper(
                                     Test.CREATE_TABLE +
                                     GradeName.CREATE_TABLE +
                                     GradeWeight.CREATE_TABLE +
-                                    Class.CREATE_TABLE
+                                    Class.CREATE_TABLE +
+                                    SubjectForClass.CREATE_TABLE
 
         const val DB_DELETE_ALL =   SubjectEntry.DROP_TABLE +
                                     Student.DROP_TABLE +
@@ -45,6 +46,7 @@ class DatabaseHelper(
                                     Test.DROP_TABLE +
                                     GradeName.DROP_TABLE +
                                     GradeWeight.DROP_TABLE +
-                                    Class.DROP_TABLE
+                                    Class.DROP_TABLE +
+                                    SubjectForClass.DROP_TABLE
     }
 }

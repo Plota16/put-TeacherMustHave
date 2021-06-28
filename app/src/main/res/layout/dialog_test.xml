@@ -47,7 +47,33 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="16dp"
         android:layout_toRightOf="@id/dialog_test_type_text" />
+
+    <TextView
+        android:id="@+id/dialog_test_date_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dialog_test_type_text"
+        android:layout_alignBaseline="@id/dialog_test_date"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/roboto"
+        android:text="Termin:"
+        android:textSize="16sp" />
+
+    <Spinner
+        android:id="@+id/dialog_test_date"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@id/dialog_test_type_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="16dp"
+        android:layout_toRightOf="@id/dialog_test_date_text" />
 
 </RelativeLayout>

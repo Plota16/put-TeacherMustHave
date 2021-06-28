@@ -87,6 +87,7 @@ class MainActivity : AppCompatActivity() {
             R.id.nav_home -> HomeFragment::class.java
             R.id.nav_calendar -> CalendarFragment::class.java
             R.id.nav_database -> DatabaseFragment::class.java
+            R.id.nav_subjects -> SubjectsFragment::class.java
             R.id.nav_settings -> SettingsFragment::class.java
             R.id.nav_tasks -> TaskFragment::class.java
             R.id.nav_test -> TestFragment::class.java

@@ -6,10 +6,10 @@ import android.database.sqlite.SQLiteDatabase
 class Test(val id: Int,
            var topic: String,
            var type: String,
-           val subjectId: Int,
+           var subjectId: Int,
            var graded: String,
-           val date: String,
-           val time: String) {
+           var date: String,
+           var time: String) {
 
     fun insert(db: SQLiteDatabase) {
         val values = ContentValues().apply {
@@ -32,7 +32,10 @@ class Test(val id: Int,
         val values = ContentValues().apply {
             put(COL2, topic)
             put(COL3, type)
+            put(COL4,subjectId)
             put(COL5, graded)
+            put(COL6,date)
+            put(COL7,time)
         }
         val selection = "$COL1 = ?"
         val selectionArgs = arrayOf(id.toString())

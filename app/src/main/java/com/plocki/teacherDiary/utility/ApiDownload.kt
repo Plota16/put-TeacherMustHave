@@ -289,6 +289,9 @@ class ApiDownload(val id : Int, private val userId: Int) {
                         db.execSQL(Class.DROP_TABLE)
                         db.execSQL(Class.CREATE_TABLE)
 
+                        db.execSQL(SubjectForClass.DROP_TABLE)
+                        db.execSQL(SubjectForClass.CREATE_TABLE)
+
                         for(entry in tmp.data!!.cLASS){
                             val myClass = Class(
                                     entry.id,
@@ -297,6 +300,15 @@ class ApiDownload(val id : Int, private val userId: Int) {
                                     entry.sUBJECT_FOR_CLASSes.size,
                                     "${entry.tEACHER.first_name} ${entry.tEACHER.last_name}"
                             )
+                            for(subjectInput in entry.sUBJECT_FOR_CLASSes){
+                                val subject = SubjectForClass(
+                                        subjectInput.id,
+                                        entry.id,
+                                        entry.name,
+                                        subjectInput.subject_name
+                                )
+                                subject.insert(db)
+                            }
                             myClass.insert(db)
                         }
                     }

@@ -1,11 +1,16 @@
-mutation updateTest($testId: Int, $graded: String, $topic: String, $type: String) {
-    update_TEST(where: {id: {_eq: $testId}}, _set: {graded: $graded, topic: $topic, type: $type}) {
+mutation updateTest($testId: Int, $graded: String, $topic: String, $type: String, $subjectEntryId: Int) {
+    update_TEST(where: {id: {_eq: $testId}}, _set: {graded: $graded, topic: $topic, type: $type, subject_entry_id: $subjectEntryId}) {
         returning {
             graded
             id
             subject_entry_id
             topic
             type
+        }
+    }
+    update_GRADE(where: {testId: {_eq: $testId}}, _set: {subject_for_class_id: $subjectEntryId}){
+        returning{
+            id
         }
     }
 }
